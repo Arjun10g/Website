@@ -373,6 +373,25 @@ p  { color: var(--muted); line-height: 1.72; }
 }
 .proj-card:hover { border-color: var(--border-hv); box-shadow: var(--glow-c); }
 .proj-card:hover::before { transform: scaleY(1); }
+
+/* Past projects — muted purple accent */
+.proj-card-past::before { background: var(--purple); }
+.proj-card-past:hover { box-shadow: var(--glow-p); }
+
+/* Under-review badge */
+.badge-review {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  font-family: var(--f-mono); font-size: 0.62rem; letter-spacing: 0.1em;
+  text-transform: uppercase; padding: 0.25rem 0.65rem;
+  border-radius: 20px; border: 1px solid rgba(251,191,36,0.35);
+  color: var(--gold); background: rgba(251,191,36,0.06);
+  margin-top: 0.75rem;
+}
+.badge-review::before {
+  content: ''; display: inline-block; width: 6px; height: 6px;
+  border-radius: 50%; background: var(--gold);
+  box-shadow: 0 0 6px var(--gold); animation: pulse 2s ease-in-out infinite;
+}
 .proj-meta { display: flex; gap: 0.6rem; margin-bottom: 0.9rem; }
 .proj-title { font-size: 1.04rem; font-weight: 600; color: var(--text); margin-bottom: 0.7rem; line-height: 1.35; }
 .proj-desc { font-size: 0.84rem; color: var(--muted); line-height: 1.62; }

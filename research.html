@@ -40,58 +40,95 @@
       </p>
     </div>
 
-    <!-- RESEARCH PROJECTS -->
+    <!-- ACTIVE RESEARCH -->
     <section class="section">
-      <p class="eyebrow reveal-up">Featured Projects</p>
+      <p class="eyebrow reveal-up">Current Work</p>
       <h2 class="reveal-up" data-delay="0.05" style="margin-bottom:2.5rem;">Active Research</h2>
       <div class="projects-grid stagger-group">
+
         <div class="proj-card stagger-item">
+          <div class="proj-meta">
+            <span class="tag tag-p">SEM</span>
+            <span class="tag tag-c">Psychometrics</span>
+          </div>
+          <div class="proj-title">Influential Functions in Structural Equation Modelling</div>
+          <p class="proj-desc">Developing influence diagnostics for SEM using influence function theory — identifying observations that disproportionately affect parameter estimates, model fit indices, and path coefficients in latent variable models.</p>
+        </div>
+
+        <div class="proj-card stagger-item">
+          <div class="proj-meta">
+            <span class="tag tag-g">Statistics</span>
+            <span class="tag tag-c">Non-Parametric</span>
+          </div>
+          <div class="proj-title">The SaddlePoint Divergence Metric (SPDM)</div>
+          <p class="proj-desc">A non-parametric probability density-based framework for quantifying distributional differences — leveraging saddlepoint approximations to construct a novel divergence metric with strong theoretical guarantees. Manuscript under review.</p>
+          <div class="badge-review">Under Review · Communications in Statistics – Simulation and Computation</div>
+        </div>
+
+        <div class="proj-card stagger-item">
+          <div class="proj-meta">
+            <span class="tag tag-p">SEM</span>
+            <span class="tag tag-v">Optimisation</span>
+          </div>
+          <div class="proj-title">Gradient-Based Trajectory Informed Optimiser for SEM</div>
+          <p class="proj-desc">Adapting gradient-based trajectory optimisation methods to structural equation modelling — replacing traditional ML/GLS estimators with trajectory-informed gradient descent to improve convergence in complex, high-dimensional SEM specifications.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PAST PROJECTS -->
+    <section class="section" style="padding-top:0;">
+      <p class="eyebrow reveal-up">Previous Work</p>
+      <h2 class="reveal-up" data-delay="0.05" style="margin-bottom:2.5rem;">Past Projects</h2>
+      <div class="projects-grid stagger-group">
+        <div class="proj-card proj-card-past stagger-item">
           <div class="proj-meta">
             <span class="tag tag-c">NLP</span>
             <span class="tag tag-p">Deep Learning</span>
           </div>
           <div class="proj-title">Twitter Sentiment &amp; Topic Modelling at Scale</div>
-          <p class="proj-desc">Scraped and preprocessed 500k+ tweets using Tweepy and BeautifulSoup. Fine-tuned BERT and RoBERTa for sentiment classification; applied BERTopic for unsupervised topic discovery. Full PyTorch training pipeline with mixed-precision and custom evaluation.</p>
+          <p class="proj-desc">Scraped and preprocessed 500k+ tweets. Fine-tuned BERT and RoBERTa for sentiment classification; applied BERTopic for unsupervised topic discovery. Full PyTorch pipeline with mixed-precision training and custom evaluation.</p>
         </div>
-        <div class="proj-card stagger-item">
+        <div class="proj-card proj-card-past stagger-item">
           <div class="proj-meta">
             <span class="tag tag-p">Statistics</span>
             <span class="tag tag-v">Mental Health</span>
           </div>
           <div class="proj-title">Mental Health Trajectories — Syrian Refugees in Canada</div>
-          <p class="proj-desc">Applying Latent Class Growth Analysis (LCGA) to model longitudinal mental health trajectories. Building automated Python pipelines for survey data cleaning, transformation, and reproducible reporting in collaboration with the University of Dubai.</p>
+          <p class="proj-desc">Applied LCGA to model longitudinal mental health trajectories. Built automated Python pipelines for survey data cleaning and reproducible reporting in collaboration with the University of Dubai.</p>
         </div>
-        <div class="proj-card stagger-item">
+        <div class="proj-card proj-card-past stagger-item">
           <div class="proj-meta">
             <span class="tag tag-c">Full-Stack</span>
             <span class="tag tag-g">FastAPI</span>
           </div>
           <div class="proj-title">Linguistics Web Applications (York University)</div>
-          <p class="proj-desc">Built FastAPI + React web tools for the Linguistics department. Developed data pipelines for phonetic and corpus data processing, enabling researchers to run analyses without programming expertise.</p>
+          <p class="proj-desc">Built FastAPI + React tools for the Linguistics department. Developed data pipelines for phonetic and corpus data processing, enabling researchers to run analyses without programming expertise.</p>
         </div>
-        <div class="proj-card stagger-item">
+        <div class="proj-card proj-card-past stagger-item">
           <div class="proj-meta">
             <span class="tag tag-p">Statistics</span>
             <span class="tag tag-v">Simulation</span>
           </div>
           <div class="proj-title">Regularisation in Mediation Models — Monte Carlo Study</div>
-          <p class="proj-desc">Designed and ran a large-scale Monte Carlo simulation comparing Lasso, Ridge, and Elastic Net penalties in multiple mediation models. Evaluated estimation bias and Type I error rates across varying sample sizes and correlation structures.</p>
+          <p class="proj-desc">Large-scale Monte Carlo simulation comparing Lasso, Ridge, and Elastic Net penalties in multiple mediation models. Evaluated estimation bias and Type I error rates across varying sample sizes and correlation structures.</p>
         </div>
-        <div class="proj-card stagger-item">
+        <div class="proj-card proj-card-past stagger-item">
           <div class="proj-meta">
             <span class="tag tag-p">MLM</span>
             <span class="tag tag-v">Longitudinal</span>
           </div>
           <div class="proj-title">Student Transition Study — High School to University Chemistry</div>
-          <p class="proj-desc">Logistic regression and factor analysis investigating variables predicting student success in first-year university chemistry. Produced visualisations and policy-relevant reports for York University's Associate Dean.</p>
+          <p class="proj-desc">Logistic regression and factor analysis investigating predictors of first-year university chemistry success. Produced visualisations and policy-relevant reports for York University's Associate Dean.</p>
         </div>
-        <div class="proj-card stagger-item">
+        <div class="proj-card proj-card-past stagger-item">
           <div class="proj-meta">
             <span class="tag tag-v">Youth</span>
             <span class="tag tag-p">Mixed Methods</span>
           </div>
           <div class="proj-title">Adolescent Treatment Trajectories — Pine River Institute</div>
-          <p class="proj-desc">Synthesised longitudinal treatment data from adolescent residential programs. Mixed-methods analysis of outcomes before, during, and after COVID-19; created best-practice statistical guidelines for the institute.</p>
+          <p class="proj-desc">Synthesised longitudinal adolescent treatment data. Mixed-methods analysis of outcomes before, during, and after COVID-19; created best-practice statistical guidelines for the institute.</p>
         </div>
       </div>
     </section>
