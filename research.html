@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Research — Arjunvir Ghumman</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="bg-orbs" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+  <div id="page-transition" aria-hidden="true"></div>
+
+  <nav class="site-nav">
+    <a href="index.html" class="nav-brand">AG<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="research.html" class="active">Research</a></li>
+      <li><a href="connect.html">Connect</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <!-- Page header -->
+    <div class="section-sm" id="researchHero" style="padding-bottom:0;">
+      <p class="eyebrow">Research &amp; Work</p>
+      <h1 style="font-size:clamp(2.5rem,5vw,4.5rem); margin-top:.8rem; max-width:14ch;">
+        Data-driven<br/>science with<br/><span style="color:var(--cyan)">real impact.</span>
+      </h1>
+      <p style="max-width:55ch; margin-top:1.5rem; font-size:1.04rem;">
+        PhD-level research in NLP, deep learning, and quantitative methods — applied to mental health, psychometrics, linguistics, and social science.
+      </p>
+    </div>
+
+    <!-- RESEARCH PROJECTS -->
+    <section class="section">
+      <p class="eyebrow reveal-up">Featured Projects</p>
+      <h2 class="reveal-up" data-delay="0.05" style="margin-bottom:2.5rem;">Active Research</h2>
+      <div class="projects-grid stagger-group">
+        <div class="proj-card stagger-item">
+          <div class="proj-meta">
+            <span class="tag tag-c">NLP</span>
+            <span class="tag tag-p">Deep Learning</span>
+          </div>
+          <div class="proj-title">Twitter Sentiment &amp; Topic Modelling at Scale</div>
+          <p class="proj-desc">Scraped and preprocessed 500k+ tweets using Tweepy and BeautifulSoup. Fine-tuned BERT and RoBERTa for sentiment classification; applied BERTopic for unsupervised topic discovery. Full PyTorch training pipeline with mixed-precision and custom evaluation.</p>
+        </div>
+        <div class="proj-card stagger-item">
+          <div class="proj-meta">
+            <span class="tag tag-p">Statistics</span>
+            <span class="tag tag-v">Mental Health</span>
+          </div>
+          <div class="proj-title">Mental Health Trajectories — Syrian Refugees in Canada</div>
+          <p class="proj-desc">Applying Latent Class Growth Analysis (LCGA) to model longitudinal mental health trajectories. Building automated Python pipelines for survey data cleaning, transformation, and reproducible reporting in collaboration with the University of Dubai.</p>
+        </div>
+        <div class="proj-card stagger-item">
+          <div class="proj-meta">
+            <span class="tag tag-c">Full-Stack</span>
+            <span class="tag tag-g">FastAPI</span>
+          </div>
+          <div class="proj-title">Linguistics Web Applications (York University)</div>
+          <p class="proj-desc">Built FastAPI + React web tools for the Linguistics department. Developed data pipelines for phonetic and corpus data processing, enabling researchers to run analyses without programming expertise.</p>
+        </div>
+        <div class="proj-card stagger-item">
+          <div class="proj-meta">
+            <span class="tag tag-p">Statistics</span>
+            <span class="tag tag-v">Simulation</span>
+          </div>
+          <div class="proj-title">Regularisation in Mediation Models — Monte Carlo Study</div>
+          <p class="proj-desc">Designed and ran a large-scale Monte Carlo simulation comparing Lasso, Ridge, and Elastic Net penalties in multiple mediation models. Evaluated estimation bias and Type I error rates across varying sample sizes and correlation structures.</p>
+        </div>
+        <div class="proj-card stagger-item">
+          <div class="proj-meta">
+            <span class="tag tag-p">MLM</span>
+            <span class="tag tag-v">Longitudinal</span>
+          </div>
+          <div class="proj-title">Student Transition Study — High School to University Chemistry</div>
+          <p class="proj-desc">Logistic regression and factor analysis investigating variables predicting student success in first-year university chemistry. Produced visualisations and policy-relevant reports for York University's Associate Dean.</p>
+        </div>
+        <div class="proj-card stagger-item">
+          <div class="proj-meta">
+            <span class="tag tag-v">Youth</span>
+            <span class="tag tag-p">Mixed Methods</span>
+          </div>
+          <div class="proj-title">Adolescent Treatment Trajectories — Pine River Institute</div>
+          <p class="proj-desc">Synthesised longitudinal treatment data from adolescent residential programs. Mixed-methods analysis of outcomes before, during, and after COVID-19; created best-practice statistical guidelines for the institute.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PUBLICATIONS -->
+    <section class="section" style="padding-top:0;">
+      <p class="eyebrow reveal-up">Publications</p>
+      <h2 class="reveal-up" data-delay="0.05" style="margin-bottom:2rem;">Peer-Reviewed Work</h2>
+      <div class="pub-list stagger-group">
+        <div class="pub-item stagger-item">
+          <div class="pub-title">The Short-Form Memory Impact Questionnaire: Development and Validation Among Community-Dwelling Middle-Aged and Older Adults.</div>
+          <div class="pub-authors">Baptist-Mohseni N., Singh A., Vandermorris S., Troyer A. K., Rich J. B., Shaikh K. T.</div>
+          <div class="pub-journal">The Gerontologist, gnaf188 — 2025</div>
+        </div>
+        <div class="pub-item stagger-item">
+          <div class="pub-title">Exploring the Unmet Needs of Latino Dementia Caregivers: A Qualitative Study.</div>
+          <div class="pub-authors">Baptist-Mohseni N., Singh A., Vandermorris S., Troyer A. K., Rich J. B., Shaikh K. T.</div>
+          <div class="pub-journal">Gerontologist, 65(11) — 2025</div>
+        </div>
+        <div class="pub-item stagger-item">
+          <div class="pub-title">Co-developing and Validating the I-SPARX Wellness Questionnaire: A Community-Driven Psychometric Study with Inuit Youth in Nunavut.</div>
+          <div class="pub-authors">Padgett J. K., Garvey N., Abdelmaseh M., Singh A., et al.</div>
+          <div class="pub-journal">International Journal of Indigenous Health, 21(1) — 2025</div>
+        </div>
+        <div class="pub-item stagger-item">
+          <div class="pub-title">Creation and Validation of the MMQ-9: A Short Version of the Multifactorial Memory Questionnaire.</div>
+          <div class="pub-authors">Troyer A. K., Shaikh K. T., Baptist-Mohseni N., Singh A., et al.</div>
+          <div class="pub-journal">International Psychogeriatrics — Under Review, 2024</div>
+        </div>
+        <div class="pub-item stagger-item">
+          <div class="pub-title">Fear of Cancer Recurrence and Marital Adjustment in Young Women with Breast Cancer Across Three Years Post-Treatment.</div>
+          <div class="pub-authors">Harb S., Singh A., et al.</div>
+          <div class="pub-journal">Under Review — 2024</div>
+        </div>
+        <div class="pub-item stagger-item">
+          <div class="pub-title">Regularization in Mediation Models: A Monte Carlo Simulation Comparing Regularization Penalties in Multiple Mediation Models.</div>
+          <div class="pub-authors">Singh A.</div>
+          <div class="pub-journal">Master's Research — 2022</div>
+        </div>
+        <div class="pub-item stagger-item">
+          <div class="pub-title">Symptom Trajectories of Treatment-Engaged Youth Before, During, and After COVID-19.</div>
+          <div class="pub-authors">Eastabrook J. M., Mills L., &amp; Singh A.</div>
+          <div class="pub-journal">Residential Treatment for Children and Youth — Submitted 2023</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TALKS -->
+    <section class="section" style="padding-top:0;">
+      <p class="eyebrow reveal-up">Dissemination</p>
+      <h2 class="reveal-up" data-delay="0.05" style="margin-bottom:2rem;">Talks &amp; Workshops</h2>
+      <div class="talks-grid stagger-group">
+        <div class="talk-item stagger-item">
+          <div class="talk-date">Oct 2024</div>
+          <div class="talk-title">Data Pipelines in Applied Research</div>
+          <div class="talk-venue">QM Forum</div>
+        </div>
+        <div class="talk-item stagger-item">
+          <div class="talk-date">Apr 2024</div>
+          <div class="talk-title">Machine Learning in Biostatistics</div>
+          <div class="talk-venue">TABA Conference</div>
+        </div>
+        <div class="talk-item stagger-item">
+          <div class="talk-date">Oct 2023</div>
+          <div class="talk-title">Adapting Machine Learning to Social Sciences</div>
+          <div class="talk-venue">QM Forum</div>
+        </div>
+        <div class="talk-item stagger-item">
+          <div class="talk-date">Oct 2023</div>
+          <div class="talk-title">Mixed Effects Models &amp; Data Management in R/Python</div>
+          <div class="talk-venue">QM Workshop Series</div>
+        </div>
+        <div class="talk-item stagger-item">
+          <div class="talk-date">Feb 2023</div>
+          <div class="talk-title">Data Scraping and Text Analysis</div>
+          <div class="talk-venue">QM Workshop Series</div>
+        </div>
+        <div class="talk-item stagger-item">
+          <div class="talk-date">May 2022</div>
+          <div class="talk-title">Data Visualization in Python</div>
+          <div class="talk-venue">QM Workshop Series</div>
+        </div>
+        <div class="talk-item stagger-item">
+          <div class="talk-date">Nov 2021</div>
+          <div class="talk-title">Introduction to Regularization Methods</div>
+          <div class="talk-venue">QM Forum</div>
+        </div>
+        <div class="talk-item stagger-item">
+          <div class="talk-date">Apr 2021</div>
+          <div class="talk-title">Regularization Methods in SEM</div>
+          <div class="talk-venue">QM Forum</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2026 Arjunvir Ghumman &nbsp;·&nbsp; arjun10@yorku.ca &nbsp;·&nbsp; <span style="color:var(--cyan)">github.com/Arjun10g</span></p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="animations.js"></script>
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.fromTo('#researchHero .eyebrow',
+      { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.6, delay: 0.2 }
+    );
+    gsap.fromTo('#researchHero h1',
+      { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.9, delay: 0.35, ease: 'power3.out' }
+    );
+    gsap.fromTo('#researchHero p',
+      { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.7, delay: 0.55 }
+    );
+
+    initAnimations();
+  </script>
+</body>
+</html>

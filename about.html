@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About — Arjunvir Ghumman</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="bg-orbs" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+  <div id="page-transition" aria-hidden="true"></div>
+
+  <nav class="site-nav">
+    <a href="index.html" class="nav-brand">AG<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="research.html">Research</a></li>
+      <li><a href="connect.html">Connect</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <!-- HERO -->
+    <div class="about-hero" id="aboutHero">
+      <p class="eyebrow">About Me</p>
+      <h1>Building at the<br/><em>intersection</em><br/>of data &amp; meaning.</h1>
+    </div>
+
+    <!-- BIO + SKILLS -->
+    <section class="section">
+      <div class="about-grid">
+        <div class="reveal-left">
+          <p class="eyebrow">Profile</p>
+          <div class="about-bio">
+            <p>I'm <strong>Arjunvir Ghumman</strong>, a PhD candidate in Quantitative Methods at York University, specialising in machine learning, NLP, and applied statistics. With <strong>7+ years of experience</strong> spanning deep learning, statistical modelling, and full-stack research, I build systems that extract insight from complex, messy data.</p>
+            <p>My work lives at the intersection of <strong>transformer-based NLP</strong> (BERT, RoBERTa, GPT-Neo), <strong>multilevel modelling</strong>, and <strong>Bayesian inference</strong>. I've applied these across mental health research, psychometrics, linguistics, and social science — always with an eye toward reproducibility and real-world impact.</p>
+            <p>I've delivered <strong>8+ talks and workshops</strong> on ML in social sciences, data pipelines, and NLP, and contributed to <strong>6 peer-reviewed publications</strong> across clinical psychology, psychometrics, and computational methods.</p>
+            <p>Outside the lab I build web tools with FastAPI + React, teach statistical methods, and consult on research design. I'm looking for ML engineering, data science, or biostatistics roles in industry or research.</p>
+          </div>
+          <div style="margin-top:2rem; display:flex; gap:1rem; flex-wrap:wrap;">
+            <a href="connect.html" class="btn btn-primary">Get in Touch</a>
+            <a href="research.html" class="btn btn-ghost">View Research</a>
+          </div>
+        </div>
+
+        <div class="reveal-right">
+          <p class="eyebrow">Technical Skills</p>
+          <div class="skills-wrap">
+            <div class="skill-group">
+              <div class="skill-group-label">Machine Learning &amp; Deep Learning</div>
+              <div class="skill-tags">
+                <span class="tag tag-c">PyTorch</span>
+                <span class="tag tag-c">TensorFlow</span>
+                <span class="tag tag-c">Hugging Face</span>
+                <span class="tag tag-c">BERT / RoBERTa</span>
+                <span class="tag tag-c">GPT-2 / Neo</span>
+                <span class="tag tag-c">scikit-learn</span>
+                <span class="tag tag-c">SHAP / LIME</span>
+                <span class="tag tag-c">BERTopic</span>
+              </div>
+            </div>
+            <div class="skill-group">
+              <div class="skill-group-label">Statistical Modelling</div>
+              <div class="skill-tags">
+                <span class="tag tag-p">Multilevel Models</span>
+                <span class="tag tag-p">SEM / IRT</span>
+                <span class="tag tag-p">Bayesian Inference</span>
+                <span class="tag tag-p">Survival Analysis</span>
+                <span class="tag tag-p">Monte Carlo</span>
+                <span class="tag tag-p">Regularisation</span>
+                <span class="tag tag-p">LCGA</span>
+              </div>
+            </div>
+            <div class="skill-group">
+              <div class="skill-group-label">Programming &amp; Tools</div>
+              <div class="skill-tags">
+                <span class="tag tag-v">Python</span>
+                <span class="tag tag-v">R</span>
+                <span class="tag tag-v">SQL / PostgreSQL</span>
+                <span class="tag tag-v">FastAPI</span>
+                <span class="tag tag-v">Docker</span>
+                <span class="tag tag-v">AWS / Azure</span>
+                <span class="tag tag-v">JavaScript</span>
+                <span class="tag tag-g">pandas · NumPy</span>
+                <span class="tag tag-g">ggplot2 · Shiny</span>
+                <span class="tag tag-g">Tableau · SAS</span>
+              </div>
+            </div>
+            <div class="skill-group">
+              <div class="skill-group-label">NLP Techniques</div>
+              <div class="skill-tags">
+                <span class="tag tag-c">Transformers</span>
+                <span class="tag tag-c">Tokenisation</span>
+                <span class="tag tag-c">Word2Vec / fastText</span>
+                <span class="tag tag-c">sentence-transformers</span>
+                <span class="tag tag-c">LDA Topic Modelling</span>
+                <span class="tag tag-c">Named Entity Recog.</span>
+                <span class="tag tag-c">Text Classification</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section class="section" style="padding-top:0;">
+      <p class="eyebrow reveal-up">Education</p>
+      <div class="timeline" style="margin-top:2rem;">
+        <div class="timeline-item reveal-up" data-delay="0">
+          <div class="timeline-year">2022 – 2026</div>
+          <div class="timeline-deg">PhD — Quantitative Methods</div>
+          <div class="timeline-school">York University, Toronto · Machine Learning · MLM · SEM · IRT · Longitudinal Modelling</div>
+        </div>
+        <div class="timeline-item reveal-up" data-delay="0.1">
+          <div class="timeline-year">2020 – 2022</div>
+          <div class="timeline-deg">MA — Quantitative Methods</div>
+          <div class="timeline-school">York University, Toronto · Psychometrics · Item Response Theory · Computational Methods</div>
+        </div>
+        <div class="timeline-item reveal-up" data-delay="0.2">
+          <div class="timeline-year">2015 – 2019</div>
+          <div class="timeline-deg">BSc — Specialized Honours in Psychology &amp; Statistics</div>
+          <div class="timeline-school">Lakehead University, Thunder Bay · Advanced Statistics · Computational Methods · Data Science</div>
+        </div>
+      </div>
+
+      <!-- CV DOWNLOAD -->
+      <div class="cv-card reveal-up" data-delay="0.1">
+        <div class="cv-card-text">
+          <h3>Curriculum Vitae</h3>
+          <p>Full academic &amp; professional history — research roles, publications, teaching, and awards.</p>
+        </div>
+        <a href="cv_arjunvir.docx" download class="btn btn-primary" style="white-space:nowrap;">Download CV ↓</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2026 Arjunvir Ghumman &nbsp;·&nbsp; arjun10@yorku.ca &nbsp;·&nbsp; <span style="color:var(--cyan)">github.com/Arjun10g</span></p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="animations.js"></script>
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    /* Hero entry */
+    gsap.fromTo('#aboutHero .eyebrow',
+      { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.7, delay: 0.2 }
+    );
+    gsap.fromTo('#aboutHero h1',
+      { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.9, delay: 0.35, ease: 'power3.out' }
+    );
+
+    initAnimations();
+  </script>
+</body>
+</html>

@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Connect — Arjunvir Ghumman</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css"/>
+  <style>
+    @keyframes scan {
+      0%   { top: -4px; opacity: 1; }
+      80%  { top: 100%; opacity: 1; }
+      100% { top: 100%; opacity: 0; }
+    }
+    .c-scan {
+      position: absolute; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+      top: -4px; opacity: 0; pointer-events: none; z-index: 2;
+    }
+    .c-card:hover .c-scan { animation: scan 1.8s ease-in-out infinite; }
+
+    .status-dot {
+      display: inline-block; width: 6px; height: 6px;
+      border-radius: 50%; background: var(--green); box-shadow: 0 0 8px var(--green);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%,100% { transform:scale(1); opacity:1; } 50% { transform:scale(1.5); opacity:.6; } }
+
+    /* ── Profile grid: 2×2 centred ── */
+    .profile-grid {
+      display: grid; grid-template-columns: repeat(4,1fr);
+      gap: 1.4rem;
+      padding: 0 3rem 4rem;
+      max-width: 1200px; margin: 0 auto;
+    }
+
+    /* ── Project cards ── */
+    .proj-link-grid {
+      display: grid; grid-template-columns: repeat(3,1fr);
+      gap: 1.2rem;
+      padding: 0 3rem 7rem;
+      max-width: 1200px; margin: 0 auto;
+    }
+    .pl-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1.6rem;
+      position: relative; overflow: hidden;
+      transition: all var(--slow);
+      display: flex; flex-direction: column; gap: 0.7rem;
+      opacity: 0;
+    }
+    .pl-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+      transform: scaleX(0); transition: transform var(--ease);
+    }
+    .pl-card:hover { border-color: var(--border-hv); box-shadow: var(--glow-c); transform: translateY(-5px); }
+    .pl-card:hover::before { transform: scaleX(1); }
+
+    .pl-num {
+      font-family: var(--f-mono); font-size: 0.62rem;
+      color: var(--faint); letter-spacing: 0.12em;
+    }
+    .pl-title {
+      font-size: 0.96rem; font-weight: 600; color: var(--text);
+      line-height: 1.3;
+    }
+    .pl-desc {
+      font-size: 0.78rem; color: var(--muted); line-height: 1.55; flex: 1;
+    }
+    .pl-links {
+      display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.3rem;
+    }
+    .pl-link {
+      display: inline-flex; align-items: center; gap: 0.3rem;
+      font-family: var(--f-mono); font-size: 0.65rem; letter-spacing: 0.06em;
+      text-transform: uppercase; padding: 0.28rem 0.65rem;
+      border-radius: 3px; border: 1px solid; transition: all var(--ease);
+    }
+    .pl-link-gh  { color: var(--muted);  border-color: var(--border); }
+    .pl-link-gh:hover  { color: var(--text);   border-color: rgba(255,255,255,.3); }
+    .pl-link-live { color: var(--cyan);  border-color: rgba(34,211,238,.3); background: rgba(34,211,238,.05); }
+    .pl-link-live:hover { background: rgba(34,211,238,.12); }
+
+    /* Add-more card */
+    .pl-card-add {
+      border: 1px dashed rgba(34,211,238,0.18);
+      background: transparent;
+      align-items: center; text-align: center; justify-content: center;
+    }
+    .pl-card-add:hover { border-color: rgba(34,211,238,.45); background: rgba(34,211,238,.02); }
+    .add-ring {
+      width: 52px; height: 52px; border-radius: 50%;
+      border: 1.5px dashed rgba(34,211,238,.3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; color: var(--faint); transition: all var(--ease);
+    }
+    .pl-card-add:hover .add-ring { border-color: var(--cyan); color: var(--cyan); }
+    .pl-add-hint { font-family: var(--f-mono); font-size: 0.66rem; color: var(--faint); letter-spacing: 0.1em; line-height: 1.6; }
+
+    @media (max-width: 1000px) {
+      .profile-grid { grid-template-columns: repeat(2,1fr); }
+      .proj-link-grid { grid-template-columns: repeat(2,1fr); }
+    }
+    @media (max-width: 600px) {
+      .profile-grid { grid-template-columns: 1fr; padding: 0 1.5rem 3rem; }
+      .proj-link-grid { grid-template-columns: 1fr; padding: 0 1.5rem 5rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="bg-orbs" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+  <div id="page-transition" aria-hidden="true"></div>
+
+  <nav class="site-nav">
+    <a href="index.html" class="nav-brand">AG<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="research.html">Research</a></li>
+      <li><a href="connect.html" class="active">Connect</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <!-- Hero -->
+    <div class="connect-hero" id="connectHero">
+      <p class="eyebrow">Connect</p>
+      <h1>Let's build<br/>something<br/><span style="color:var(--cyan)">together.</span></h1>
+      <p>
+        <span class="status-dot"></span>&nbsp; Open to ML engineering, data science, and research roles.<br/>
+        Reach out on any platform below.
+      </p>
+    </div>
+
+    <!-- ── Profile Links ── -->
+    <div class="profile-grid" id="profileGrid">
+
+      <a href="https://github.com/Arjun10g" target="_blank" rel="noopener" class="c-card">
+        <div class="c-border"></div><div class="c-scan"></div>
+        <div class="c-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="var(--text)"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+        </div>
+        <div class="c-title">GitHub</div>
+        <div class="c-handle">@Arjun10g</div>
+        <div class="c-desc">ML pipelines, NLP projects, research code, and open-source work.</div>
+      </a>
+
+      <a href="mailto:arjun10@yorku.ca" class="c-card">
+        <div class="c-border"></div><div class="c-scan"></div>
+        <div class="c-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--text)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+        </div>
+        <div class="c-title">Email</div>
+        <div class="c-handle">arjun10@yorku.ca</div>
+        <div class="c-desc">Research inquiries, collaboration proposals, and professional opportunities.</div>
+      </a>
+
+      <a href="https://www.linkedin.com/in/arjun-ghumman-7250562a8/" target="_blank" rel="noopener" class="c-card">
+        <div class="c-border"></div><div class="c-scan"></div>
+        <div class="c-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="var(--text)"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </div>
+        <div class="c-title">LinkedIn</div>
+        <div class="c-handle">/in/arjun-ghumman</div>
+        <div class="c-desc">Professional network, career updates, and academic milestones.</div>
+      </a>
+
+      <a href="https://scholar.google.ca/scholar?hl=en&as_sdt=0%2C5&q=Arjunvir+Singh&btnG=&oq=arjunv" target="_blank" rel="noopener" class="c-card">
+        <div class="c-border"></div><div class="c-scan"></div>
+        <div class="c-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="var(--text)"><path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 10a8 8 0 0 1 7.162 3.44L24 9.5z"/></svg>
+        </div>
+        <div class="c-title">Google Scholar</div>
+        <div class="c-handle">Arjunvir Singh</div>
+        <div class="c-desc">Full publication list, citation metrics, and academic impact.</div>
+      </a>
+
+    </div>
+
+    <!-- ── GitHub Projects ── -->
+    <div style="padding: 0 3rem 2rem; max-width:1200px; margin:0 auto;">
+      <p class="eyebrow reveal-up">GitHub Projects</p>
+      <h2 class="reveal-up" data-delay="0.05">18 Projects &amp; Counting</h2>
+    </div>
+
+    <div class="proj-link-grid" id="projGrid">
+
+      <div class="pl-card">
+        <div class="pl-num">01</div>
+        <div class="pl-title">Live SEM Diagram Updater</div>
+        <p class="pl-desc">Interactive structural equation modelling tool — draw, update, and export SEM diagrams live via a Shiny + API backend.</p>
+        <div class="pl-links">
+          <a href="https://github.com/Arjun10g/sem_diagram_api" target="_blank" rel="noopener" class="pl-link pl-link-gh">GitHub ↗</a>
+          <a href="https://arjun10.shinyapps.io/sem_translator/" target="_blank" rel="noopener" class="pl-link pl-link-live">Live App ↗</a>
+        </div>
+        <span class="tag tag-p" style="margin-top:.3rem;">SEM · Shiny · R</span>
+      </div>
+
+      <div class="pl-card">
+        <div class="pl-num">02</div>
+        <div class="pl-title">Interactive Probability App</div>
+        <p class="pl-desc">Visual, interactive probability explorer — distributions, sampling, and simulation with real-time parameter controls.</p>
+        <div class="pl-links">
+          <a href="https://github.com/Arjun10g/Probability-App" target="_blank" rel="noopener" class="pl-link pl-link-gh">GitHub ↗</a>
+        </div>
+        <span class="tag tag-c" style="margin-top:.3rem;">Statistics · Education</span>
+      </div>
+
+      <div class="pl-card">
+        <div class="pl-num">03</div>
+        <div class="pl-title">Longitudinal Analysis Presentation</div>
+        <p class="pl-desc">Comprehensive interactive presentation covering methods for modelling change over time — MLMs, LCGA, and trajectory analysis.</p>
+        <div class="pl-links">
+          <a href="https://github.com/Arjun10g/llk-presentation" target="_blank" rel="noopener" class="pl-link pl-link-gh">GitHub ↗</a>
+        </div>
+        <span class="tag tag-p" style="margin-top:.3rem;">Longitudinal · MLM</span>
+      </div>
+
+      <div class="pl-card">
+        <div class="pl-num">04</div>
+        <div class="pl-title">Papers in Famous Voices — Audio Transcripts</div>
+        <p class="pl-desc">Academic papers converted to audio using voice synthesis — making research more accessible through narration in iconic voices.</p>
+        <div class="pl-links">
+          <a href="https://github.com/Arjun10g/Papers_Audio" target="_blank" rel="noopener" class="pl-link pl-link-gh">GitHub ↗</a>
+        </div>
+        <span class="tag tag-c" style="margin-top:.3rem;">NLP · Audio · TTS</span>
+      </div>
+
+      <div class="pl-card">
+        <div class="pl-num">05</div>
+        <div class="pl-title">MDL Complexity</div>
+        <p class="pl-desc">Presentation and implementation exploring Minimum Description Length as a model selection criterion — theory, code, and examples.</p>
+        <div class="pl-links">
+          <a href="https://arjun10g.github.io/Pres-MDL/" target="_blank" rel="noopener" class="pl-link pl-link-live">Live Pres. ↗</a>
+        </div>
+        <span class="tag tag-p" style="margin-top:.3rem;">Model Selection · Info Theory</span>
+      </div>
+
+      <div class="pl-card">
+        <div class="pl-num">06</div>
+        <div class="pl-title">Anatomy Wordle</div>
+        <p class="pl-desc">A Wordle-style game for anatomy vocabulary — built as a Streamlit app to make anatomy learning more engaging and interactive.</p>
+        <div class="pl-links">
+          <a href="https://github.com/Arjun10g/anatomy-wordle" target="_blank" rel="noopener" class="pl-link pl-link-gh">GitHub ↗</a>
+          <a href="https://anatomy-wordle-bqfb6lgzamnb8hm89zo7yz.streamlit.app/" target="_blank" rel="noopener" class="pl-link pl-link-live">Live App ↗</a>
+        </div>
+        <span class="tag tag-v" style="margin-top:.3rem;">Streamlit · Python · EdTech</span>
+      </div>
+
+      <div class="pl-card">
+        <div class="pl-num">07</div>
+        <div class="pl-title">Qualitative Analysis</div>
+        <p class="pl-desc">A framework and toolkit for structured qualitative coding and thematic analysis — bridging qualitative methods with reproducible workflows.</p>
+        <div class="pl-links">
+          <a href="https://github.com/Arjun10g/Qual-Analysis" target="_blank" rel="noopener" class="pl-link pl-link-gh">GitHub ↗</a>
+        </div>
+        <span class="tag tag-g" style="margin-top:.3rem;">Qualitative · Methods</span>
+      </div>
+
+      <div class="pl-card">
+        <div class="pl-num">08</div>
+        <div class="pl-title">AI in Qualitative Analysis</div>
+        <p class="pl-desc">Exploring how large language models can assist in qualitative coding, theme generation, and reflexivity in social science research.</p>
+        <div class="pl-links">
+          <a href="https://github.com/Arjun10g/Qual-Analysis-AI" target="_blank" rel="noopener" class="pl-link pl-link-gh">GitHub ↗</a>
+        </div>
+        <span class="tag tag-c" style="margin-top:.3rem;">LLMs · Qualitative · AI</span>
+      </div>
+
+      <div class="pl-card">
+        <div class="pl-num">09</div>
+        <div class="pl-title">Thematic Analysis with Transformers</div>
+        <p class="pl-desc">Using BERT-based transformer models to automate thematic analysis — clustering, coding, and pattern detection at scale on text data.</p>
+        <div class="pl-links">
+          <a href="https://github.com/Arjun10g/thematic-content" target="_blank" rel="noopener" class="pl-link pl-link-gh">GitHub ↗</a>
+        </div>
+        <span class="tag tag-c" style="margin-top:.3rem;">Transformers · NLP · BERT</span>
+      </div>
+
+      <div class="pl-card">
+        <div class="pl-num">10</div>
+        <div class="pl-title">Sentiment Analysis App</div>
+        <p class="pl-desc">End-to-end sentiment classifier with a live web interface — fine-tuned transformer model served via FastAPI with real-time predictions.</p>
+        <div class="pl-links">
+          <a href="https://github.com/Arjun10g/sentiment-App" target="_blank" rel="noopener" class="pl-link pl-link-gh">GitHub ↗</a>
+        </div>
+        <span class="tag tag-c" style="margin-top:.3rem;">Sentiment · FastAPI · NLP</span>
+      </div>
+
+      <div class="pl-card">
+        <div class="pl-num">11</div>
+        <div class="pl-title">Audio Transcriber App</div>
+        <p class="pl-desc">Speech-to-text transcription application using Whisper — transcribes audio files with speaker labelling and clean formatted output.</p>
+        <div class="pl-links">
+          <a href="https://github.com/Arjun10g/transcriber" target="_blank" rel="noopener" class="pl-link pl-link-gh">GitHub ↗</a>
+        </div>
+        <span class="tag tag-c" style="margin-top:.3rem;">Whisper · Speech · Python</span>
+      </div>
+
+      <div class="pl-card">
+        <div class="pl-num">12</div>
+        <div class="pl-title">Guide to Shiny in R</div>
+        <p class="pl-desc">Comprehensive interactive tutorial for building reactive web applications in R with Shiny — from basics to deployment.</p>
+        <div class="pl-links">
+          <a href="https://arjun10g.github.io/Shiny/" target="_blank" rel="noopener" class="pl-link pl-link-live">Live Guide ↗</a>
+        </div>
+        <span class="tag tag-v" style="margin-top:.3rem;">R · Shiny · Education</span>
+      </div>
+
+      <div class="pl-card">
+        <div class="pl-num">13</div>
+        <div class="pl-title">Interpretable Machine Learning</div>
+        <p class="pl-desc">Interactive guide to model interpretability methods — SHAP, LIME, partial dependence plots, and feature importance with worked examples.</p>
+        <div class="pl-links">
+          <a href="https://arjun10g.github.io/Interpretation-Methods/" target="_blank" rel="noopener" class="pl-link pl-link-live">Live Guide ↗</a>
+        </div>
+        <span class="tag tag-c" style="margin-top:.3rem;">SHAP · LIME · XAI</span>
+      </div>
+
+      <div class="pl-card">
+        <div class="pl-num">14</div>
+        <div class="pl-title">Interactive Visualization in R</div>
+        <p class="pl-desc">A guide to creating dynamic, interactive plots in R using plotly, ggplotly, and htmlwidgets — for research and communication.</p>
+        <div class="pl-links">
+          <a href="https://github.com/Arjun10g/Interactive-Viz" target="_blank" rel="noopener" class="pl-link pl-link-gh">GitHub ↗</a>
+        </div>
+        <span class="tag tag-v" style="margin-top:.3rem;">R · plotly · DataViz</span>
+      </div>
+
+      <div class="pl-card">
+        <div class="pl-num">15</div>
+        <div class="pl-title">My Dog Through Visualizations</div>
+        <p class="pl-desc">A personal data project — tracking and visualizing my dog's life through charts, a love letter to both statistics and companionship.</p>
+        <div class="pl-links">
+          <a href="https://arjun10g.github.io/Puppy-Pres-2/" target="_blank" rel="noopener" class="pl-link pl-link-live">Live ↗</a>
+        </div>
+        <span class="tag tag-g" style="margin-top:.3rem;">DataViz · R · Personal</span>
+      </div>
+
+      <div class="pl-card">
+        <div class="pl-num">16</div>
+        <div class="pl-title">Visualizing Longitudinal Data</div>
+        <p class="pl-desc">Guide to effective visualization strategies for longitudinal and repeated-measures data — spaghetti plots, trajectories, and beyond.</p>
+        <div class="pl-links">
+          <a href="https://github.com/Arjun10g/Vizualizing-Longitudinal-Data" target="_blank" rel="noopener" class="pl-link pl-link-gh">GitHub ↗</a>
+        </div>
+        <span class="tag tag-p" style="margin-top:.3rem;">Longitudinal · DataViz · R</span>
+      </div>
+
+      <div class="pl-card">
+        <div class="pl-num">17</div>
+        <div class="pl-title">Guide to Mixed Effects Models</div>
+        <p class="pl-desc">A full course on multilevel and mixed-effects modelling in R — random effects, crossed designs, model comparison, and reporting.</p>
+        <div class="pl-links">
+          <a href="https://github.com/Arjun10g/Mixed-E-Models-Course" target="_blank" rel="noopener" class="pl-link pl-link-gh">GitHub ↗</a>
+        </div>
+        <span class="tag tag-p" style="margin-top:.3rem;">MLM · lme4 · R</span>
+      </div>
+
+      <div class="pl-card">
+        <div class="pl-num">18</div>
+        <div class="pl-title">Introduction to Machine Learning</div>
+        <p class="pl-desc">Accessible ML introduction covering supervised learning, model evaluation, regularization, and ensemble methods with Python examples.</p>
+        <div class="pl-links">
+          <a href="https://github.com/Arjun10g/ML-Presentation" target="_blank" rel="noopener" class="pl-link pl-link-gh">GitHub ↗</a>
+        </div>
+        <span class="tag tag-c" style="margin-top:.3rem;">ML · Python · Education</span>
+      </div>
+
+      <div class="pl-card">
+        <div class="pl-num">19</div>
+        <div class="pl-title">Regex Tester</div>
+        <p class="pl-desc">An interactive regular expression tester and learning tool — real-time matching, pattern explanations, and a library of common regex patterns.</p>
+        <div class="pl-links">
+          <a href="https://github.com/Arjun10g/Regex" target="_blank" rel="noopener" class="pl-link pl-link-gh">GitHub ↗</a>
+        </div>
+        <span class="tag tag-v" style="margin-top:.3rem;">Regex · Dev Tool</span>
+      </div>
+
+      <!-- Add more — reserved slot -->
+      <div class="pl-card pl-card-add">
+        <div class="add-ring">+</div>
+        <div class="pl-title" style="color:var(--faint); font-size:.9rem;">Add Project</div>
+        <div class="pl-add-hint">// <br/><br/>to add next project</div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2026 Arjunvir Ghumman &nbsp;·&nbsp; <span style="color:var(--cyan)">arjun10@yorku.ca</span></p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="animations.js"></script>
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    /* Hero */
+    gsap.fromTo('#connectHero .eyebrow',
+      { opacity:0, y:-14 }, { opacity:1, y:0, duration:0.6, delay:0.2 }
+    );
+    gsap.fromTo('#connectHero h1',
+      { opacity:0, y:40 }, { opacity:1, y:0, duration:0.9, delay:0.35, ease:'power3.out' }
+    );
+    gsap.fromTo('#connectHero p',
+      { opacity:0, y:16 }, { opacity:1, y:0, duration:0.6, delay:0.6 }
+    );
+
+    /* Profile cards */
+    gsap.fromTo('.profile-grid .c-card',
+      { opacity:0, y:40, scale:0.95 },
+      { opacity:1, y:0, scale:1, stagger:0.1, duration:0.7, ease:'power3.out',
+        scrollTrigger:{ trigger:'#profileGrid', start:'top 88%' } }
+    );
+
+    /* Project cards — staggered in batches as they scroll in */
+    gsap.fromTo('.pl-card',
+      { opacity:0, y:44 },
+      { opacity:1, y:0, stagger:0.07, duration:0.7, ease:'power3.out',
+        scrollTrigger:{ trigger:'#projGrid', start:'top 85%' } }
+    );
+
+    initAnimations();
+  </script>
+</body>
+</html>
