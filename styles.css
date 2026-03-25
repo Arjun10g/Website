@@ -56,17 +56,18 @@ img { display: block; max-width: 100%; }
 
 /* ─── Cursor ─── */
 #cursor {
-  position: fixed; width: 7px; height: 7px;
+  position: fixed; top: 0; left: 0;
+  width: 7px; height: 7px;
   background: var(--cyan); border-radius: 50%;
   pointer-events: none; z-index: 9999;
-  transform: translate(-50%,-50%);
-  mix-blend-mode: difference;
+  will-change: transform;
 }
 #cursor-ring {
-  position: fixed; width: 30px; height: 30px;
+  position: fixed; top: 0; left: 0;
+  width: 30px; height: 30px;
   border: 1.5px solid rgba(34,211,238,0.7); border-radius: 50%;
   pointer-events: none; z-index: 9998;
-  transform: translate(-50%,-50%);
+  will-change: transform;
 }
 
 /* ─── Page Transition ─── */
@@ -502,8 +503,65 @@ p  { color: var(--muted); line-height: 1.72; }
 .c-card-add:hover .add-ring { border-color: var(--cyan); color: var(--cyan); }
 .c-add-hint { font-family: var(--f-mono); font-size: 0.66rem; color: var(--faint); letter-spacing: 0.1em; }
 
+/* ─── Hamburger toggle ─── */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px 4px;
+  z-index: 101;
+  position: relative;
+}
+.nav-toggle span {
+  display: block;
+  width: 24px; height: 2px;
+  background: var(--cyan);
+  border-radius: 2px;
+  transition: all var(--ease);
+}
+.nav-open .nav-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-open .nav-toggle span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.nav-open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ─── GitHub Projects grid ─── */
+.gh-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+}
+.gh-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 8px; padding: 1.5rem;
+  display: flex; flex-direction: column; gap: 0.6rem;
+  transition: all var(--ease); position: relative; overflow: hidden;
+  text-decoration: none;
+}
+.gh-card::before {
+  content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%;
+  background: var(--green); transform: scaleY(0); transform-origin: top; transition: transform var(--ease);
+}
+.gh-card:hover { border-color: var(--border-hv); box-shadow: 0 0 32px rgba(52,211,153,0.18); transform: translateY(-4px); }
+.gh-card:hover::before { transform: scaleY(1); }
+.gh-card-name { font-size: 0.92rem; font-weight: 600; color: var(--text); font-family: var(--f-mono); }
+.gh-card-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.55; flex: 1; }
+.gh-card-meta { display: flex; align-items: center; gap: 0.8rem; margin-top: 0.4rem; }
+.gh-lang {
+  font-family: var(--f-mono); font-size: 0.65rem; color: var(--cyan);
+  display: flex; align-items: center; gap: 0.3rem;
+}
+.gh-lang::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--cyan); }
+.gh-lang.py::before  { background: #3b82f6; } .gh-lang.py  { color: #3b82f6; }
+.gh-lang.r::before   { background: #a78bfa; } .gh-lang.r   { color: #a78bfa; }
+.gh-lang.ts::before  { background: #22d3ee; } .gh-lang.ts  { color: #22d3ee; }
+.gh-link { font-family: var(--f-mono); font-size: 0.65rem; color: var(--faint); margin-left: auto; transition: color var(--ease); }
+.gh-card:hover .gh-link { color: var(--green); }
+
 /* ─── Responsive ─── */
 @media (max-width: 1000px) {
+  .gh-grid { grid-template-columns: repeat(2, 1fr); }
   .nav-cards      { grid-template-columns: repeat(2,1fr); }
   .connect-grid   { grid-template-columns: repeat(2,1fr); }
   .projects-grid  { grid-template-columns: 1fr; }
@@ -514,20 +572,51 @@ p  { color: var(--muted); line-height: 1.72; }
   .hero-photo-wrap { max-width: 300px; margin: 0 auto; }
 }
 @media (max-width: 760px) {
+  /* ── Nav: hamburger on mobile ── */
   .site-nav       { padding: 1rem 1.5rem; }
-  .nav-links      { gap: 1.3rem; }
-  .section, .section-sm { padding: 4rem 1.5rem; }
+  .nav-toggle     { display: flex; }
+
+  .nav-links {
+    position: fixed; inset: 0;
+    background: rgba(3,7,18,0.97); backdrop-filter: blur(20px);
+    flex-direction: column; align-items: center; justify-content: center;
+    gap: 2.5rem; z-index: 99;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.35s ease;
+  }
+  .nav-links li { width: auto; }
+  .nav-links a {
+    font-size: 1.4rem; letter-spacing: 0.08em;
+    color: var(--muted);
+  }
+  .nav-links a.active,
+  .nav-links a:hover { color: var(--cyan); }
+  .nav-links a::after { display: none; }
+
+  .nav-open .nav-links { opacity: 1; pointer-events: all; }
+
+  /* Restore default cursor on mobile so tap targets work */
+  body { cursor: auto; }
+
+  /* ── Layout ── */
+  .section, .section-sm { padding: 4rem 1.25rem; }
   .about-grid     { grid-template-columns: 1fr; gap: 3rem; }
-  .hero-wrapper   { padding: 8rem 1.5rem 4rem; }
-  .hero-stats     { gap: 2rem; }
+  .hero-wrapper   { padding: 7rem 1.25rem 4rem; }
+  .hero-stats     { gap: 2rem; flex-wrap: wrap; }
   .hero-actions   { flex-direction: column; align-items: flex-start; }
-  .nav-cards-wrap { padding: 2rem 1.5rem 5rem; }
+  .nav-cards-wrap { padding: 2rem 1.25rem 5rem; }
   .nav-cards      { grid-template-columns: 1fr; }
-  .connect-grid   { grid-template-columns: 1fr; padding: 1.5rem 1.5rem 5rem; }
-  .connect-hero   { padding: 6rem 1.5rem 3rem; }
-  .g-panel-overlay { padding: 2rem 1.5rem; }
-  .gallery-nav    { padding: 0 1.5rem; }
-  .about-hero     { padding: 6rem 1.5rem 3rem; }
+  .connect-grid   { grid-template-columns: 1fr; padding: 1.25rem 1.25rem 5rem; }
+  .connect-hero   { padding: 6rem 1.25rem 3rem; }
+  .g-panel-overlay { padding: 2rem 1.25rem; }
+  .gallery-nav    { padding: 0 1.25rem; }
+  .about-hero     { padding: 6rem 1.25rem 3rem; }
   .talks-grid     { grid-template-columns: 1fr; }
   .cv-card        { flex-direction: column; text-align: center; }
+  .gh-grid        { grid-template-columns: 1fr; }
+
+  /* ── Touch targets ── */
+  .btn            { padding: 0.9rem 1.5rem; cursor: pointer; }
+  .g-tab          { cursor: pointer; }
+  .hero-dot       { cursor: pointer; }
 }

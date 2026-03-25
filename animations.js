@@ -29,6 +29,9 @@ function setupPageTransitions() {
 }
 
 function setupCursor() {
+  // Skip on touch devices — no pointer to show
+  if (window.matchMedia('(hover: none)').matches) return;
+
   const cursor = document.createElement('div');
   cursor.id = 'cursor';
   const ring = document.createElement('div');
@@ -36,8 +39,9 @@ function setupCursor() {
   document.body.append(cursor, ring);
 
   document.addEventListener('mousemove', e => {
-    gsap.to('#cursor', { x: e.clientX, y: e.clientY, duration: 0.08 });
-    gsap.to('#cursor-ring', { x: e.clientX, y: e.clientY, duration: 0.35, ease: 'power2.out' });
+    // Subtract half the element size to keep the dot centred on the pointer
+    gsap.to('#cursor',     { x: e.clientX - 3.5, y: e.clientY - 3.5, duration: 0.08 });
+    gsap.to('#cursor-ring',{ x: e.clientX - 15,  y: e.clientY - 15,  duration: 0.35, ease: 'power2.out' });
   });
 
   document.addEventListener('mousedown', () => {
@@ -125,10 +129,29 @@ function setupOrbFloating() {
   });
 }
 
+function setupMobileNav() {
+  const toggle = document.querySelector('.nav-toggle');
+  if (!toggle) return;
+
+  toggle.addEventListener('click', () => {
+    const isOpen = document.body.classList.toggle('nav-open');
+    toggle.setAttribute('aria-expanded', isOpen);
+  });
+
+  // Close menu when a nav link is clicked
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      document.body.classList.remove('nav-open');
+      toggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+}
+
 function initAnimations() {
   gsap.registerPlugin(ScrollTrigger);
   setupPageTransitions();
   setupCursor();
   setupScrollReveals();
   setupOrbFloating();
+  setupMobileNav();
 }
