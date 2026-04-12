@@ -555,6 +555,7 @@ p  { color: var(--muted); line-height: 1.72; }
 .gh-lang::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--cyan); }
 .gh-lang.py::before  { background: #3b82f6; } .gh-lang.py  { color: #3b82f6; }
 .gh-lang.r::before   { background: #a78bfa; } .gh-lang.r   { color: #a78bfa; }
+.gh-lang.js::before  { background: #eab308; } .gh-lang.js  { color: #eab308; }
 .gh-lang.ts::before  { background: #22d3ee; } .gh-lang.ts  { color: #22d3ee; }
 .gh-link { font-family: var(--f-mono); font-size: 0.65rem; color: var(--faint); margin-left: auto; transition: color var(--ease); }
 .gh-card:hover .gh-link { color: var(--green); }
