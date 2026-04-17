@@ -697,12 +697,22 @@ p  { color: var(--muted); line-height: 1.72; }
     radial-gradient(circle at 50% 60%, rgba(251,191,36,0.08) 0%, transparent 60%),
     linear-gradient(180deg, rgba(3,7,18,0) 0%, rgba(3,7,18,0.7) 100%);
 }
-.fw-canvas {
+.fw-canvas, .fw-svg {
   display: block;
   width: 100%;
   height: 100%;
   position: absolute;
   inset: 0;
+  overflow: visible;
+}
+.fw-svg .rag-edge,
+.fw-svg .rag-node,
+.fw-svg .rag-beam,
+.fw-svg .blog-edge,
+.fw-svg .blog-orbit,
+.fw-svg .blog-core {
+  transform-box: fill-box;
+  transform-origin: center;
 }
 
 .fw-body {
@@ -761,31 +771,45 @@ p  { color: var(--muted); line-height: 1.72; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
+  gap: 0.75rem 1.25rem;
   flex-wrap: wrap;
+  padding-top: 0.95rem;
+  border-top: 1px dashed rgba(34,211,238,0.12);
 }
+.fw-card.fw-blog .fw-actions { border-top-color: rgba(251,191,36,0.14); }
 .fw-cta {
   font-family: var(--f-mono);
   font-size: 0.78rem;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   color: var(--text);
   text-transform: uppercase;
+  white-space: nowrap;
 }
-.fw-card.fw-rag .fw-cta  { color: var(--cyan); }
+.fw-card.fw-rag  .fw-cta { color: var(--cyan); }
 .fw-card.fw-blog .fw-cta { color: var(--gold); }
-.fw-meta {
+.fw-meta-link {
   font-family: var(--f-mono);
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   letter-spacing: 0.08em;
-  color: var(--faint);
-}
-.fw-meta a {
+  text-transform: uppercase;
   color: var(--muted);
   text-decoration: none;
-  transition: color var(--ease);
+  padding: 0.32rem 0.75rem;
+  border: 1px solid rgba(148,163,184,0.20);
+  border-radius: 999px;
+  white-space: nowrap;
+  transition: color var(--ease), border-color var(--ease), background var(--ease);
 }
-.fw-meta a:hover { color: var(--cyan); }
-.fw-card.fw-blog .fw-meta a:hover { color: var(--gold); }
+.fw-meta-link:hover {
+  color: var(--cyan);
+  border-color: rgba(34,211,238,0.45);
+  background: rgba(34,211,238,0.06);
+}
+.fw-card.fw-blog .fw-meta-link:hover {
+  color: var(--gold);
+  border-color: rgba(251,191,36,0.45);
+  background: rgba(251,191,36,0.06);
+}
 
 .fw-status {
   position: absolute;
@@ -821,4 +845,34 @@ p  { color: var(--muted); line-height: 1.72; }
 @media (prefers-reduced-motion: reduce) {
   .fw-status::before { animation: none; }
   .fw-card { transition: none; }
+}
+
+/* ── Mobile + narrow tablet refinements ─────────────────────────────── */
+@media (max-width: 700px) {
+  .featured-work       { padding: 3rem 5vw 4rem; }
+  .featured-work-head  { margin-bottom: 2rem; }
+  .featured-work-head h2 { font-size: 1.7rem; }
+  .featured-work-head p  { font-size: 0.9rem; }
+  .fw-grid             { gap: 1.5rem; }
+  .fw-card             { min-height: auto; }
+  .fw-canvas-wrap      { min-height: 200px; max-height: 220px; }
+  .fw-body             { padding: 1.3rem 1.4rem 1.5rem; }
+  .fw-title            { font-size: 1.4rem; }
+  .fw-desc             { font-size: 0.92rem; line-height: 1.5; margin-bottom: 1rem; }
+  .fw-tags             { gap: 0.32rem; margin-bottom: 0.8rem; }
+  .fw-tag              { font-size: 0.6rem; padding: 0.22rem 0.5rem; }
+  .fw-status           { top: 0.7rem; right: 0.7rem; padding: 0.26rem 0.55rem; font-size: 0.6rem; }
+  .fw-actions          {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.7rem;
+  }
+  .fw-meta-link        { text-align: center; padding: 0.5rem 0.75rem; }
+}
+
+/* Very small phones — keep tags from looking sparse */
+@media (max-width: 380px) {
+  .fw-canvas-wrap      { min-height: 170px; max-height: 180px; }
+  .fw-body             { padding: 1.1rem 1.1rem 1.3rem; }
+  .fw-title            { font-size: 1.25rem; }
 }

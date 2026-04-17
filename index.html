@@ -127,7 +127,7 @@
            class="fw-card fw-rag reveal-up" data-delay="0.15">
           <span class="fw-status">Live</span>
           <div class="fw-canvas-wrap">
-            <canvas class="fw-canvas" id="ragCanvas" aria-hidden="true"></canvas>
+            <svg class="fw-svg" id="ragSvg" viewBox="0 0 400 240" preserveAspectRatio="xMidYMid slice" aria-hidden="true"></svg>
           </div>
           <div class="fw-body">
             <div class="fw-tags">
@@ -139,14 +139,11 @@
             <p class="fw-eyebrow">// Centerpiece · Production Build</p>
             <h3 class="fw-title">rag-psych</h3>
             <p class="fw-desc">
-              Hybrid retrieval (dense + BM25 + rare-token lexical, per-source) with RRF fusion, cross-encoder rerank, and a custom NegEx-style negation filter. Forced citations validated server-side — every <span style="font-family:var(--f-mono); color:var(--cyan)">[chunk_id]</span> cross-checked against the retrieved set. 100% citation validity over 16 hand-labelled clinical queries.
+              Hybrid retrieval (dense + BM25 + rare-token lexical, per-source) with RRF fusion, cross-encoder rerank, and a custom NegEx-style negation filter. Forced citations validated server-side — 100% citation validity over a 16-query hand-labelled eval.
             </p>
             <div class="fw-actions">
-              <span class="fw-cta">Try it live ↗</span>
-              <span class="fw-meta">
-                <a href="https://github.com/Arjun10g/rag-psych" target="_blank" rel="noopener" onclick="event.stopPropagation();">github</a>
-                · MTSamples · PubMed · ICD-11
-              </span>
+              <span class="fw-cta">Try it live →</span>
+              <a class="fw-meta-link" href="https://github.com/Arjun10g/rag-psych" target="_blank" rel="noopener" onclick="event.stopPropagation();">github ↗</a>
             </div>
           </div>
         </a>
@@ -156,7 +153,7 @@
            class="fw-card fw-blog reveal-up" data-delay="0.22">
           <span class="fw-status">Published</span>
           <div class="fw-canvas-wrap">
-            <canvas class="fw-canvas" id="blogCanvas" aria-hidden="true"></canvas>
+            <svg class="fw-svg" id="blogSvg" viewBox="0 0 400 240" preserveAspectRatio="xMidYMid slice" aria-hidden="true"></svg>
           </div>
           <div class="fw-body">
             <div class="fw-tags">
@@ -170,11 +167,8 @@
               An ongoing essay collection on the geometry of statistical and ML methods — from sorting and search to gradient descent, EM, and the latent spaces of deep models. Every post is interactive; nothing is just a static figure.
             </p>
             <div class="fw-actions">
-              <span class="fw-cta">Read the blog ↗</span>
-              <span class="fw-meta">
-                <a href="https://github.com/Arjun10g/blog" target="_blank" rel="noopener" onclick="event.stopPropagation();">source</a>
-                · arjun10g.github.io/blog
-              </span>
+              <span class="fw-cta">Read the blog →</span>
+              <a class="fw-meta-link" href="https://github.com/Arjun10g/blog" target="_blank" rel="noopener" onclick="event.stopPropagation();">source ↗</a>
             </div>
           </div>
         </a>
@@ -218,7 +212,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js"></script>
-  <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js"></script>
   <script src="animations.js"></script>
   <script src="featured.js"></script>
   <script>
