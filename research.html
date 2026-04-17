@@ -106,35 +106,37 @@
       <h2 class="reveal-up" data-delay="0.05" style="margin-bottom:2.5rem;">Production &amp; long-form work</h2>
       <div class="projects-grid stagger-group" style="grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));">
 
-        <a href="https://arjun10g-rag-psych.hf.space/ui" target="_blank" rel="noopener" class="proj-card proj-card-past stagger-item" style="text-decoration:none; color:inherit; display:block; border-color: rgba(34,211,238,0.34); box-shadow: 0 0 24px rgba(34,211,238,0.10);">
-          <div class="proj-meta">
+        <div class="proj-card proj-card-past stagger-item" style="position:relative; color:inherit; display:block; border-color: rgba(34,211,238,0.34); box-shadow: 0 0 24px rgba(34,211,238,0.10);">
+          <a href="https://arjun10g-rag-psych.hf.space/ui" target="_blank" rel="noopener" aria-label="Open rag-psych live demo" style="position:absolute; inset:0; z-index:1; text-indent:-9999px; overflow:hidden;"></a>
+          <div class="proj-meta" style="position:relative; z-index:2;">
             <span class="tag tag-c">Clinical RAG</span>
             <span class="tag tag-p">pgvector</span>
             <span class="tag tag-g">FastAPI · HTMX</span>
           </div>
-          <div class="proj-title">rag-psych — Clinical Retrieval-Augmented Generation</div>
-          <p class="proj-desc">Hybrid retrieval over MTSamples + PubMed + ICD-11. Three retrievers per source (dense + BM25 + rare-token lexical) → RRF fusion → cross-encoder rerank → custom rule-based NegEx negation filter → Anthropic generation with forced citations validated server-side. 100% citation validity on a 16-query hand-labelled eval; full audit logging; refusal short-circuit when retrieval confidence falls below threshold.</p>
-          <div style="margin-top:1rem; font-family:var(--f-mono); font-size:0.72rem; color:var(--cyan); letter-spacing:0.05em;">
+          <div class="proj-title" style="position:relative; z-index:2;">rag-psych — Clinical Retrieval-Augmented Generation</div>
+          <p class="proj-desc" style="position:relative; z-index:2;">Hybrid retrieval over MTSamples + PubMed + ICD-11. Three retrievers per source (dense + BM25 + rare-token lexical) → RRF fusion → cross-encoder rerank → custom rule-based NegEx negation filter → Anthropic generation with forced citations validated server-side. 100% citation validity on a 16-query hand-labelled eval; full audit logging; refusal short-circuit when retrieval confidence falls below threshold.</p>
+          <div style="position:relative; z-index:2; margin-top:1rem; font-family:var(--f-mono); font-size:0.72rem; color:var(--cyan); letter-spacing:0.05em;">
             Try it live ↗
             &nbsp;·&nbsp;
-            <a href="https://github.com/Arjun10g/rag-psych" target="_blank" rel="noopener" style="color:var(--green); text-decoration:none;" onclick="event.stopPropagation();">github</a>
+            <a href="https://github.com/Arjun10g/rag-psych" target="_blank" rel="noopener" style="color:var(--green); text-decoration:none; position:relative; z-index:3;">github</a>
           </div>
-        </a>
+        </div>
 
-        <a href="https://arjun10g.github.io/blog/" target="_blank" rel="noopener" class="proj-card proj-card-past stagger-item" style="text-decoration:none; color:inherit; display:block; border-color: rgba(251,191,36,0.34); box-shadow: 0 0 24px rgba(251,191,36,0.10);">
-          <div class="proj-meta">
+        <div class="proj-card proj-card-past stagger-item" style="position:relative; color:inherit; display:block; border-color: rgba(251,191,36,0.34); box-shadow: 0 0 24px rgba(251,191,36,0.10);">
+          <a href="https://arjun10g.github.io/blog/" target="_blank" rel="noopener" aria-label="Open Visualizing Algorithms blog" style="position:absolute; inset:0; z-index:1; text-indent:-9999px; overflow:hidden;"></a>
+          <div class="proj-meta" style="position:relative; z-index:2;">
             <span class="tag tag-g">Visualization</span>
             <span class="tag tag-p">Algorithms</span>
             <span class="tag tag-c">D3 · GSAP</span>
           </div>
-          <div class="proj-title">Visualizing Algorithms — long-form essay collection</div>
-          <p class="proj-desc">An ongoing blog on the geometry of statistical and ML methods — from sorting and search to gradient descent, EM, and the latent spaces of deep models. Every post is interactive; nothing is just a static figure. Published continuously at arjun10g.github.io/blog.</p>
-          <div style="margin-top:1rem; font-family:var(--f-mono); font-size:0.72rem; color:var(--gold); letter-spacing:0.05em;">
+          <div class="proj-title" style="position:relative; z-index:2;">Visualizing Algorithms — long-form essay collection</div>
+          <p class="proj-desc" style="position:relative; z-index:2;">An ongoing blog on the geometry of statistical and ML methods — from sorting and search to gradient descent, EM, and the latent spaces of deep models. Every post is interactive; nothing is just a static figure. Published continuously at arjun10g.github.io/blog.</p>
+          <div style="position:relative; z-index:2; margin-top:1rem; font-family:var(--f-mono); font-size:0.72rem; color:var(--gold); letter-spacing:0.05em;">
             Read the blog ↗
             &nbsp;·&nbsp;
-            <a href="https://github.com/Arjun10g/blog" target="_blank" rel="noopener" style="color:var(--green); text-decoration:none;" onclick="event.stopPropagation();">source</a>
+            <a href="https://github.com/Arjun10g/blog" target="_blank" rel="noopener" style="color:var(--green); text-decoration:none; position:relative; z-index:3;">source</a>
           </div>
-        </a>
+        </div>
 
       </div>
     </section>

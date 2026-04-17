@@ -652,11 +652,12 @@ p  { color: var(--muted); line-height: 1.72; }
 
 .fw-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
   gap: 2rem;
+  max-width: 880px;
+  margin: 0 auto;
 }
 @media (max-width: 900px) {
-  .fw-grid { grid-template-columns: 1fr; }
   .featured-work { padding: 4rem 5vw; }
 }
 
@@ -668,12 +669,25 @@ p  { color: var(--muted); line-height: 1.72; }
   border: 1px solid var(--border);
   border-radius: 18px;
   overflow: hidden;
-  text-decoration: none;
   color: inherit;
   transition: transform 0.5s var(--ease), border-color 0.5s var(--ease), box-shadow 0.5s var(--ease);
   min-height: 460px;
   isolation: isolate;
 }
+/* Invisible overlay link — fills the whole card so the card itself is
+   clickable, but we don't nest <a> inside <a> (which breaks HTML parsing).
+   Nested anchors like .fw-meta-link sit above this via z-index. */
+.fw-link-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  text-decoration: none;
+  text-indent: -9999px;
+  overflow: hidden;
+}
+.fw-card > :not(.fw-link-overlay) { position: relative; z-index: 1; }
+.fw-card .fw-body { z-index: 3; pointer-events: none; }
+.fw-card .fw-body .fw-meta-link { pointer-events: auto; position: relative; z-index: 4; }
 .fw-card:hover {
   transform: translateY(-6px);
   border-color: var(--border-hv);
