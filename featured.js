@@ -15,8 +15,9 @@
     dots.forEach((d, i) => {
       const active = i === idx;
       d.classList.toggle('active', active);
-      // gold-coloured dot for the blog card (index 1)
-      d.classList.toggle('gold', active && cards[i]?.classList.contains('fw-blog'));
+      // Per-variant dot tint: blog → gold, data-cleaning-studio → green, default → cyan
+      d.classList.toggle('gold',  active && cards[i]?.classList.contains('fw-blog'));
+      d.classList.toggle('green', active && cards[i]?.classList.contains('fw-dcs'));
     });
   }
 

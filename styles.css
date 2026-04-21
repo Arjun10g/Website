@@ -825,6 +825,34 @@ p  { color: var(--muted); line-height: 1.72; }
   background: rgba(251,191,36,0.06);
 }
 
+/* Data Cleaning Studio variant — green accent */
+.fw-card.fw-dcs:hover {
+  box-shadow: 0 24px 60px -24px rgba(52,211,153,0.25);
+}
+.fw-card.fw-dcs .fw-head {
+  background:
+    radial-gradient(circle at 15% 30%, rgba(52,211,153,0.18) 0%, transparent 55%),
+    linear-gradient(145deg, rgba(14,30,56,0.4) 0%, rgba(6,13,27,0.0) 100%);
+  border-bottom-color: rgba(52,211,153,0.14);
+}
+.fw-card.fw-dcs .fw-glyph {
+  color: var(--green);
+  text-shadow: 0 0 24px rgba(52,211,153,0.45);
+}
+.fw-card.fw-dcs .fw-title { color: var(--green); }
+.fw-card.fw-dcs .fw-actions { border-top-color: rgba(52,211,153,0.16); }
+.fw-card.fw-dcs .fw-cta { color: var(--green); }
+.fw-card.fw-dcs .fw-meta-link:hover {
+  color: var(--green);
+  border-color: rgba(52,211,153,0.45);
+  background: rgba(52,211,153,0.06);
+}
+.fw-status.fw-status-green {
+  color: var(--green);
+  border-color: rgba(52,211,153,0.30);
+  background: rgba(52,211,153,0.08);
+}
+
 .fw-status {
   display: inline-flex;
   align-items: center;
@@ -877,6 +905,7 @@ p  { color: var(--muted); line-height: 1.72; }
 .fw-dot:hover        { background: rgba(148,163,184,0.55); }
 .fw-dot.active       { background: var(--cyan); width: 26px; border-radius: 999px; }
 .fw-dot.active.gold  { background: var(--gold); }
+.fw-dot.active.green { background: var(--green); }
 
 @media (prefers-reduced-motion: reduce) {
   .fw-status::before { animation: none; }
