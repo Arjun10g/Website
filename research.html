@@ -106,6 +106,32 @@
       <h2 class="reveal-up" data-delay="0.05" style="margin-bottom:2.5rem;">Production &amp; long-form work</h2>
       <div class="projects-grid stagger-group" style="grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));">
 
+        <div class="proj-card proj-card-past stagger-item" style="position:relative; color:inherit; display:block; border-color: rgba(34,211,238,0.55); box-shadow: 0 0 32px rgba(34,211,238,0.18); grid-column: 1 / -1;">
+          <a href="https://github.com/Arjun10g/bankmind" target="_blank" rel="noopener" aria-label="Open BankMind on GitHub" style="position:absolute; inset:0; z-index:1; text-indent:-9999px; overflow:hidden;"></a>
+          <div class="proj-meta" style="position:relative; z-index:2;">
+            <span class="tag tag-c">Financial RAG</span>
+            <span class="tag tag-p">Qdrant · Matryoshka</span>
+            <span class="tag tag-g">Claude API</span>
+            <span class="tag tag-v">Gradio</span>
+          </div>
+          <div class="proj-title" style="position:relative; z-index:2;">BankMind - production-grade RAG for financial intelligence</div>
+          <p class="proj-desc" style="position:relative; z-index:2;">Two specialised pipelines (regulatory compliance + credit analysis) over a unified Qdrant infrastructure with 32,963 indexed chunks. Five Matryoshka dense embedding dimensions plus SPLADE++ and BM25 sparse vectors with native hybrid search. HybridRetriever supports dense, sparse, RRF, convex, and hierarchical fusion; query transforms include HyDE, Multi-Query, PRF, and Step-Back; rerankers include cross-encoder, MonoT5, ColBERT, and RankGPT. Dual-track evaluation framework: Track A measures retrieval via character overlap; Track B evaluates answer quality. Six chunking strategies benchmarked, with semantic chunking outperforming structure-driven strategies by 17 to 94 percent relative NDCG. End-to-end ablation across 6 retrieval methods, 4 rerankers, and 4 query transforms. Rule-based guardrails: citation enforcement, numerical grounding, staleness warnings, confidence scoring, and temporal-query mismatch detection. 5-tab Gradio dashboard deployed on Hugging Face Spaces.</p>
+          <div style="position:relative; z-index:2; margin-top:1rem; display:flex; gap:1rem; flex-wrap:wrap; font-family:var(--f-mono); font-size:0.7rem; color:var(--muted); letter-spacing:0.05em;">
+            <span style="color:var(--cyan);">NDCG@10: 0.834</span>
+            <span>·</span>
+            <span style="color:var(--green);">Recall@5: 0.920</span>
+            <span>·</span>
+            <span>Compliance: 6 frameworks · 4 jurisdictions</span>
+            <span>·</span>
+            <span>Credit: SEC EDGAR, 5 banks</span>
+          </div>
+          <div style="position:relative; z-index:2; margin-top:1rem; font-family:var(--f-mono); font-size:0.72rem; color:var(--cyan); letter-spacing:0.05em;">
+            View on GitHub ↗
+            &nbsp;·&nbsp;
+            <a href="https://github.com/Arjun10g/bankmind" target="_blank" rel="noopener" style="color:var(--green); text-decoration:none; position:relative; z-index:3;">source</a>
+          </div>
+        </div>
+
         <div class="proj-card proj-card-past stagger-item" style="position:relative; color:inherit; display:block; border-color: rgba(34,211,238,0.34); box-shadow: 0 0 24px rgba(34,211,238,0.10);">
           <a href="https://arjun10g-rag-psych.hf.space/ui" target="_blank" rel="noopener" aria-label="Open rag-psych live demo" style="position:absolute; inset:0; z-index:1; text-indent:-9999px; overflow:hidden;"></a>
           <div class="proj-meta" style="position:relative; z-index:2;">
@@ -247,6 +273,15 @@
       <p class="eyebrow reveal-up">Open Source</p>
       <h2 class="reveal-up" data-delay="0.05" style="margin-bottom:2.5rem;">GitHub Projects</h2>
       <div class="gh-grid stagger-group">
+
+        <a href="https://github.com/Arjun10g/bankmind" target="_blank" rel="noopener" class="gh-card stagger-item">
+          <div class="gh-card-name">bankmind</div>
+          <div class="gh-card-desc">Production RAG platform for financial intelligence. Compliance and credit pipelines, 32,963 indexed chunks, hybrid retrieval (BM25 + SPLADE + Matryoshka), and dual-track evaluation. NDCG@10 of 0.834 on compliance ablation.</div>
+          <div class="gh-card-meta">
+            <span class="gh-lang py">Python · Qdrant</span>
+            <span class="gh-link">↗ github</span>
+          </div>
+        </a>
 
         <a href="https://github.com/Arjun10g/ordinal-sim-mlm" target="_blank" rel="noopener" class="gh-card stagger-item">
           <div class="gh-card-name">ordinal-sim-mlm</div>

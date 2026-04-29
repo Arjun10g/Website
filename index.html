@@ -122,6 +122,30 @@
 
       <div class="fw-scroller" id="fwScroller" role="region" aria-label="Featured projects">
 
+        <!-- ─── bankmind (centerpiece) ─── -->
+        <article class="fw-card fw-rag reveal-up" data-delay="0.13" style="border-color: rgba(34,211,238,0.45); box-shadow: 0 0 32px rgba(34,211,238,0.18);">
+          <a class="fw-link-overlay" href="https://github.com/Arjun10g/bankmind" target="_blank" rel="noopener" aria-label="Open BankMind on GitHub"></a>
+          <header class="fw-head">
+            <span class="fw-glyph">BM</span>
+            <span class="fw-status">Live</span>
+          </header>
+          <div class="fw-body">
+            <div class="fw-tags">
+              <span class="fw-tag">Financial RAG</span>
+              <span class="fw-tag tag-p">Qdrant</span>
+              <span class="fw-tag tag-g">Claude API</span>
+            </div>
+            <h3 class="fw-title">BankMind</h3>
+            <p class="fw-desc">
+              Production-grade RAG platform for financial intelligence. Two pipelines (compliance + credit) over 32,963 indexed chunks with hybrid retrieval (BM25 + SPLADE + Matryoshka dense), RankGPT reranking, and Step-Back query transforms. Best NDCG@10 of 0.834 on compliance ablation. 5-tab Gradio UI on Hugging Face Spaces.
+            </p>
+            <div class="fw-actions">
+              <span class="fw-cta">View on GitHub →</span>
+              <a class="fw-meta-link" href="https://github.com/Arjun10g/bankmind" target="_blank" rel="noopener">source ↗</a>
+            </div>
+          </div>
+        </article>
+
         <!-- ─── rag-psych ─── -->
         <article class="fw-card fw-rag reveal-up" data-delay="0.15">
           <a class="fw-link-overlay" href="https://arjun10g-rag-psych.hf.space/ui" target="_blank" rel="noopener" aria-label="Open rag-psych live demo"></a>
@@ -221,10 +245,11 @@
       </div>
 
       <div class="fw-dots" id="fwDots" aria-hidden="true">
-        <button class="fw-dot active" data-idx="0" aria-label="View rag-psych"></button>
-        <button class="fw-dot" data-idx="1" aria-label="View Data Cleaning Studio"></button>
-        <button class="fw-dot" data-idx="2" aria-label="View Data Simulator"></button>
-        <button class="fw-dot" data-idx="3" aria-label="View Visualizing Algorithms"></button>
+        <button class="fw-dot active" data-idx="0" aria-label="View BankMind"></button>
+        <button class="fw-dot" data-idx="1" aria-label="View rag-psych"></button>
+        <button class="fw-dot" data-idx="2" aria-label="View Data Cleaning Studio"></button>
+        <button class="fw-dot" data-idx="3" aria-label="View Data Simulator"></button>
+        <button class="fw-dot" data-idx="4" aria-label="View Visualizing Algorithms"></button>
       </div>
     </section>
 
