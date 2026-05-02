@@ -132,6 +132,22 @@
           </div>
         </div>
 
+        <div class="proj-card proj-card-past stagger-item" style="position:relative; color:inherit; display:block; border-color: rgba(52,211,153,0.34); box-shadow: 0 0 24px rgba(52,211,153,0.10);">
+          <a href="https://arjun10g-live-expression-reader.static.hf.space" target="_blank" rel="noopener" aria-label="Open Live Expression Reader live demo" style="position:absolute; inset:0; z-index:1; text-indent:-9999px; overflow:hidden;"></a>
+          <div class="proj-meta" style="position:relative; z-index:2;">
+            <span class="tag tag-g">MediaPipe · ONNX</span>
+            <span class="tag tag-p">TypeScript · Vite</span>
+            <span class="tag tag-c">Privacy-First</span>
+          </div>
+          <div class="proj-title" style="position:relative; z-index:2;">Live Expression Reader - in-browser facial expression analyzer</div>
+          <p class="proj-desc" style="position:relative; z-index:2;">Real-time webcam-based expression reader running entirely client-side. 478 facial landmarks plus 52 ARKit blendshapes via MediaPipe Tasks Vision; HSEmotion (enet_b0_8_va_mtl) ONNX model for 8 primary emotions and continuous valence/arousal on the Russell circumplex. Personal calibration via 3-second baseline capture and an optional Naive Bayes classifier fitted to user samples. Cognitive state derivations include drowsiness (PERCLOS), focus, confusion, boredom, stress, engagement, calmness, plus DTM14 compound emotions. FACS-grounded multi-turn LLM explanations served through a Cloudflare Worker proxy; only numerical features ever leave the device. Built in TypeScript + Vite + Tailwind on onnxruntime-web.</p>
+          <div style="position:relative; z-index:2; margin-top:1rem; font-family:var(--f-mono); font-size:0.72rem; color:var(--green); letter-spacing:0.05em;">
+            Try it live ↗
+            &nbsp;·&nbsp;
+            <a href="https://github.com/Arjun10g/live-expression-reader" target="_blank" rel="noopener" style="color:var(--cyan); text-decoration:none; position:relative; z-index:3;">github</a>
+          </div>
+        </div>
+
         <div class="proj-card proj-card-past stagger-item" style="position:relative; color:inherit; display:block; border-color: rgba(34,211,238,0.34); box-shadow: 0 0 24px rgba(34,211,238,0.10);">
           <a href="https://arjun10g-rag-psych.hf.space/ui" target="_blank" rel="noopener" aria-label="Open rag-psych live demo" style="position:absolute; inset:0; z-index:1; text-indent:-9999px; overflow:hidden;"></a>
           <div class="proj-meta" style="position:relative; z-index:2;">
@@ -273,6 +289,15 @@
       <p class="eyebrow reveal-up">Open Source</p>
       <h2 class="reveal-up" data-delay="0.05" style="margin-bottom:2.5rem;">GitHub Projects</h2>
       <div class="gh-grid stagger-group">
+
+        <a href="https://github.com/Arjun10g/live-expression-reader" target="_blank" rel="noopener" class="gh-card stagger-item">
+          <div class="gh-card-name">live-expression-reader</div>
+          <div class="gh-card-desc">Real-time, in-browser facial expression reader. MediaPipe + HSEmotion ONNX, calibrated confidence, FACS-grounded LLM explanations. Zero frames leave the device.</div>
+          <div class="gh-card-meta">
+            <span class="gh-lang js">TypeScript · MediaPipe</span>
+            <span class="gh-link">↗ github</span>
+          </div>
+        </a>
 
         <a href="https://github.com/Arjun10g/bankmind" target="_blank" rel="noopener" class="gh-card stagger-item">
           <div class="gh-card-name">bankmind</div>
