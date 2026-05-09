@@ -132,6 +132,34 @@
           </div>
         </div>
 
+        <div class="proj-card proj-card-past stagger-item" style="position:relative; color:inherit; display:block; border-color: rgba(34,211,238,0.55); box-shadow: 0 0 32px rgba(34,211,238,0.18); grid-column: 1 / -1;">
+          <a href="https://arjun10g-na-tech-jobs.hf.space" target="_blank" rel="noopener" aria-label="Open NA Tech Jobs live demo" style="position:absolute; inset:0; z-index:1; text-indent:-9999px; overflow:hidden;"></a>
+          <div class="proj-meta" style="position:relative; z-index:2;">
+            <span class="tag tag-c">ML Platform</span>
+            <span class="tag tag-p">XGBoost · Optuna</span>
+            <span class="tag tag-g">Qdrant · DuckDB</span>
+            <span class="tag tag-v">MLOps</span>
+          </div>
+          <div class="proj-title" style="position:relative; z-index:2;">NA Tech Jobs - production ML platform for the North American senior DS/ML market</div>
+          <p class="proj-desc" style="position:relative; z-index:2;">End-to-end ML platform answering job-search questions standard tools cannot: actual senior salary distributions by location, current hiring trends at specific seniority levels, and resume-to-opportunity alignment. Weekly asyncio ingestion from 6 ATS platforms (Greenhouse, Lever, Ashby, Workable, SmartRecruiters, Workday tenants), Pandera schema validation, parquet snapshots versioned on Hugging Face Hub. Four trained models: XGBoost salary regressor with Optuna tuning; frozen sentence-transformers/all-MiniLM-L6-v2 + multinomial LR for seniority (7 classes) and role-family (6 classes) classifiers; regex-first skills extractor with optional NuExtract fallback. Hybrid retrieval over 12,334 jobs to 29,311 parent chunks to 120,004 child chunks via Qdrant; pipeline = dense first-pass to sparse search to RRF fusion to cross-encoder rerank to parent hydration. Five-tab Gradio app: Salary Predictor, Search, Matcher (NL queries / resume), Analytics (Qwen2.5-7B NL to DuckDB SQL with 61-test safety contract: keyword filter, table/column allowlists, statement timeouts, always-show SQL), and Dashboard with drift reports. Closed-loop ops: weekly Evidently PSI drift detection, monthly champion/challenger retraining gated on +1 percent primary metric and -2 percent secondary, GitHub Actions CI for ingest/drift/retrain/deploy. Runs on a single $9/month Hugging Face Space.</p>
+          <div style="position:relative; z-index:2; margin-top:1rem; display:flex; gap:1rem; flex-wrap:wrap; font-family:var(--f-mono); font-size:0.7rem; color:var(--muted); letter-spacing:0.05em;">
+            <span style="color:var(--cyan);">Salary MAE: $29,091 (MAPE 14.7%)</span>
+            <span>·</span>
+            <span style="color:var(--green);">Role-Family F1: 0.934</span>
+            <span>·</span>
+            <span style="color:var(--gold);">Seniority F1: 0.812</span>
+            <span>·</span>
+            <span>Recall@10: 0.486 (+34% vs dense)</span>
+            <span>·</span>
+            <span>12,334 jobs · 477 companies</span>
+          </div>
+          <div style="position:relative; z-index:2; margin-top:1rem; font-family:var(--f-mono); font-size:0.72rem; color:var(--cyan); letter-spacing:0.05em;">
+            Try it live ↗
+            &nbsp;·&nbsp;
+            <a href="https://github.com/Arjun10g/na-tech-jobs" target="_blank" rel="noopener" style="color:var(--green); text-decoration:none; position:relative; z-index:3;">github</a>
+          </div>
+        </div>
+
         <div class="proj-card proj-card-past stagger-item" style="position:relative; color:inherit; display:block; border-color: rgba(251,191,36,0.34); box-shadow: 0 0 24px rgba(251,191,36,0.10);">
           <a href="https://huggingface.co/spaces/arjun10g/zeroshotGPU" target="_blank" rel="noopener" aria-label="Open zeroshotGPU live demo" style="position:absolute; inset:0; z-index:1; text-indent:-9999px; overflow:hidden;"></a>
           <div class="proj-meta" style="position:relative; z-index:2;">
@@ -331,6 +359,15 @@
       <p class="eyebrow reveal-up">Open Source</p>
       <h2 class="reveal-up" data-delay="0.05" style="margin-bottom:2.5rem;">GitHub Projects</h2>
       <div class="gh-grid stagger-group">
+
+        <a href="https://github.com/Arjun10g/na-tech-jobs" target="_blank" rel="noopener" class="gh-card stagger-item">
+          <div class="gh-card-name">na-tech-jobs</div>
+          <div class="gh-card-desc">Production ML platform for the NA senior DS/ML hiring market. 4 versioned models, hybrid retrieval, NL-to-SQL with safety layer, closed-loop drift + retrain ops. Salary MAE $29k, role-family F1 0.934.</div>
+          <div class="gh-card-meta">
+            <span class="gh-lang py">Python · XGBoost · Qdrant</span>
+            <span class="gh-link">↗ github</span>
+          </div>
+        </a>
 
         <a href="https://github.com/Arjun10g/zeroshotGPU" target="_blank" rel="noopener" class="gh-card stagger-item">
           <div class="gh-card-name">zeroshotGPU</div>
