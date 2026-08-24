@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Research and engineering work by Arjunvir Ghumman - production ML platforms, RAG systems, LLM quantization, publications, and talks."/>
   <title>Research - Arjunvir Ghumman</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23030712'/%3E%3Ctext x='16' y='22' font-family='monospace' font-size='16' font-weight='700' text-anchor='middle' fill='%2322d3ee'%3EAG%3C/text%3E%3C/svg%3E"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
@@ -24,6 +26,7 @@
       <li><a href="index.html">Home</a></li>
       <li><a href="about.html">About</a></li>
       <li><a href="research.html" class="active">Research</a></li>
+      <li><a href="https://arjun10g.github.io/blog/" target="_blank" rel="noopener">Blog ↗</a></li>
       <li><a href="connect.html">Connect</a></li>
     </ul>
     <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
@@ -103,182 +106,308 @@
     <!-- ENGINEERING CENTERPIECES -->
     <section class="section" style="padding-top:0;">
       <p class="eyebrow reveal-up">Featured Builds</p>
-      <h2 class="reveal-up" data-delay="0.05" style="margin-bottom:2.5rem;">Production &amp; long-form work</h2>
+      <h2 class="reveal-up" data-delay="0.05" style="margin-bottom:2.5rem;">Writing, production systems &amp; long-form work</h2>
       <div class="projects-grid stagger-group" style="grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));">
 
-        <div class="proj-card proj-card-past stagger-item" style="position:relative; color:inherit; display:block; border-color: rgba(34,211,238,0.55); box-shadow: 0 0 32px rgba(34,211,238,0.18); grid-column: 1 / -1;">
-          <a href="https://huggingface.co/spaces/arjun10g/bankmind" target="_blank" rel="noopener" aria-label="Open BankMind live demo" style="position:absolute; inset:0; z-index:1; text-indent:-9999px; overflow:hidden;"></a>
-          <div class="proj-meta" style="position:relative; z-index:2;">
+        <div class="proj-card proj-card-past proj-card-feature stagger-item accent-hero-g proj-wide">
+          <a class="proj-cover-link" href="https://arjun10g.github.io/blog/" target="_blank" rel="noopener" aria-label="Open the Visualizing Algorithms blog"></a>
+          <div class="proj-meta">
+            <span class="tag tag-g">Writing</span>
+            <span class="tag tag-c">Long-form</span>
+            <span class="tag tag-p">Animated figures</span>
+            <span class="tag tag-v">D3 · GSAP</span>
+          </div>
+          <div class="proj-title">Visualizing Algorithms &mdash; machine learning, explained from the inside out</div>
+          <p class="proj-desc">A long-form essay series that takes apart the algorithms practitioners use every day &mdash; the equations, the intuition, and animated visuals built from scratch for the piece they appear in. The current instalment, <strong>XGBoost From the Inside Out</strong>, walks the entire mathematical pipeline in thirteen sections: the practitioner's version of the algorithm, the additive core idea, the fit-versus-complexity objective, the second-order Taylor approximation that makes it tractable, the gradient&ndash;Hessian geometry underneath it, per-leaf decomposition of the objective, the closed form for optimal leaf weights, greedy gain-based splitting, shrinkage in the additive update, and what <em>max_depth</em>, learning rate, <em>subsample</em>, <em>gamma</em> and <em>min_child_weight</em> are each actually doing &mdash; closing on early stopping. Fifteen purpose-built figures and animations, and a references section. Transformers, diffusion, and neural ODEs are queued next.</p>
+          <div class="proj-metrics">
+            <span class="m-y">Latest: XGBoost From the Inside Out</span>
+            <span>&middot;</span>
+            <span class="m-g">22 min read &middot; 13 sections</span>
+            <span>&middot;</span>
+            <span>15 custom figures &amp; animations</span>
+          </div>
+          <div class="proj-links">
+            Read the blog &#8599;
+            &nbsp;&middot;&nbsp;
+            <a href="https://arjun10g.github.io/blog/post-xgboost.html" target="_blank" rel="noopener" style="color:var(--cyan);">latest post</a>
+            &nbsp;&middot;&nbsp;
+            <a href="https://github.com/Arjun10g/blog" target="_blank" rel="noopener" style="color:var(--green);">source</a>
+          </div>
+        </div>
+
+        <div class="proj-card proj-card-past proj-card-feature stagger-item accent-hero-p proj-wide">
+          <div class="proj-meta">
+            <span class="tag tag-p">Quantization</span>
+            <span class="tag tag-c">PyTorch</span>
+            <span class="tag tag-g">Mixture-of-Experts</span>
+            <span class="badge-private">Private</span>
+          </div>
+          <div class="proj-title">WeightForge &mdash; weight-only quantization library for dense and MoE LLMs</div>
+          <p class="proj-desc">A research library that quantizes the linear weights of a PyTorch model, keeps activations and the KV cache in floating point, and refuses to make a claim it has not measured. 33 registered methods are compared under a single harness at <em>honest</em> effective bits-per-weight &mdash; scales, zero-points and codebooks are all charged, so 4-bit at group 128 is reported as 4.125 rather than 4. Quality rankings are backed by paired significance tests rather than point estimates, and results are evidence-graded so the harness refuses to mix machines or probes silently. MoE structure is understood natively: routed experts, shared experts and routers are distinguished and can take different precisions, and a route-aware allocator probes which experts routing actually reaches and discounts the rare ones. Calibrated methods (GPTQ and relatives) run block by block so only one transformer block's statistics are resident at a time, with decoder blocks located structurally rather than from a per-architecture manifest. Ships preflight coverage accounting that reports four disjoint parameter buckets, a bounded per-tensor damage sample, a regression-gated benchmark against a baseline recorded on the same device, and non-executable safetensors bundle export.</p>
+          <div class="proj-metrics">
+            <span class="m-p">2.49&times; decode vs FP16 (7B, L40S)</span>
+            <span>&middot;</span>
+            <span class="m-g">+15.4% over bitsandbytes 0.50.0</span>
+            <span>&middot;</span>
+            <span class="m-c">3.10&times; less weight memory</span>
+            <span>&middot;</span>
+            <span>+0.21 perplexity (+3.4%)</span>
+            <span>&middot;</span>
+            <span>33 methods &middot; 2,277 tests</span>
+          </div>
+          <div class="proj-links">Source not public &mdash; private repository</div>
+        </div>
+
+        <div class="proj-card proj-card-past proj-card-feature stagger-item accent-hero proj-wide">
+          <a class="proj-cover-link" href="https://huggingface.co/spaces/arjun10g/bankmind" target="_blank" rel="noopener" aria-label="Open BankMind live demo"></a>
+          <div class="proj-meta">
             <span class="tag tag-c">Financial RAG</span>
             <span class="tag tag-p">Qdrant · Matryoshka</span>
             <span class="tag tag-g">Claude API</span>
             <span class="tag tag-v">Gradio</span>
           </div>
-          <div class="proj-title" style="position:relative; z-index:2;">BankMind - production-grade RAG for financial intelligence</div>
-          <p class="proj-desc" style="position:relative; z-index:2;">Two specialised pipelines (regulatory compliance + credit analysis) over a unified Qdrant infrastructure with 32,963 indexed chunks. Five Matryoshka dense embedding dimensions plus SPLADE++ and BM25 sparse vectors with native hybrid search. HybridRetriever supports dense, sparse, RRF, convex, and hierarchical fusion; query transforms include HyDE, Multi-Query, PRF, and Step-Back; rerankers include cross-encoder, MonoT5, ColBERT, and RankGPT. Dual-track evaluation framework: Track A measures retrieval via character overlap; Track B evaluates answer quality. Six chunking strategies benchmarked, with semantic chunking outperforming structure-driven strategies by 17 to 94 percent relative NDCG. End-to-end ablation across 6 retrieval methods, 4 rerankers, and 4 query transforms. Rule-based guardrails: citation enforcement, numerical grounding, staleness warnings, confidence scoring, and temporal-query mismatch detection. 5-tab Gradio dashboard deployed on Hugging Face Spaces.</p>
-          <div style="position:relative; z-index:2; margin-top:1rem; display:flex; gap:1rem; flex-wrap:wrap; font-family:var(--f-mono); font-size:0.7rem; color:var(--muted); letter-spacing:0.05em;">
-            <span style="color:var(--cyan);">NDCG@10: 0.834</span>
-            <span>·</span>
-            <span style="color:var(--green);">Recall@5: 0.920</span>
-            <span>·</span>
-            <span>Compliance: 6 frameworks · 4 jurisdictions</span>
-            <span>·</span>
+          <div class="proj-title">BankMind - production-grade RAG for financial intelligence</div>
+          <p class="proj-desc">Two specialised pipelines (regulatory compliance + credit analysis) over a unified Qdrant infrastructure with 32,963 indexed chunks. Five Matryoshka dense embedding dimensions plus SPLADE++ and BM25 sparse vectors with native hybrid search. HybridRetriever supports dense, sparse, RRF, convex, and hierarchical fusion; query transforms include HyDE, Multi-Query, PRF, and Step-Back; rerankers include cross-encoder, MonoT5, ColBERT, and RankGPT. Dual-track evaluation framework: Track A measures retrieval via character overlap; Track B evaluates answer quality. Six chunking strategies benchmarked, with semantic chunking outperforming structure-driven strategies by 17 to 94 percent relative NDCG. End-to-end ablation across 6 retrieval methods, 4 rerankers, and 4 query transforms. Rule-based guardrails: citation enforcement, numerical grounding, staleness warnings, confidence scoring, and temporal-query mismatch detection. 5-tab Gradio dashboard deployed on Hugging Face Spaces.</p>
+          <div class="proj-metrics">
+            <span class="m-c">NDCG@10: 0.834</span>
+            <span>&middot;</span>
+            <span class="m-g">Recall@5: 0.920</span>
+            <span>&middot;</span>
+            <span>Compliance: 6 frameworks &middot; 4 jurisdictions</span>
+            <span>&middot;</span>
             <span>Credit: SEC EDGAR, 5 banks</span>
           </div>
-          <div style="position:relative; z-index:2; margin-top:1rem; font-family:var(--f-mono); font-size:0.72rem; color:var(--cyan); letter-spacing:0.05em;">
-            Try it live ↗
-            &nbsp;·&nbsp;
-            <a href="https://github.com/Arjun10g/bankmind" target="_blank" rel="noopener" style="color:var(--green); text-decoration:none; position:relative; z-index:3;">github</a>
+          <div class="proj-links">
+            Try it live &#8599;
+            &nbsp;&middot;&nbsp;
+            <a href="https://github.com/Arjun10g/bankmind" target="_blank" rel="noopener" style="color:var(--green);">github</a>
           </div>
         </div>
 
-        <div class="proj-card proj-card-past stagger-item" style="position:relative; color:inherit; display:block; border-color: rgba(34,211,238,0.55); box-shadow: 0 0 32px rgba(34,211,238,0.18); grid-column: 1 / -1;">
-          <a href="https://arjun10g-na-tech-jobs.hf.space" target="_blank" rel="noopener" aria-label="Open NA Tech Jobs live demo" style="position:absolute; inset:0; z-index:1; text-indent:-9999px; overflow:hidden;"></a>
-          <div class="proj-meta" style="position:relative; z-index:2;">
+        <div class="proj-card proj-card-past proj-card-feature stagger-item accent-hero proj-wide">
+          <a class="proj-cover-link" href="https://arjun10g-na-tech-jobs.hf.space" target="_blank" rel="noopener" aria-label="Open NA Tech Jobs live demo"></a>
+          <div class="proj-meta">
             <span class="tag tag-c">ML Platform</span>
             <span class="tag tag-p">XGBoost · Optuna</span>
             <span class="tag tag-g">Qdrant · DuckDB</span>
             <span class="tag tag-v">MLOps</span>
           </div>
-          <div class="proj-title" style="position:relative; z-index:2;">NA Tech Jobs - production ML platform for the North American senior DS/ML market</div>
-          <p class="proj-desc" style="position:relative; z-index:2;">End-to-end ML platform answering job-search questions standard tools cannot: actual senior salary distributions by location, current hiring trends at specific seniority levels, and resume-to-opportunity alignment. Weekly asyncio ingestion from 6 ATS platforms (Greenhouse, Lever, Ashby, Workable, SmartRecruiters, Workday tenants), Pandera schema validation, parquet snapshots versioned on Hugging Face Hub. Four trained models: XGBoost salary regressor with Optuna tuning; frozen sentence-transformers/all-MiniLM-L6-v2 + multinomial LR for seniority (7 classes) and role-family (6 classes) classifiers; regex-first skills extractor with optional NuExtract fallback. Hybrid retrieval over 12,334 jobs to 29,311 parent chunks to 120,004 child chunks via Qdrant; pipeline = dense first-pass to sparse search to RRF fusion to cross-encoder rerank to parent hydration. Five-tab Gradio app: Salary Predictor, Search, Matcher (NL queries / resume), Analytics (Qwen2.5-7B NL to DuckDB SQL with 61-test safety contract: keyword filter, table/column allowlists, statement timeouts, always-show SQL), and Dashboard with drift reports. Closed-loop ops: weekly Evidently PSI drift detection, monthly champion/challenger retraining gated on +1 percent primary metric and -2 percent secondary, GitHub Actions CI for ingest/drift/retrain/deploy. Runs on a single $9/month Hugging Face Space.</p>
-          <div style="position:relative; z-index:2; margin-top:1rem; display:flex; gap:1rem; flex-wrap:wrap; font-family:var(--f-mono); font-size:0.7rem; color:var(--muted); letter-spacing:0.05em;">
-            <span style="color:var(--cyan);">Salary MAE: $29,091 (MAPE 14.7%)</span>
-            <span>·</span>
-            <span style="color:var(--green);">Role-Family F1: 0.934</span>
-            <span>·</span>
-            <span style="color:var(--gold);">Seniority F1: 0.812</span>
-            <span>·</span>
+          <div class="proj-title">NA Tech Jobs - production ML platform for the North American senior DS/ML market</div>
+          <p class="proj-desc">End-to-end ML platform answering job-search questions standard tools cannot: actual senior salary distributions by location, current hiring trends at specific seniority levels, and resume-to-opportunity alignment. Weekly asyncio ingestion from 6 ATS platforms (Greenhouse, Lever, Ashby, Workable, SmartRecruiters, Workday tenants), Pandera schema validation, parquet snapshots versioned on Hugging Face Hub. Four trained models: XGBoost salary regressor with Optuna tuning; frozen sentence-transformers/all-MiniLM-L6-v2 + multinomial LR for seniority (7 classes) and role-family (6 classes) classifiers; regex-first skills extractor with optional NuExtract fallback. Hybrid retrieval over 12,334 jobs to 29,311 parent chunks to 120,004 child chunks via Qdrant; pipeline = dense first-pass to sparse search to RRF fusion to cross-encoder rerank to parent hydration. Five-tab Gradio app: Salary Predictor, Search, Matcher (NL queries / resume), Analytics (Qwen2.5-7B NL to DuckDB SQL with 61-test safety contract: keyword filter, table/column allowlists, statement timeouts, always-show SQL), and Dashboard with drift reports. Closed-loop ops: weekly Evidently PSI drift detection, monthly champion/challenger retraining gated on +1 percent primary metric and -2 percent secondary, GitHub Actions CI for ingest/drift/retrain/deploy. Runs on a single $9/month Hugging Face Space.</p>
+          <div class="proj-metrics">
+            <span class="m-c">Salary MAE: $29,091 (MAPE 14.7%)</span>
+            <span>&middot;</span>
+            <span class="m-g">Role-Family F1: 0.934</span>
+            <span>&middot;</span>
+            <span class="m-y">Seniority F1: 0.812</span>
+            <span>&middot;</span>
             <span>Recall@10: 0.486 (+34% vs dense)</span>
-            <span>·</span>
-            <span>12,334 jobs · 477 companies</span>
+            <span>&middot;</span>
+            <span>12,334 jobs &middot; 477 companies</span>
           </div>
-          <div style="position:relative; z-index:2; margin-top:1rem; font-family:var(--f-mono); font-size:0.72rem; color:var(--cyan); letter-spacing:0.05em;">
-            Try it live ↗
-            &nbsp;·&nbsp;
-            <a href="https://github.com/Arjun10g/na-tech-jobs" target="_blank" rel="noopener" style="color:var(--green); text-decoration:none; position:relative; z-index:3;">github</a>
+          <div class="proj-links">
+            Try it live &#8599;
+            &nbsp;&middot;&nbsp;
+            <a href="https://github.com/Arjun10g/na-tech-jobs" target="_blank" rel="noopener" style="color:var(--green);">github</a>
           </div>
         </div>
 
-        <div class="proj-card proj-card-past stagger-item" style="position:relative; color:inherit; display:block; border-color: rgba(251,191,36,0.34); box-shadow: 0 0 24px rgba(251,191,36,0.10);">
-          <a href="https://huggingface.co/spaces/arjun10g/zeroshotGPU" target="_blank" rel="noopener" aria-label="Open zeroshotGPU live demo" style="position:absolute; inset:0; z-index:1; text-indent:-9999px; overflow:hidden;"></a>
-          <div class="proj-meta" style="position:relative; z-index:2;">
+        <div class="proj-card proj-card-past proj-card-feature stagger-item accent-cyan proj-wide">
+          <a class="proj-cover-link" href="https://arjun10g-rag-architecture-advisor.hf.space/" target="_blank" rel="noopener" aria-label="Open RAG Architecture Advisor live demo"></a>
+          <div class="proj-meta">
+            <span class="tag tag-c">Agentic RAG</span>
+            <span class="tag tag-p">LangGraph-style</span>
+            <span class="tag tag-g">Qdrant · LanceDB</span>
+            <span class="tag tag-v">Terraform</span>
+          </div>
+          <div class="proj-title">RAG Architecture Advisor - agentic advisor for retrieval architecture</div>
+          <p class="proj-desc">Maps a described situation to a defensible requirement vector, retrieves from a curated RAG-architecture corpus, and emits a pipeline recommendation together with a build plan, a structured design plan, a literature map, linked pipeline and deployment views, a Terraform module sketch, stated strengths and weaknesses, and the decision log that produced them. Runs as a Gradio Space over a LangGraph-style state machine with a startup-built retrieval index and bounded reflection; the detailed UI accepts follow-up answers for pending attributes and an explicit conflict-resolution value, then reruns the same graph with those values. The corpus is committed markdown catalogued by an authoritative manifest storing path, namespace, domain, trust tier, and tags, chunked at startup into an in-memory store &mdash; the default lexical retriever needs no persistent database, while LanceDB and Qdrant back deployment-grade dense retrieval. Deep-thinking mode adds a parallel research pass across four agent roles (literature review, agent-framework review, community implementation review, and Spaces review), fetching full text of selected public references and extracting approach, implementation notes, and limitations.</p>
+          <div class="proj-links">
+            Try it live &#8599;
+            &nbsp;&middot;&nbsp;
+            <a href="https://github.com/Arjun10g/rag-architecture-advisor" target="_blank" rel="noopener" style="color:var(--green);">github</a>
+          </div>
+        </div>
+
+        <div class="proj-card proj-card-past proj-card-feature stagger-item accent-purple">
+          <a class="proj-cover-link" href="https://github.com/Arjun10g/restricted-local-coder" target="_blank" rel="noopener" aria-label="Open restricted-local-coder on GitHub"></a>
+          <div class="proj-meta">
+            <span class="tag tag-p">llama.cpp</span>
+            <span class="tag tag-c">VS Code</span>
+            <span class="tag tag-g">Air-gapped</span>
+          </div>
+          <div class="proj-title">Restricted Local Coder - private coding assistant for locked-down workstations</div>
+          <p class="proj-desc">A self-contained VS Code assistant for a machine where Ollama, LM Studio, Docker, Python packages, Hugging Face, and administrator rights are all unavailable. The repository builds a platform-specific VSIX embedding a pinned llama.cpp server; on the target laptop the extension starts that binary on loopback, verifies an approved GGUF by mandatory magic-byte and SHA-256 checks, and provides streamed coding chat, explain/review/refactor/debug/test commands, and optional fill-in-the-middle for profiles that declare FIM support &mdash; refusing those requests rather than sending control tokens to a model that never saw them. Agent mode is off by default and, when enabled, is argv-prefix permissioned with no shell, workspace-confined paths, a secret deny-list, a bounded step count, and an audit log; file editing is a second switch again, and every edit is applied through the editor so Ctrl+Z undoes it. Loopback-only server, random SecretStorage bearer key, one inference slot, offline runtime mode, and the server's own agent/tool/MCP surfaces disabled so permission is decided in one auditable place. No third-party npm runtime dependencies.</p>
+          <div class="proj-metrics">
+            <span class="m-p">0 malformed tool calls in 190</span>
+            <span>&middot;</span>
+            <span class="m-g">0 ambiguous edits</span>
+            <span>&middot;</span>
+            <span>32 GB CPU-first target</span>
+          </div>
+          <div class="proj-links">
+            View on GitHub &#8599;
+            &nbsp;&middot;&nbsp;
+            <a href="https://github.com/Arjun10g/restricted-local-coder" target="_blank" rel="noopener" style="color:var(--green);">source</a>
+          </div>
+        </div>
+
+        <div class="proj-card proj-card-past proj-card-feature stagger-item accent-purple">
+          <a class="proj-cover-link" href="https://github.com/Arjun10g/internal-moe-inference-service" target="_blank" rel="noopener" aria-label="Open internal-moe-inference-service on GitHub"></a>
+          <div class="proj-meta">
+            <span class="tag tag-p">Inference Serving</span>
+            <span class="tag tag-c">GGUF · safetensors</span>
+            <span class="tag tag-g">Docker · Prometheus</span>
+          </div>
+          <div class="proj-title">Internal MoE Inference Service - offline-capable serving for private checkpoints</div>
+          <p class="proj-desc">A secure HTTP/SSE inference service for locally mounted or private-S3 decoder-only checkpoints, shipping the containerized workload without any model weights or deployment infrastructure of its own. Artifacts are resolved and verified once against a versioned JSON manifest &mdash; SHA-256, byte size, safe-path, allowed-file and symlink validation &mdash; then one model is loaded, warmed, and reused for every request through a background lifecycle of resolve, validate, preflight, load, warmup, ready. Engines are format-locked: safetensors run on offline Transformers, GGUF on a pinned official llama-server supervised as a loopback-bound process with an ephemeral internal API key, no web UI and no agent mode. Serves OpenAI-shaped streaming and non-streaming completions behind bearer auth, request-size limits, request IDs, and redacted JSON logs, with bounded inference concurrency, queue timeout and backpressure, generation timeout, and cancellation signalling. Non-root, read-only-compatible image; CPU CI builds and serves a real tiny Qwen2-MoE checkpoint entirely offline.</p>
+          <div class="proj-links">
+            View on GitHub &#8599;
+            &nbsp;&middot;&nbsp;
+            <a href="https://github.com/Arjun10g/internal-moe-inference-service" target="_blank" rel="noopener" style="color:var(--green);">source</a>
+          </div>
+        </div>
+
+        <div class="proj-card proj-card-past proj-card-feature stagger-item accent-gold">
+          <a class="proj-cover-link" href="https://huggingface.co/spaces/arjun10g/zeroshotGPU" target="_blank" rel="noopener" aria-label="Open zeroshotGPU live demo"></a>
+          <div class="proj-meta">
             <span class="tag tag-y">Document AI</span>
             <span class="tag tag-p">ZeroGPU</span>
             <span class="tag tag-g">Qwen2.5-VL</span>
             <span class="tag tag-c">Agentic</span>
           </div>
-          <div class="proj-title" style="position:relative; z-index:2;">zeroshotGPU - agentic zero-shot document parser</div>
-          <p class="proj-desc" style="position:relative; z-index:2;">A self-hosted parsing control plane that treats document extraction as a multi-step decision process: profile pages (scanned vs. digital, table density, multi-column layout, formula density), route to specialised parsers (Docling, PyMuPDF, Marker, MinerU, olmOCR, PaddleOCR, Unstructured), merge candidates with conflict detection, verify against eight metric families (layout F1, table-structure score, formula CER, retrieval recall@k + MRR, parser disagreement, repair resolution/regression, parser contributions, throughput), then iteratively repair weak regions deterministic-first (table normalisation, header/footer marking, caption attachment) before invoking Qwen2.5-VL-3B on ZeroGPU. Emits retrieval-ready chunks across a strategy ladder (fixed-token to recursive-structure to parent/child to page-level to table to figure to semantic) with SHA-256 checksummed artifacts. Three dataset loaders, dual API (Python CLI + Gradio), 254 unit tests passing.</p>
-          <div style="position:relative; z-index:2; margin-top:1rem; display:flex; gap:1rem; flex-wrap:wrap; font-family:var(--f-mono); font-size:0.7rem; color:var(--muted); letter-spacing:0.05em;">
-            <span style="color:var(--gold);">Recall@5: 1.0</span>
-            <span>·</span>
-            <span style="color:var(--green);">Quality: 0.964</span>
-            <span>·</span>
+          <div class="proj-title">zeroshotGPU - agentic zero-shot document parser</div>
+          <p class="proj-desc">A self-hosted parsing control plane that treats document extraction as a multi-step decision process: profile pages (scanned vs. digital, table density, multi-column layout, formula density), route to specialised parsers (Docling, PyMuPDF, Marker, MinerU, olmOCR, PaddleOCR, Unstructured), merge candidates with conflict detection, verify against eight metric families (layout F1, table-structure score, formula CER, retrieval recall@k + MRR, parser disagreement, repair resolution/regression, parser contributions, throughput), then iteratively repair weak regions deterministic-first (table normalisation, header/footer marking, caption attachment) before invoking Qwen2.5-VL-3B on ZeroGPU. Emits retrieval-ready chunks across a strategy ladder (fixed-token to recursive-structure to parent/child to page-level to table to figure to semantic) with SHA-256 checksummed artifacts. Three dataset loaders, dual API (Python CLI + Gradio), 254 unit tests passing.</p>
+          <div class="proj-metrics">
+            <span class="m-y">Recall@5: 1.0</span>
+            <span>&middot;</span>
+            <span class="m-g">Quality: 0.964</span>
+            <span>&middot;</span>
             <span>8 metric families</span>
-            <span>·</span>
+            <span>&middot;</span>
             <span>3 dataset loaders</span>
           </div>
-          <div style="position:relative; z-index:2; margin-top:1rem; font-family:var(--f-mono); font-size:0.72rem; color:var(--gold); letter-spacing:0.05em;">
-            Try it live ↗
-            &nbsp;·&nbsp;
-            <a href="https://github.com/Arjun10g/zeroshotGPU" target="_blank" rel="noopener" style="color:var(--green); text-decoration:none; position:relative; z-index:3;">github</a>
+          <div class="proj-links">
+            Try it live &#8599;
+            &nbsp;&middot;&nbsp;
+            <a href="https://github.com/Arjun10g/zeroshotGPU" target="_blank" rel="noopener" style="color:var(--green);">github</a>
           </div>
         </div>
 
-        <div class="proj-card proj-card-past stagger-item" style="position:relative; color:inherit; display:block; border-color: rgba(52,211,153,0.34); box-shadow: 0 0 24px rgba(52,211,153,0.10);">
-          <a href="https://github.com/Arjun10g/grocery-price-dashboard" target="_blank" rel="noopener" aria-label="Open grocery-price-dashboard on GitHub" style="position:absolute; inset:0; z-index:1; text-indent:-9999px; overflow:hidden;"></a>
-          <div class="proj-meta" style="position:relative; z-index:2;">
+        <div class="proj-card proj-card-past proj-card-feature stagger-item accent-green">
+          <a class="proj-cover-link" href="https://arjun10g-klh-vowel-visualizer.hf.space/" target="_blank" rel="noopener" aria-label="Open Ka Leo Hawaii Vowel Visualizer live demo"></a>
+          <div class="proj-meta">
+            <span class="tag tag-g">Phonetics</span>
+            <span class="tag tag-p">FastAPI · Polars</span>
+            <span class="tag tag-c">React · Plotly</span>
+          </div>
+          <div class="proj-title">Ka Leo Hawai&#699;i Vowel Visualizer - interactive Hawaiian vowel formant explorer</div>
+          <p class="proj-desc">Interactive viewer for Hawaiian vowel formant data drawn from the Ka Leo Hawai&#699;i corpus &mdash; 8 speakers, roughly 25,000 tokens, 22 vowels. Smoothing-spline F1/F2 trajectories and gaussian-KDE density contours are computed server-side in FastAPI + Polars + SciPy and plotted in React + TypeScript + Plotly with Zustand state, alongside per-token audio playback and a TTS readout. A multi-stage Dockerfile builds the React bundle into the Python image, so the API and the single-page app are served from one origin as a single deployable container.</p>
+          <div class="proj-metrics">
+            <span class="m-g">8 speakers &middot; ~25,000 tokens</span>
+            <span>&middot;</span>
+            <span class="m-c">22 vowels</span>
+          </div>
+          <div class="proj-links">
+            Try it live &#8599;
+            &nbsp;&middot;&nbsp;
+            <a href="https://github.com/Arjun10g/klh-vowel-visualizer" target="_blank" rel="noopener" style="color:var(--cyan);">github</a>
+          </div>
+        </div>
+
+        <div class="proj-card proj-card-past proj-card-feature stagger-item accent-green">
+          <a class="proj-cover-link" href="https://github.com/Arjun10g/grocery-price-dashboard" target="_blank" rel="noopener" aria-label="Open grocery-price-dashboard on GitHub"></a>
+          <div class="proj-meta">
             <span class="tag tag-g">Next.js 16</span>
             <span class="tag tag-p">Supabase</span>
             <span class="tag tag-c">Recharts</span>
           </div>
-          <div class="proj-title" style="position:relative; z-index:2;">Grocery Price Dashboard - Canadian grocery price visualisation</div>
-          <p class="proj-desc" style="position:relative; z-index:2;">Public read-only dashboard visualising 165k+ Canadian grocery price observations sourced from the grocery-price-rag ingestion pipeline across StatCan provincial averages, Loblaws and Sobeys retailer APIs, Schema.org markup on long-tail grocers, and crowdsourced Open Food Facts. Routes for product search (ILIKE on name and brand), product detail with price-history charts, source confidence metrics with pipeline-run health (success / failure / dead-letter queue), and 1,931 stores grouped by province from OpenStreetMap Overpass. Built on Next.js 16 (App Router), TypeScript, Tailwind 4, Recharts; backed by Supabase with row-level security. Server-side revalidation capped at one minute; biweekly refresh via Cloud Run + Cloud Scheduler.</p>
-          <div style="position:relative; z-index:2; margin-top:1rem; font-family:var(--f-mono); font-size:0.72rem; color:var(--green); letter-spacing:0.05em;">
-            View on GitHub ↗
-            &nbsp;·&nbsp;
-            <a href="https://github.com/Arjun10g/grocery-price-dashboard" target="_blank" rel="noopener" style="color:var(--cyan); text-decoration:none; position:relative; z-index:3;">source</a>
+          <div class="proj-title">Grocery Price Dashboard - Canadian grocery price visualisation</div>
+          <p class="proj-desc">Public read-only dashboard visualising 165k+ Canadian grocery price observations sourced from the grocery-price-rag ingestion pipeline across StatCan provincial averages, Loblaws and Sobeys retailer APIs, Schema.org markup on long-tail grocers, and crowdsourced Open Food Facts. Routes for product search (ILIKE on name and brand), product detail with price-history charts, source confidence metrics with pipeline-run health (success / failure / dead-letter queue), and 1,931 stores grouped by province from OpenStreetMap Overpass. Built on Next.js 16 (App Router), TypeScript, Tailwind 4, Recharts; backed by Supabase with row-level security. Server-side revalidation capped at one minute; biweekly refresh via Cloud Run + Cloud Scheduler.</p>
+          <div class="proj-links">
+            View on GitHub &#8599;
+            &nbsp;&middot;&nbsp;
+            <a href="https://github.com/Arjun10g/grocery-price-dashboard" target="_blank" rel="noopener" style="color:var(--cyan);">source</a>
           </div>
         </div>
 
-        <div class="proj-card proj-card-past stagger-item" style="position:relative; color:inherit; display:block; border-color: rgba(52,211,153,0.34); box-shadow: 0 0 24px rgba(52,211,153,0.10);">
-          <a href="https://arjun10g-live-expression-reader.static.hf.space" target="_blank" rel="noopener" aria-label="Open Live Expression Reader live demo" style="position:absolute; inset:0; z-index:1; text-indent:-9999px; overflow:hidden;"></a>
-          <div class="proj-meta" style="position:relative; z-index:2;">
+        <div class="proj-card proj-card-past proj-card-feature stagger-item accent-green">
+          <a class="proj-cover-link" href="https://arjun10g-live-expression-reader.static.hf.space" target="_blank" rel="noopener" aria-label="Open Live Expression Reader live demo"></a>
+          <div class="proj-meta">
             <span class="tag tag-g">MediaPipe · ONNX</span>
             <span class="tag tag-p">TypeScript · Vite</span>
             <span class="tag tag-c">Privacy-First</span>
           </div>
-          <div class="proj-title" style="position:relative; z-index:2;">Live Expression Reader - in-browser facial expression analyzer</div>
-          <p class="proj-desc" style="position:relative; z-index:2;">Real-time webcam-based expression reader running entirely client-side. 478 facial landmarks plus 52 ARKit blendshapes via MediaPipe Tasks Vision; HSEmotion (enet_b0_8_va_mtl) ONNX model for 8 primary emotions and continuous valence/arousal on the Russell circumplex. Personal calibration via 3-second baseline capture and an optional Naive Bayes classifier fitted to user samples. Cognitive state derivations include drowsiness (PERCLOS), focus, confusion, boredom, stress, engagement, calmness, plus DTM14 compound emotions. FACS-grounded multi-turn LLM explanations served through a Cloudflare Worker proxy; only numerical features ever leave the device. Built in TypeScript + Vite + Tailwind on onnxruntime-web.</p>
-          <div style="position:relative; z-index:2; margin-top:1rem; font-family:var(--f-mono); font-size:0.72rem; color:var(--green); letter-spacing:0.05em;">
-            Try it live ↗
-            &nbsp;·&nbsp;
-            <a href="https://github.com/Arjun10g/live-expression-reader" target="_blank" rel="noopener" style="color:var(--cyan); text-decoration:none; position:relative; z-index:3;">github</a>
+          <div class="proj-title">Live Expression Reader - in-browser facial expression analyzer</div>
+          <p class="proj-desc">Real-time webcam-based expression reader running entirely client-side. 478 facial landmarks plus 52 ARKit blendshapes via MediaPipe Tasks Vision; HSEmotion (enet_b0_8_va_mtl) ONNX model for 8 primary emotions and continuous valence/arousal on the Russell circumplex. Personal calibration via 3-second baseline capture and an optional Naive Bayes classifier fitted to user samples. Cognitive state derivations include drowsiness (PERCLOS), focus, confusion, boredom, stress, engagement, calmness, plus DTM14 compound emotions. FACS-grounded multi-turn LLM explanations served through a Cloudflare Worker proxy; only numerical features ever leave the device. Built in TypeScript + Vite + Tailwind on onnxruntime-web.</p>
+          <div class="proj-links">
+            Try it live &#8599;
+            &nbsp;&middot;&nbsp;
+            <a href="https://github.com/Arjun10g/live-expression-reader" target="_blank" rel="noopener" style="color:var(--cyan);">github</a>
           </div>
         </div>
 
-        <div class="proj-card proj-card-past stagger-item" style="position:relative; color:inherit; display:block; border-color: rgba(34,211,238,0.34); box-shadow: 0 0 24px rgba(34,211,238,0.10);">
-          <a href="https://arjun10g-rag-psych.hf.space/ui" target="_blank" rel="noopener" aria-label="Open rag-psych live demo" style="position:absolute; inset:0; z-index:1; text-indent:-9999px; overflow:hidden;"></a>
-          <div class="proj-meta" style="position:relative; z-index:2;">
+        <div class="proj-card proj-card-past proj-card-feature stagger-item accent-cyan">
+          <a class="proj-cover-link" href="https://arjun10g-rag-psych.hf.space/ui" target="_blank" rel="noopener" aria-label="Open rag-psych live demo"></a>
+          <div class="proj-meta">
             <span class="tag tag-c">Clinical RAG</span>
             <span class="tag tag-p">pgvector</span>
             <span class="tag tag-g">FastAPI · HTMX</span>
           </div>
-          <div class="proj-title" style="position:relative; z-index:2;">rag-psych — Clinical Retrieval-Augmented Generation</div>
-          <p class="proj-desc" style="position:relative; z-index:2;">Hybrid retrieval over MTSamples + PubMed + ICD-11. Three retrievers per source (dense + BM25 + rare-token lexical) → RRF fusion → cross-encoder rerank → custom rule-based NegEx negation filter → Anthropic generation with forced citations validated server-side. 100% citation validity on a 16-query hand-labelled eval; full audit logging; refusal short-circuit when retrieval confidence falls below threshold.</p>
-          <div style="position:relative; z-index:2; margin-top:1rem; font-family:var(--f-mono); font-size:0.72rem; color:var(--cyan); letter-spacing:0.05em;">
-            Try it live ↗
-            &nbsp;·&nbsp;
-            <a href="https://github.com/Arjun10g/rag-psych" target="_blank" rel="noopener" style="color:var(--green); text-decoration:none; position:relative; z-index:3;">github</a>
+          <div class="proj-title">rag-psych &mdash; Clinical Retrieval-Augmented Generation</div>
+          <p class="proj-desc">Hybrid retrieval over MTSamples + PubMed + ICD-11. Three retrievers per source (dense + BM25 + rare-token lexical) &rarr; RRF fusion &rarr; cross-encoder rerank &rarr; custom rule-based NegEx negation filter &rarr; Anthropic generation with forced citations validated server-side. 100% citation validity on a 16-query hand-labelled eval; full audit logging; refusal short-circuit when retrieval confidence falls below threshold.</p>
+          <div class="proj-links">
+            Try it live &#8599;
+            &nbsp;&middot;&nbsp;
+            <a href="https://github.com/Arjun10g/rag-psych" target="_blank" rel="noopener" style="color:var(--green);">github</a>
           </div>
         </div>
 
-        <div class="proj-card proj-card-past stagger-item" style="position:relative; color:inherit; display:block; border-color: rgba(52,211,153,0.34); box-shadow: 0 0 24px rgba(52,211,153,0.10);">
-          <a href="https://arjun10g.github.io/data-cleaning-studio/" target="_blank" rel="noopener" aria-label="Open Data Cleaning Studio" style="position:absolute; inset:0; z-index:1; text-indent:-9999px; overflow:hidden;"></a>
-          <div class="proj-meta" style="position:relative; z-index:2;">
+        <div class="proj-card proj-card-past proj-card-feature stagger-item accent-green">
+          <a class="proj-cover-link" href="https://arjun10g.github.io/data-cleaning-studio/" target="_blank" rel="noopener" aria-label="Open Data Cleaning Studio"></a>
+          <div class="proj-meta">
             <span class="tag tag-g">DuckDB-WASM</span>
             <span class="tag tag-c">React · TypeScript</span>
             <span class="tag tag-p">Client-only</span>
           </div>
-          <div class="proj-title" style="position:relative; z-index:2;">Data Cleaning Studio &mdash; in-browser reproducible data-cleaning</div>
-          <p class="proj-desc" style="position:relative; z-index:2;">Every user action is a recipe step, so the current table is always <span style="font-family:var(--f-mono); color:var(--green);">replay(raw, recipe)</span> &mdash; undo/redo, reproducibility, and one-click export of the recipe to R (dplyr/tidyr), Python (pandas), or SQL. Import XLSX/CSV/Parquet/Arrow with a sheet picker; promote rows to headers; regex-aware filter builder; type-aware transforms (z, Box-Cox, RankINT); distributions (hist, KDE, ECDF, QQ, beeswarm); missingness (&phi; co-occurrence, UpSet); joins/unions/pivots. Everything runs client-side via DuckDB-WASM &mdash; no backend, no data upload.</p>
-          <div style="position:relative; z-index:2; margin-top:1rem; font-family:var(--f-mono); font-size:0.72rem; color:var(--green); letter-spacing:0.05em;">
+          <div class="proj-title">Data Cleaning Studio &mdash; in-browser reproducible data-cleaning</div>
+          <p class="proj-desc">Every user action is a recipe step, so the current table is always <span style="font-family:var(--f-mono); color:var(--green);">replay(raw, recipe)</span> &mdash; undo/redo, reproducibility, and one-click export of the recipe to R (dplyr/tidyr), Python (pandas), or SQL. Import XLSX/CSV/Parquet/Arrow with a sheet picker; promote rows to headers; regex-aware filter builder; type-aware transforms (z, Box-Cox, RankINT); distributions (hist, KDE, ECDF, QQ, beeswarm); missingness (&phi; co-occurrence, UpSet); joins/unions/pivots. Everything runs client-side via DuckDB-WASM &mdash; no backend, no data upload.</p>
+          <div class="proj-links">
             Launch app &#8599;
             &nbsp;&middot;&nbsp;
-            <a href="https://github.com/Arjun10g/data-cleaning-studio" target="_blank" rel="noopener" style="color:var(--cyan); text-decoration:none; position:relative; z-index:3;">github</a>
+            <a href="https://github.com/Arjun10g/data-cleaning-studio" target="_blank" rel="noopener" style="color:var(--cyan);">github</a>
           </div>
         </div>
 
-        <div class="proj-card proj-card-past stagger-item" style="position:relative; color:inherit; display:block; border-color: rgba(167,139,250,0.34); box-shadow: 0 0 24px rgba(167,139,250,0.10);">
-          <a href="https://github.com/Arjun10g/data-simulator" target="_blank" rel="noopener" aria-label="Open data-simulator on GitHub" style="position:absolute; inset:0; z-index:1; text-indent:-9999px; overflow:hidden;"></a>
-          <div class="proj-meta" style="position:relative; z-index:2;">
+        <div class="proj-card proj-card-past proj-card-feature stagger-item accent-purple">
+          <a class="proj-cover-link" href="https://github.com/Arjun10g/data-simulator" target="_blank" rel="noopener" aria-label="Open data-simulator on GitHub"></a>
+          <div class="proj-meta">
             <span class="tag tag-v">Synthetic Data</span>
             <span class="tag tag-p">React · Vite</span>
             <span class="tag tag-g">Cholesky</span>
           </div>
-          <div class="proj-title" style="position:relative; z-index:2;">Data Simulator - visual multivariate synthetic data workbench</div>
-          <p class="proj-desc" style="position:relative; z-index:2;">Draw freehand curves on a canvas and generate realistic multivariate synthetic datasets. Cholesky-based correlated noise with editable correlation matrices; pattern broadcasting to 2 to 500 columns; heteroscedastic noise via constant, proportional, drawn envelope, step, or formula; derived interaction layers (multiplication, conditionals). Exports to CSV, JSON, Python snippets, or clipboard. Built in React + Vite + Tailwind on HTML5 Canvas, with pytest/NumPy/SciPy validation.</p>
-          <div style="position:relative; z-index:2; margin-top:1rem; font-family:var(--f-mono); font-size:0.72rem; color:var(--purple); letter-spacing:0.05em;">
-            View on GitHub ↗
-            &nbsp;·&nbsp;
-            <a href="https://github.com/Arjun10g/data-simulator" target="_blank" rel="noopener" style="color:var(--green); text-decoration:none; position:relative; z-index:3;">source</a>
+          <div class="proj-title">Data Simulator - visual multivariate synthetic data workbench</div>
+          <p class="proj-desc">Draw freehand curves on a canvas and generate realistic multivariate synthetic datasets. Cholesky-based correlated noise with editable correlation matrices; pattern broadcasting to 2 to 500 columns; heteroscedastic noise via constant, proportional, drawn envelope, step, or formula; derived interaction layers (multiplication, conditionals). Exports to CSV, JSON, Python snippets, or clipboard. Built in React + Vite + Tailwind on HTML5 Canvas, with pytest/NumPy/SciPy validation.</p>
+          <div class="proj-links">
+            View on GitHub &#8599;
+            &nbsp;&middot;&nbsp;
+            <a href="https://github.com/Arjun10g/data-simulator" target="_blank" rel="noopener" style="color:var(--green);">source</a>
           </div>
         </div>
 
-        <div class="proj-card proj-card-past stagger-item" style="position:relative; color:inherit; display:block; border-color: rgba(251,191,36,0.34); box-shadow: 0 0 24px rgba(251,191,36,0.10);">
-          <a href="https://arjun10g.github.io/blog/" target="_blank" rel="noopener" aria-label="Open Visualizing Algorithms blog" style="position:absolute; inset:0; z-index:1; text-indent:-9999px; overflow:hidden;"></a>
-          <div class="proj-meta" style="position:relative; z-index:2;">
-            <span class="tag tag-g">Visualization</span>
-            <span class="tag tag-p">Algorithms</span>
-            <span class="tag tag-c">D3 · GSAP</span>
+        <div class="proj-card proj-card-past proj-card-feature stagger-item accent-green">
+          <a class="proj-cover-link" href="https://arjun10g.github.io/acoustify/" target="_blank" rel="noopener" aria-label="Open Acoustify"></a>
+          <div class="proj-meta">
+            <span class="tag tag-g">PWA</span>
+            <span class="tag tag-p">IndexedDB</span>
+            <span class="tag tag-c">Zero-dependency</span>
           </div>
-          <div class="proj-title" style="position:relative; z-index:2;">Visualizing Algorithms — long-form essay collection</div>
-          <p class="proj-desc" style="position:relative; z-index:2;">An ongoing blog on the geometry of statistical and ML methods — from sorting and search to gradient descent, EM, and the latent spaces of deep models. Every post is interactive; nothing is just a static figure. Published continuously at arjun10g.github.io/blog.</p>
-          <div style="position:relative; z-index:2; margin-top:1rem; font-family:var(--f-mono); font-size:0.72rem; color:var(--gold); letter-spacing:0.05em;">
-            Read the blog ↗
-            &nbsp;·&nbsp;
-            <a href="https://github.com/Arjun10g/blog" target="_blank" rel="noopener" style="color:var(--green); text-decoration:none; position:relative; z-index:3;">source</a>
+          <div class="proj-title">Acoustify - local-first segmented player for long-form audio</div>
+          <p class="proj-desc">A dependency-free, installable music library for long-form sources, designed to deploy as-is to GitHub Pages with no application server, cloud database, API key, build framework, or account system. Long-source segmentation makes every saved timestamp range behave like its own track: selecting a row seeks to the track start while adjacent tracks from the same source continue without reloading the underlying media. The browser remembers likes, listening history and play counts, playlists, volume, shuffle/repeat/autoplay state, the current queue, and the last playback position, with JSON backup and import. Local masters you own are stored as Blobs in IndexedDB and played without transcoding. Android media-session controls, an offline app shell, an editable persistent queue, a Catalog Studio for adding sources, and a timestamp calibrator with current-time capture and half-second nudging.</p>
+          <div class="proj-links">
+            Launch app &#8599;
+            &nbsp;&middot;&nbsp;
+            <a href="https://github.com/Arjun10g/acoustify" target="_blank" rel="noopener" style="color:var(--cyan);">source</a>
           </div>
         </div>
 
@@ -359,6 +488,69 @@
       <p class="eyebrow reveal-up">Open Source</p>
       <h2 class="reveal-up" data-delay="0.05" style="margin-bottom:2.5rem;">GitHub Projects</h2>
       <div class="gh-grid stagger-group">
+
+        <a href="https://github.com/Arjun10g/blog" target="_blank" rel="noopener" class="gh-card stagger-item" style="border-color: rgba(251,191,36,0.34);">
+          <div class="gh-card-name">blog</div>
+          <div class="gh-card-desc">Visualizing Algorithms &mdash; long-form essays taking machine learning apart from the inside out. Latest: XGBoost From the Inside Out, 13 sections and 15 purpose-built figures. Live at arjun10g.github.io/blog.</div>
+          <div class="gh-card-meta">
+            <span class="gh-lang js">HTML · D3 · GSAP</span>
+            <span class="gh-link">↗ github</span>
+          </div>
+        </a>
+
+        <div class="gh-card gh-card-private stagger-item">
+          <div class="gh-card-name">weightforge</div>
+          <div class="gh-card-desc">Weight-only quantization library for dense and MoE LLMs. 33 methods under one harness at honest effective bits-per-weight, paired significance tests, route-aware expert allocation. 2.49&times; decode vs FP16 at 7B; 2,277 tests.</div>
+          <div class="gh-card-meta">
+            <span class="gh-lang">Python · PyTorch</span>
+            <span class="badge-private" style="margin-left:auto;">Private</span>
+          </div>
+        </div>
+
+        <a href="https://github.com/Arjun10g/rag-architecture-advisor" target="_blank" rel="noopener" class="gh-card stagger-item">
+          <div class="gh-card-name">rag-architecture-advisor</div>
+          <div class="gh-card-desc">Agentic RAG architecture advisor. Requirement vector to curated-corpus retrieval to a pipeline recommendation with design plan, literature map, Terraform sketch, and decision log. LanceDB / Qdrant dense backends.</div>
+          <div class="gh-card-meta">
+            <span class="gh-lang py">Python · Gradio</span>
+            <span class="gh-link">↗ github</span>
+          </div>
+        </a>
+
+        <a href="https://github.com/Arjun10g/restricted-local-coder" target="_blank" rel="noopener" class="gh-card stagger-item">
+          <div class="gh-card-name">restricted-local-coder</div>
+          <div class="gh-card-desc">Private VS Code coding assistant for restricted workstations. Platform-specific VSIX embedding a pinned llama.cpp server, SHA-256 verified GGUF, loopback-only, optional argv-permissioned agent mode. No cloud inference.</div>
+          <div class="gh-card-meta">
+            <span class="gh-lang js">JavaScript · llama.cpp</span>
+            <span class="gh-link">↗ github</span>
+          </div>
+        </a>
+
+        <a href="https://github.com/Arjun10g/internal-moe-inference-service" target="_blank" rel="noopener" class="gh-card stagger-item">
+          <div class="gh-card-name">internal-moe-inference-service</div>
+          <div class="gh-card-desc">Offline-capable HTTP/SSE inference service for local or private-S3 checkpoints. Manifest + SHA-256 verified artifacts, format-locked safetensors / GGUF engines, bounded concurrency, Prometheus metrics, non-root image.</div>
+          <div class="gh-card-meta">
+            <span class="gh-lang py">Python · Docker</span>
+            <span class="gh-link">↗ github</span>
+          </div>
+        </a>
+
+        <a href="https://github.com/Arjun10g/klh-vowel-visualizer" target="_blank" rel="noopener" class="gh-card stagger-item">
+          <div class="gh-card-name">klh-vowel-visualizer</div>
+          <div class="gh-card-desc">Interactive Hawaiian vowel formant visualizer over the Ka Leo Hawai&#699;i corpus &mdash; 8 speakers, ~25,000 tokens, 22 vowels. Smoothed F1/F2 trajectories, KDE contours, per-token audio and TTS.</div>
+          <div class="gh-card-meta">
+            <span class="gh-lang ts">TypeScript · FastAPI</span>
+            <span class="gh-link">↗ github</span>
+          </div>
+        </a>
+
+        <a href="https://github.com/Arjun10g/acoustify" target="_blank" rel="noopener" class="gh-card stagger-item">
+          <div class="gh-card-name">acoustify</div>
+          <div class="gh-card-desc">Local-first segmented music player for GitHub Pages. No server, database, or API key; long-source segmentation, IndexedDB local masters, media-session controls, and an installable offline PWA shell.</div>
+          <div class="gh-card-meta">
+            <span class="gh-lang js">JavaScript · PWA</span>
+            <span class="gh-link">↗ github</span>
+          </div>
+        </a>
 
         <a href="https://github.com/Arjun10g/na-tech-jobs" target="_blank" rel="noopener" class="gh-card stagger-item">
           <div class="gh-card-name">na-tech-jobs</div>

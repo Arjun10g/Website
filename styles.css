@@ -246,12 +246,15 @@ p  { color: var(--muted); line-height: 1.72; }
   display: flex; gap: 0.5rem;
 }
 .hero-dot {
+  border: 0; padding: 0; appearance: none;
   width: 22px; height: 2px; border-radius: 1px;
   background: rgba(255,255,255,0.22);
   transition: background var(--ease), width var(--ease);
   cursor: none;
 }
 .hero-dot.active { background: var(--cyan); width: 38px; }
+/* One hero shot is landscape — bias the crop toward the face instead of centre-top. */
+.hero-photo-wide { object-position: 68% 38%; }
 .hero-label {
   font-family: var(--f-mono); font-size: 0.7rem; letter-spacing: 0.28em;
   text-transform: uppercase; color: var(--cyan); margin-bottom: 2.2rem; opacity: 0;
@@ -350,13 +353,6 @@ p  { color: var(--muted); line-height: 1.72; }
 .timeline-deg  { font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: 0.2rem; }
 .timeline-school { font-size: 0.84rem; color: var(--muted); }
 
-.cv-card {
-  background: linear-gradient(135deg, rgba(34,211,238,0.05), rgba(167,139,250,0.05));
-  border: 1px solid var(--border); border-radius: 10px;
-  padding: 2.5rem; display: flex; align-items: center; justify-content: space-between;
-  gap: 2rem; margin-top: 3rem;
-}
-.cv-card h3 { margin-bottom: 0.4rem; }
 
 /* =============================================
    RESEARCH — research.html
@@ -418,37 +414,6 @@ p  { color: var(--muted); line-height: 1.72; }
 .talk-venue { font-size: 0.75rem; color: var(--muted); margin-top: 0.3rem; }
 
 /* =============================================
-   GALLERY — gallery.html
-   ============================================= */
-
-.gallery-nav {
-  display: flex; gap: 0; border-bottom: 1px solid var(--border);
-  padding: 0 3rem; position: sticky; top: 80px; z-index: 50;
-  background: rgba(3,7,18,0.92); backdrop-filter: blur(20px);
-}
-.g-tab {
-  padding: 1.2rem 2rem; background: none; border: none;
-  border-bottom: 2px solid transparent; color: var(--muted);
-  font-family: var(--f-mono); font-size: 0.7rem; letter-spacing: 0.16em;
-  text-transform: uppercase; cursor: none; transition: all var(--ease); margin-bottom: -1px;
-}
-.g-tab:hover { color: var(--text); }
-.g-tab.active { color: var(--cyan); border-bottom-color: var(--cyan); }
-
-.g-panel { display: none; }
-.g-panel.active { display: block; }
-.g-panel-inner { position: relative; height: calc(100vh - 140px); overflow: hidden; }
-.g-panel-img { width: 100%; height: 130%; object-fit: cover; object-position: center top; will-change: transform; }
-.g-panel-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(3,7,18,0.9) 0%, rgba(3,7,18,0.3) 50%, transparent 100%);
-  display: flex; flex-direction: column; justify-content: flex-end; padding: 4rem;
-}
-.g-label { font-family: var(--f-mono); font-size: 0.66rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--cyan); margin-bottom: 0.7rem; }
-.g-title  { font-size: clamp(2rem, 5vw, 4rem); font-weight: 700; line-height: 1; color: var(--text); margin-bottom: 1rem; }
-.g-desc   { font-size: 0.9rem; color: rgba(241,245,249,0.65); max-width: 500px; line-height: 1.65; }
-
-/* =============================================
    CONNECT — connect.html
    ============================================= */
 
@@ -492,16 +457,6 @@ p  { color: var(--muted); line-height: 1.72; }
 .c-handle { font-family: var(--f-mono); font-size: 0.75rem; color: var(--cyan); position: relative; z-index: 1; }
 .c-desc   { font-size: 0.79rem; color: var(--muted); line-height: 1.55; position: relative; z-index: 1; }
 
-.c-card-add { border: 1px dashed rgba(34,211,238,0.18); background: transparent; }
-.c-card-add:hover { border-color: rgba(34,211,238,0.45); background: rgba(34,211,238,0.02); }
-.add-ring {
-  width: 68px; height: 68px; border-radius: 50%;
-  border: 1.5px dashed rgba(34,211,238,0.3);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.6rem; color: var(--faint); transition: all var(--ease);
-}
-.c-card-add:hover .add-ring { border-color: var(--cyan); color: var(--cyan); }
-.c-add-hint { font-family: var(--f-mono); font-size: 0.66rem; color: var(--faint); letter-spacing: 0.1em; }
 
 /* ─── Hamburger toggle ─── */
 .nav-toggle {
@@ -609,16 +564,15 @@ p  { color: var(--muted); line-height: 1.72; }
   .nav-cards      { grid-template-columns: 1fr; }
   .connect-grid   { grid-template-columns: 1fr; padding: 1.25rem 1.25rem 5rem; }
   .connect-hero   { padding: 6rem 1.25rem 3rem; }
-  .g-panel-overlay { padding: 2rem 1.25rem; }
-  .gallery-nav    { padding: 0 1.25rem; }
   .about-hero     { padding: 6rem 1.25rem 3rem; }
   .talks-grid     { grid-template-columns: 1fr; }
-  .cv-card        { flex-direction: column; text-align: center; }
   .gh-grid        { grid-template-columns: 1fr; }
+
+  /* The wide letter-spacing pushed this mono label off-screen at ~390px. */
+  .hero-label     { font-size: 0.62rem; letter-spacing: 0.16em; margin-bottom: 1.6rem; }
 
   /* ── Touch targets ── */
   .btn            { padding: 0.9rem 1.5rem; cursor: pointer; }
-  .g-tab          { cursor: pointer; }
   .hero-dot       { cursor: pointer; }
 }
 
@@ -930,4 +884,294 @@ p  { color: var(--muted); line-height: 1.72; }
   .fw-status            { padding: 0.26rem 0.55rem; font-size: 0.6rem; }
   .fw-actions           { flex-direction: column; align-items: stretch; gap: 0.65rem; }
   .fw-meta-link         { text-align: center; padding: 0.5rem 0.75rem; }
+}
+
+/* Purple "private / research library" variant — WeightForge */
+.fw-card.fw-quant:hover {
+  box-shadow: 0 24px 60px -24px rgba(167,139,250,0.28);
+}
+.fw-card.fw-quant .fw-head {
+  background:
+    radial-gradient(circle at 15% 30%, rgba(167,139,250,0.20) 0%, transparent 55%),
+    linear-gradient(145deg, rgba(14,30,56,0.4) 0%, rgba(6,13,27,0.0) 100%);
+  border-bottom-color: rgba(167,139,250,0.14);
+}
+.fw-card.fw-quant .fw-glyph {
+  color: var(--purple);
+  text-shadow: 0 0 24px rgba(167,139,250,0.45);
+}
+.fw-card.fw-quant .fw-title   { color: var(--purple); }
+.fw-card.fw-quant .fw-actions { border-top-color: rgba(167,139,250,0.16); }
+.fw-card.fw-quant .fw-cta     { color: var(--purple); }
+.fw-dot.active.purple         { background: var(--purple); }
+
+/* Private status chip — no pulse, no link affordance */
+.fw-status-private {
+  border-color: rgba(167,139,250,0.30);
+  color: var(--purple);
+  background: rgba(167,139,250,0.07);
+}
+.fw-status-private::before {
+  background: var(--purple);
+  box-shadow: none;
+  animation: none;
+}
+/* A private card is not clickable — kill the hover lift that implies it is.
+   It also has no cover link, so its text should stay selectable. */
+.fw-card.fw-private:hover { transform: none; }
+.fw-card.fw-private .fw-body { pointer-events: auto; }
+.fw-cta-static { color: var(--faint) !important; }
+
+/* =============================================
+   RESEARCH — featured build cards
+   Replaces the per-card inline style blocks that
+   used to be repeated on every article.
+   ============================================= */
+.proj-card-feature {
+  position: relative;
+  display: block;
+  color: inherit;
+}
+/* Everything except the cover link sits above it, so text stays selectable
+   and the nested source links stay clickable. */
+.proj-card-feature > :not(.proj-cover-link) { position: relative; z-index: 2; }
+.proj-card-feature .proj-links a { position: relative; z-index: 3; }
+
+.proj-cover-link {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  text-indent: -9999px;
+  overflow: hidden;
+}
+.proj-wide { grid-column: 1 / -1; }
+
+.proj-metrics {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  font-family: var(--f-mono);
+  font-size: 0.7rem;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+}
+.proj-metrics .m-c { color: var(--cyan); }
+.proj-metrics .m-g { color: var(--green); }
+.proj-metrics .m-y { color: var(--gold); }
+.proj-metrics .m-p { color: var(--purple); }
+
+.proj-links {
+  margin-top: 1rem;
+  font-family: var(--f-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+}
+.proj-links a { text-decoration: none; }
+
+/* Accent modifiers — border tint, glow, and CTA colour in one class. */
+.accent-cyan   { border-color: rgba(34,211,238,0.34);  box-shadow: 0 0 24px rgba(34,211,238,0.10); }
+.accent-gold   { border-color: rgba(251,191,36,0.34);  box-shadow: 0 0 24px rgba(251,191,36,0.10); }
+.accent-green  { border-color: rgba(52,211,153,0.34);  box-shadow: 0 0 24px rgba(52,211,153,0.10); }
+.accent-purple { border-color: rgba(167,139,250,0.34); box-shadow: 0 0 24px rgba(167,139,250,0.10); }
+.accent-hero   { border-color: rgba(34,211,238,0.55);  box-shadow: 0 0 32px rgba(34,211,238,0.18); }
+.accent-hero-p { border-color: rgba(167,139,250,0.55); box-shadow: 0 0 32px rgba(167,139,250,0.18); }
+.accent-hero-g { border-color: rgba(251,191,36,0.55);  box-shadow: 0 0 32px rgba(251,191,36,0.18); }
+
+.accent-cyan   .proj-links { color: var(--cyan); }
+.accent-gold   .proj-links { color: var(--gold); }
+.accent-green  .proj-links { color: var(--green); }
+.accent-purple .proj-links { color: var(--purple); }
+.accent-hero   .proj-links { color: var(--cyan); }
+.accent-hero-p .proj-links { color: var(--purple); }
+.accent-hero-g .proj-links { color: var(--gold); }
+
+/* Private badge — used where there is no public source to link to. */
+.badge-private {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid rgba(167,139,250,0.30);
+  background: rgba(167,139,250,0.07);
+  font-family: var(--f-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--purple);
+}
+.badge-private::before {
+  content: "";
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--purple);
+}
+
+/* Private variants of the GitHub / connect cards — no outbound link. */
+.gh-card-private,
+.pl-card-private {
+  border-color: rgba(167,139,250,0.28);
+  background: linear-gradient(135deg, rgba(167,139,250,0.05), transparent);
+}
+.gh-card-private:hover,
+.pl-card-private:hover {
+  border-color: rgba(167,139,250,0.5);
+  box-shadow: 0 0 32px rgba(167,139,250,0.16);
+}
+.gh-card-private::before { background: var(--purple); }
+.pl-card-private::before {
+  background: linear-gradient(90deg, transparent, var(--purple), transparent);
+}
+.gh-card-private .gh-lang::before { background: var(--purple); }
+.gh-card-private .gh-lang { color: var(--purple); }
+
+/* =============================================
+   REDUCED MOTION — site-wide
+   ============================================= */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  #cursor, #cursor-ring { display: none; }
+  body { cursor: auto; }
+  a, button { cursor: pointer; }
+}
+
+/* =============================================
+   BLOG SPOTLIGHT — homepage band, sits directly
+   under the hero so the writing leads the page.
+   ============================================= */
+.blog-spotlight {
+  position: relative;
+  z-index: 2;
+  padding: 4.5rem 6vw 5rem;
+  border-top: 1px solid rgba(251,191,36,0.14);
+  border-bottom: 1px solid rgba(251,191,36,0.14);
+  background:
+    radial-gradient(ellipse 70% 120% at 12% 40%, rgba(251,191,36,0.11) 0%, transparent 62%),
+    linear-gradient(180deg, rgba(20,15,4,0.55) 0%, rgba(6,13,27,0.35) 100%);
+}
+.bs-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: 3.5rem;
+  align-items: center;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+.bs-copy { min-width: 0; }
+.bs-title {
+  font-size: clamp(2.1rem, 4vw, 3.4rem);
+  line-height: 1.02;
+  margin: 0.7rem 0 0;
+  color: var(--gold);
+}
+.bs-tagline {
+  font-size: clamp(1.02rem, 1.5vw, 1.22rem);
+  color: var(--text);
+  line-height: 1.5;
+  margin: 1.1rem 0 0;
+  max-width: 26ch;
+}
+.bs-desc {
+  font-size: 0.92rem;
+  color: var(--muted);
+  line-height: 1.72;
+  margin: 1rem 0 0;
+  max-width: 46ch;
+}
+.bs-actions { display: flex; gap: 0.9rem; margin-top: 1.9rem; flex-wrap: wrap; }
+.btn-gold {
+  background: var(--gold);
+  color: var(--bg);
+  border-color: var(--gold);
+}
+.btn-gold:hover { background: transparent; color: var(--gold); box-shadow: var(--glow-g); }
+
+/* Right column — the latest post, shown through its own figure. */
+.bs-post {
+  position: relative;
+  display: block;
+  min-width: 0;
+  border: 1px solid rgba(251,191,36,0.24);
+  border-radius: 16px;
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(14,30,56,0.7) 0%, rgba(6,13,27,0.92) 100%);
+  text-decoration: none;
+  color: inherit;
+  transition: transform var(--slow), border-color var(--slow), box-shadow var(--slow);
+}
+.bs-post:hover {
+  transform: translateY(-5px);
+  border-color: rgba(251,191,36,0.55);
+  box-shadow: 0 26px 62px -26px rgba(251,191,36,0.32);
+}
+.bs-figure {
+  display: block;
+  width: 100%;
+  aspect-ratio: 2180 / 1328;      /* matches the source figure, so nothing reflows on load */
+  object-fit: cover;
+  object-position: center top;
+  border-bottom: 1px solid rgba(251,191,36,0.16);
+  background: var(--bg);
+}
+.bs-post-body { padding: 1.5rem 1.7rem 1.7rem; }
+.bs-post-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  flex-wrap: wrap;
+  font-family: var(--f-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+.bs-post-meta .bs-kind {
+  color: var(--gold);
+  border: 1px solid rgba(251,191,36,0.28);
+  background: rgba(251,191,36,0.07);
+  border-radius: 999px;
+  padding: 0.22rem 0.6rem;
+}
+.bs-post-title {
+  font-size: clamp(1.25rem, 2vw, 1.65rem);
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.24;
+  margin: 0.85rem 0 0;
+}
+.bs-post:hover .bs-post-title { color: var(--gold); }
+.bs-post-desc {
+  font-size: 0.86rem;
+  color: var(--muted);
+  line-height: 1.65;
+  margin: 0.6rem 0 0;
+}
+.bs-post-cta {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 1.2rem;
+  padding-top: 1rem;
+  border-top: 1px dashed rgba(251,191,36,0.16);
+  font-family: var(--f-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: var(--gold);
+  transition: gap var(--ease);
+}
+.bs-post:hover .bs-post-cta { gap: 0.9rem; }
+
+@media (max-width: 900px) {
+  .blog-spotlight { padding: 3.2rem 5vw 3.6rem; }
+  .bs-inner { grid-template-columns: 1fr; gap: 2.2rem; }
+  .bs-tagline, .bs-desc { max-width: none; }
+  .bs-actions { margin-top: 1.5rem; }
+  .bs-actions .btn { flex: 1 1 auto; text-align: center; }
+  .bs-post-body { padding: 1.2rem 1.25rem 1.4rem; }
 }

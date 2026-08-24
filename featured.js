@@ -1,6 +1,8 @@
-/* featured.js — Sync the dot indicator under the horizontal card scroller
- * with the currently-centered card. Click a dot → smooth scroll to that
- * card. No animations, no SVG, no GSAP dependency.
+/* featured.js — Dot pagination for the horizontal card scroller.
+ *
+ * The dots are BUILT FROM THE CARDS rather than hand-written in the markup, so
+ * adding or removing a card never leaves the pagination out of sync. Clicking a
+ * dot scrolls its card into view. No animations, no SVG, no GSAP dependency.
  */
 (function () {
   'use strict';
@@ -9,15 +11,41 @@
   if (!scroller || !dotsWrap) return;
 
   const cards = Array.from(scroller.querySelectorAll('.fw-card'));
-  const dots  = Array.from(dotsWrap.querySelectorAll('.fw-dot'));
+  if (!cards.length) return;
+
+  // Per-variant dot tint, keyed off the card's accent class.
+  const TINTS = { 'fw-blog': 'gold', 'fw-dcs': 'green', 'fw-quant': 'purple' };
+  const tintOf = card => {
+    for (const cls in TINTS) if (card.classList.contains(cls)) return TINTS[cls];
+    return null;
+  };
+
+  dotsWrap.textContent = '';
+  const dots = cards.map((card, i) => {
+    const title = card.querySelector('.fw-title')?.textContent.trim() || `project ${i + 1}`;
+    const dot = document.createElement('button');
+    dot.className = 'fw-dot' + (i === 0 ? ' active' : '');
+    dot.type = 'button';
+    dot.dataset.idx = String(i);
+    dot.setAttribute('aria-label', `View ${title}`);
+    dot.addEventListener('click', () => {
+      card.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    });
+    dotsWrap.appendChild(dot);
+    return dot;
+  });
+  // The first card's tint has to be applied up front — setActive only runs once
+  // the observer fires, which is after paint.
+  const firstTint = tintOf(cards[0]);
+  if (firstTint) dots[0].classList.add(firstTint);
 
   function setActive(idx) {
     dots.forEach((d, i) => {
       const active = i === idx;
       d.classList.toggle('active', active);
-      // Per-variant dot tint: blog → gold, data-cleaning-studio → green, default → cyan
-      d.classList.toggle('gold',  active && cards[i]?.classList.contains('fw-blog'));
-      d.classList.toggle('green', active && cards[i]?.classList.contains('fw-dcs'));
+      ['gold', 'green', 'purple'].forEach(t => d.classList.remove(t));
+      const tint = tintOf(cards[i]);
+      if (active && tint) d.classList.add(tint);
     });
   }
 
@@ -34,12 +62,4 @@
     threshold: [0.55, 0.75, 0.9],
   });
   cards.forEach(c => io.observe(c));
-
-  // Dot clicks → smooth scroll to card
-  dots.forEach((dot, i) => {
-    dot.addEventListener('click', () => {
-      if (!cards[i]) return;
-      cards[i].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-    });
-  });
 })();

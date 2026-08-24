@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Get in touch with Arjunvir Ghumman - GitHub, email, LinkedIn, Google Scholar, and every open-source project in one place."/>
   <title>Connect - Arjunvir Ghumman</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23030712'/%3E%3Ctext x='16' y='22' font-family='monospace' font-size='16' font-weight='700' text-anchor='middle' fill='%2322d3ee'%3EAG%3C/text%3E%3C/svg%3E"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
@@ -84,22 +86,6 @@
     .pl-link-live { color: var(--cyan);  border-color: rgba(34,211,238,.3); background: rgba(34,211,238,.05); }
     .pl-link-live:hover { background: rgba(34,211,238,.12); }
 
-    /* Add-more card */
-    .pl-card-add {
-      border: 1px dashed rgba(34,211,238,0.18);
-      background: transparent;
-      align-items: center; text-align: center; justify-content: center;
-    }
-    .pl-card-add:hover { border-color: rgba(34,211,238,.45); background: rgba(34,211,238,.02); }
-    .add-ring {
-      width: 52px; height: 52px; border-radius: 50%;
-      border: 1.5px dashed rgba(34,211,238,.3);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.4rem; color: var(--faint); transition: all var(--ease);
-    }
-    .pl-card-add:hover .add-ring { border-color: var(--cyan); color: var(--cyan); }
-    .pl-add-hint { font-family: var(--f-mono); font-size: 0.66rem; color: var(--faint); letter-spacing: 0.1em; line-height: 1.6; }
-
     @media (max-width: 1000px) {
       .profile-grid { grid-template-columns: repeat(2,1fr); }
       .proj-link-grid { grid-template-columns: repeat(2,1fr); }
@@ -125,6 +111,7 @@
       <li><a href="index.html">Home</a></li>
       <li><a href="about.html">About</a></li>
       <li><a href="research.html">Research</a></li>
+      <li><a href="https://arjun10g.github.io/blog/" target="_blank" rel="noopener">Blog ↗</a></li>
       <li><a href="connect.html" class="active">Connect</a></li>
     </ul>
     <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
@@ -191,12 +178,24 @@
     <!-- ── GitHub Projects ── -->
     <div style="padding: 0 3rem 2rem; max-width:1200px; margin:0 auto;">
       <p class="eyebrow reveal-up">GitHub Projects</p>
-      <h2 class="reveal-up" data-delay="0.05">28 Projects &amp; Counting</h2>
+      <h2 class="reveal-up" data-delay="0.05"><span id="projCount">&nbsp;</span> Projects &amp; Counting</h2>
     </div>
 
     <div class="proj-link-grid" id="projGrid">
 
-      <div class="pl-card" style="border-color: rgba(52,211,153,.4); background: linear-gradient(135deg, rgba(52,211,153,.05), transparent);">
+      <div class="pl-card" data-pin style="border-color: rgba(251,191,36,.45); background: linear-gradient(135deg, rgba(251,191,36,.06), transparent);">
+        <div class="pl-num" style="color: var(--gold);">&#9733;</div>
+        <div class="pl-title">Visualizing Algorithms &mdash; the blog</div>
+        <p class="pl-desc">Machine learning, explained from the inside out. Long-form essays that take apart the algorithms practitioners use every day &mdash; the equations, the intuition, and animated visuals built from scratch for each piece. Latest: <strong>XGBoost From the Inside Out</strong>, a 22-minute walk from the objective function to optimal leaf weights across 13 sections and 15 purpose-built figures. Transformers, diffusion, and neural ODEs queued next.</p>
+        <div class="pl-links">
+          <a href="https://arjun10g.github.io/blog/" target="_blank" rel="noopener" class="pl-link pl-link-live" style="color:var(--gold); border-color:rgba(251,191,36,.35); background:rgba(251,191,36,.06);">Read the Blog &#8599;</a>
+          <a href="https://arjun10g.github.io/blog/post-xgboost.html" target="_blank" rel="noopener" class="pl-link pl-link-live">Latest Post &#8599;</a>
+          <a href="https://github.com/Arjun10g/blog" target="_blank" rel="noopener" class="pl-link pl-link-gh">GitHub &#8599;</a>
+        </div>
+        <span class="tag tag-g" style="margin-top:.3rem;">Writing &middot; D3 &middot; GSAP</span>
+      </div>
+
+      <div class="pl-card" data-pin style="border-color: rgba(52,211,153,.4); background: linear-gradient(135deg, rgba(52,211,153,.05), transparent);">
         <div class="pl-num" style="color: var(--green);">&starf;</div>
         <div class="pl-title">Data Cleaning Studio</div>
         <p class="pl-desc">In-browser data-cleaning + exploration tool. Every user action is a recipe step, so the current table is always replay(raw, recipe) &mdash; undo/redo, reproducibility, and one-click export of the recipe to R (dplyr/tidyr), Python (pandas), or SQL. All computation client-side via DuckDB-WASM; no data leaves your machine.</p>
@@ -207,8 +206,18 @@
         <span class="tag tag-c" style="margin-top:.3rem;">DuckDB-WASM &middot; React &middot; TypeScript</span>
       </div>
 
+      <div class="pl-card pl-card-private" data-pin>
+        <div class="pl-num" style="color: var(--purple);">&#9679;</div>
+        <div class="pl-title">WeightForge</div>
+        <p class="pl-desc">Weight-only quantization library for dense and mixture-of-experts LLMs. 33 registered methods compared under one harness at honest effective bits-per-weight &mdash; scales, zero-points and codebooks all charged &mdash; with rankings backed by paired significance tests and evidence-graded results that refuse to mix machines or probes. Route-aware expert allocation, blockwise calibration, coverage accounting, and regression-gated benchmarks. 2.49&times; decode over FP16 at 7B on an L40S; 3.10&times; less weight memory for +0.21 perplexity; 2,277 tests.</p>
+        <div class="pl-links">
+          <span class="badge-private">Source not public</span>
+        </div>
+        <span class="tag tag-p" style="margin-top:.3rem;">Python &middot; PyTorch &middot; MoE</span>
+      </div>
+
       <div class="pl-card">
-        <div class="pl-num">01</div>
+        <div class="pl-num"></div>
         <div class="pl-title">Live SEM Diagram Updater</div>
         <p class="pl-desc">Interactive structural equation modelling tool - draw, update, and export SEM diagrams live via a Shiny + API backend.</p>
         <div class="pl-links">
@@ -219,7 +228,7 @@
       </div>
 
       <div class="pl-card">
-        <div class="pl-num">02</div>
+        <div class="pl-num"></div>
         <div class="pl-title">Interactive Probability App</div>
         <p class="pl-desc">Visual, interactive probability explorer - distributions, sampling, and simulation with real-time parameter controls.</p>
         <div class="pl-links">
@@ -229,7 +238,7 @@
       </div>
 
       <div class="pl-card">
-        <div class="pl-num">03</div>
+        <div class="pl-num"></div>
         <div class="pl-title">Longitudinal Analysis Presentation</div>
         <p class="pl-desc">Comprehensive interactive presentation covering methods for modelling change over time - MLMs, LCGA, and trajectory analysis.</p>
         <div class="pl-links">
@@ -239,7 +248,7 @@
       </div>
 
       <div class="pl-card">
-        <div class="pl-num">04</div>
+        <div class="pl-num"></div>
         <div class="pl-title">Papers in Famous Voices - Audio Transcripts</div>
         <p class="pl-desc">Academic papers converted to audio using voice synthesis - making research more accessible through narration in iconic voices.</p>
         <div class="pl-links">
@@ -249,7 +258,7 @@
       </div>
 
       <div class="pl-card">
-        <div class="pl-num">05</div>
+        <div class="pl-num"></div>
         <div class="pl-title">MDL Complexity</div>
         <p class="pl-desc">Presentation and implementation exploring Minimum Description Length as a model selection criterion - theory, code, and examples.</p>
         <div class="pl-links">
@@ -259,7 +268,7 @@
       </div>
 
       <div class="pl-card">
-        <div class="pl-num">06</div>
+        <div class="pl-num"></div>
         <div class="pl-title">Anatomy Wordle</div>
         <p class="pl-desc">A Wordle-style game for anatomy vocabulary - built as a Streamlit app to make anatomy learning more engaging and interactive.</p>
         <div class="pl-links">
@@ -270,7 +279,7 @@
       </div>
 
       <div class="pl-card">
-        <div class="pl-num">07</div>
+        <div class="pl-num"></div>
         <div class="pl-title">Qualitative Analysis</div>
         <p class="pl-desc">A framework and toolkit for structured qualitative coding and thematic analysis - bridging qualitative methods with reproducible workflows.</p>
         <div class="pl-links">
@@ -280,7 +289,7 @@
       </div>
 
       <div class="pl-card">
-        <div class="pl-num">08</div>
+        <div class="pl-num"></div>
         <div class="pl-title">AI in Qualitative Analysis</div>
         <p class="pl-desc">Exploring how large language models can assist in qualitative coding, theme generation, and reflexivity in social science research.</p>
         <div class="pl-links">
@@ -290,7 +299,7 @@
       </div>
 
       <div class="pl-card">
-        <div class="pl-num">09</div>
+        <div class="pl-num"></div>
         <div class="pl-title">Thematic Analysis with Transformers</div>
         <p class="pl-desc">Using BERT-based transformer models to automate thematic analysis - clustering, coding, and pattern detection at scale on text data.</p>
         <div class="pl-links">
@@ -300,7 +309,7 @@
       </div>
 
       <div class="pl-card">
-        <div class="pl-num">10</div>
+        <div class="pl-num"></div>
         <div class="pl-title">Sentiment Analysis App</div>
         <p class="pl-desc">End-to-end sentiment classifier with a live web interface - fine-tuned transformer model served via FastAPI with real-time predictions.</p>
         <div class="pl-links">
@@ -310,7 +319,7 @@
       </div>
 
       <div class="pl-card">
-        <div class="pl-num">11</div>
+        <div class="pl-num"></div>
         <div class="pl-title">Audio Transcriber App</div>
         <p class="pl-desc">Speech-to-text transcription application using Whisper - transcribes audio files with speaker labelling and clean formatted output.</p>
         <div class="pl-links">
@@ -320,7 +329,7 @@
       </div>
 
       <div class="pl-card">
-        <div class="pl-num">12</div>
+        <div class="pl-num"></div>
         <div class="pl-title">Guide to Shiny in R</div>
         <p class="pl-desc">Comprehensive interactive tutorial for building reactive web applications in R with Shiny - from basics to deployment.</p>
         <div class="pl-links">
@@ -330,7 +339,7 @@
       </div>
 
       <div class="pl-card">
-        <div class="pl-num">13</div>
+        <div class="pl-num"></div>
         <div class="pl-title">Interpretable Machine Learning</div>
         <p class="pl-desc">Interactive guide to model interpretability methods - SHAP, LIME, partial dependence plots, and feature importance with worked examples.</p>
         <div class="pl-links">
@@ -340,7 +349,7 @@
       </div>
 
       <div class="pl-card">
-        <div class="pl-num">14</div>
+        <div class="pl-num"></div>
         <div class="pl-title">Interactive Visualization in R</div>
         <p class="pl-desc">A guide to creating dynamic, interactive plots in R using plotly, ggplotly, and htmlwidgets - for research and communication.</p>
         <div class="pl-links">
@@ -350,7 +359,7 @@
       </div>
 
       <div class="pl-card">
-        <div class="pl-num">15</div>
+        <div class="pl-num"></div>
         <div class="pl-title">My Dog Through Visualizations</div>
         <p class="pl-desc">A personal data project - tracking and visualizing my dog's life through charts, a love letter to both statistics and companionship.</p>
         <div class="pl-links">
@@ -360,7 +369,7 @@
       </div>
 
       <div class="pl-card">
-        <div class="pl-num">16</div>
+        <div class="pl-num"></div>
         <div class="pl-title">Visualizing Longitudinal Data</div>
         <p class="pl-desc">Guide to effective visualization strategies for longitudinal and repeated-measures data - spaghetti plots, trajectories, and beyond.</p>
         <div class="pl-links">
@@ -370,7 +379,7 @@
       </div>
 
       <div class="pl-card">
-        <div class="pl-num">17</div>
+        <div class="pl-num"></div>
         <div class="pl-title">Guide to Mixed Effects Models</div>
         <p class="pl-desc">A full course on multilevel and mixed-effects modelling in R - random effects, crossed designs, model comparison, and reporting.</p>
         <div class="pl-links">
@@ -380,7 +389,7 @@
       </div>
 
       <div class="pl-card">
-        <div class="pl-num">18</div>
+        <div class="pl-num"></div>
         <div class="pl-title">Introduction to Machine Learning</div>
         <p class="pl-desc">Accessible ML introduction covering supervised learning, model evaluation, regularization, and ensemble methods with Python examples.</p>
         <div class="pl-links">
@@ -390,7 +399,7 @@
       </div>
 
       <div class="pl-card">
-        <div class="pl-num">19</div>
+        <div class="pl-num"></div>
         <div class="pl-title">Regex Tester</div>
         <p class="pl-desc">An interactive regular expression tester and learning tool - real-time matching, pattern explanations, and a library of common regex patterns.</p>
         <div class="pl-links">
@@ -400,7 +409,7 @@
       </div>
 
       <div class="pl-card">
-        <div class="pl-num">20</div>
+        <div class="pl-num"></div>
         <div class="pl-title">Ordinal Predictors in MLMs</div>
         <p class="pl-desc">Simulation comparing eight methods for handling ordinal predictors in two-level random-intercept models across a 729 factorial design (1,000 reps each).</p>
         <div class="pl-links">
@@ -410,7 +419,7 @@
       </div>
 
       <div class="pl-card">
-        <div class="pl-num">21</div>
+        <div class="pl-num"></div>
         <div class="pl-title">Earnings Prediction Pipeline</div>
         <p class="pl-desc">ML system predicting post-earnings stock movements for S&amp;P 500 companies - XGBoost with FinBERT embeddings and walk-forward cross-validation.</p>
         <div class="pl-links">
@@ -420,7 +429,7 @@
       </div>
 
       <div class="pl-card">
-        <div class="pl-num">22</div>
+        <div class="pl-num"></div>
         <div class="pl-title">Rashomon Disagreement in Psych ML</div>
         <p class="pl-desc">Analysis pipeline examining model disagreement (Rashomon effect) in psychological ML - depression prediction using NHANES data with multiple classifiers.</p>
         <div class="pl-links">
@@ -430,7 +439,7 @@
       </div>
 
       <div class="pl-card">
-        <div class="pl-num">23</div>
+        <div class="pl-num"></div>
         <div class="pl-title">Data Simulator</div>
         <p class="pl-desc">Web tool for drawing freehand curves and generating synthetic datasets. Supports correlated noise via Cholesky decomposition, pattern broadcasting to 2 to 500 columns, heteroscedastic noise, and interaction effects. Exports to CSV, JSON, or Python.</p>
         <div class="pl-links">
@@ -440,7 +449,7 @@
       </div>
 
       <div class="pl-card">
-        <div class="pl-num">24</div>
+        <div class="pl-num"></div>
         <div class="pl-title">BankMind</div>
         <p class="pl-desc">Production-grade RAG platform for financial intelligence. Two pipelines (compliance + credit) over 32,963 indexed chunks with hybrid retrieval (BM25 + SPLADE + Matryoshka), RankGPT reranking, and dual-track evaluation. NDCG@10 of 0.834.</p>
         <div class="pl-links">
@@ -451,7 +460,7 @@
       </div>
 
       <div class="pl-card">
-        <div class="pl-num">25</div>
+        <div class="pl-num"></div>
         <div class="pl-title">Live Expression Reader</div>
         <p class="pl-desc">Real-time, in-browser facial expression analyzer. MediaPipe (478 landmarks + 52 ARKit blendshapes) and HSEmotion ONNX for 8 emotions plus valence/arousal; calibration-aware confidence, cognitive state derivations (PERCLOS, focus, confusion, etc.), and FACS-grounded LLM explanations. Zero frames leave the device.</p>
         <div class="pl-links">
@@ -462,7 +471,7 @@
       </div>
 
       <div class="pl-card">
-        <div class="pl-num">26</div>
+        <div class="pl-num"></div>
         <div class="pl-title">zeroshotGPU</div>
         <p class="pl-desc">Agentic zero-shot document parser with iterative repair. Profiles pages, routes to specialised parsers (Docling, PyMuPDF, Marker, MinerU, olmOCR), verifies via 8 metric families, then repairs deterministic-first then via Qwen2.5-VL on ZeroGPU. Dual CLI + Gradio APIs.</p>
         <div class="pl-links">
@@ -473,7 +482,7 @@
       </div>
 
       <div class="pl-card">
-        <div class="pl-num">27</div>
+        <div class="pl-num"></div>
         <div class="pl-title">Grocery Price Dashboard</div>
         <p class="pl-desc">Public dashboard for 165k+ Canadian grocery price observations across StatCan, Loblaws and Sobeys APIs, Schema.org markup, and Open Food Facts. Search, price-history charts, source confidence metrics, and 1,931 stores grouped by province. Next.js 16 + Supabase with RLS.</p>
         <div class="pl-links">
@@ -483,7 +492,7 @@
       </div>
 
       <div class="pl-card">
-        <div class="pl-num">28</div>
+        <div class="pl-num"></div>
         <div class="pl-title">NA Tech Jobs</div>
         <p class="pl-desc">Production ML platform for the North American senior DS/ML hiring market. 12,334 jobs from 6 ATS platforms; 4 trained models (XGBoost salary, MiniLM + LR seniority/role classifiers, skills extractor); hybrid retrieval + NL-to-SQL with safety layer; closed-loop drift + retrain ops. Salary MAE $29k, role-family F1 0.934.</p>
         <div class="pl-links">
@@ -493,11 +502,57 @@
         <span class="tag tag-c" style="margin-top:.3rem;">Python · XGBoost · Qdrant · DuckDB</span>
       </div>
 
-      <!-- Add more - reserved slot -->
-      <div class="pl-card pl-card-add">
-        <div class="add-ring">+</div>
-        <div class="pl-title" style="color:var(--faint); font-size:.9rem;">Add Project</div>
-        <div class="pl-add-hint">// <br/><br/>to add next project</div>
+      <div class="pl-card">
+        <div class="pl-num"></div>
+        <div class="pl-title">RAG Architecture Advisor</div>
+        <p class="pl-desc">Agentic advisor that maps a described situation to a defensible requirement vector, retrieves from a curated RAG-architecture corpus, and emits a pipeline recommendation with a build plan, design plan, literature map, Terraform module sketch, and decision log. Bounded reflection over a state machine; lexical retrieval by default with LanceDB or Qdrant dense backends; deep-thinking mode runs four parallel research roles before synthesis.</p>
+        <div class="pl-links">
+          <a href="https://github.com/Arjun10g/rag-architecture-advisor" target="_blank" rel="noopener" class="pl-link pl-link-gh">GitHub &#8599;</a>
+          <a href="https://arjun10g-rag-architecture-advisor.hf.space/" target="_blank" rel="noopener" class="pl-link pl-link-live">Live App &#8599;</a>
+        </div>
+        <span class="tag tag-c" style="margin-top:.3rem;">Python &middot; Gradio &middot; Qdrant</span>
+      </div>
+
+      <div class="pl-card">
+        <div class="pl-num"></div>
+        <div class="pl-title">Restricted Local Coder</div>
+        <p class="pl-desc">A private VS Code coding assistant for locked-down workstations where Ollama, Docker, Python packages and Hugging Face are all unavailable. Ships a platform-specific VSIX embedding a pinned llama.cpp server, verifies an approved GGUF by SHA-256, and serves streamed chat, selection commands, and optional fill-in-the-middle on loopback only. Agent mode is argv-prefix permissioned with no shell &mdash; 0 malformed tool calls and 0 ambiguous edits across 190 validated calls. No source reaches a cloud API.</p>
+        <div class="pl-links">
+          <a href="https://github.com/Arjun10g/restricted-local-coder" target="_blank" rel="noopener" class="pl-link pl-link-gh">GitHub &#8599;</a>
+        </div>
+        <span class="tag tag-p" style="margin-top:.3rem;">JavaScript &middot; llama.cpp &middot; VS Code</span>
+      </div>
+
+      <div class="pl-card">
+        <div class="pl-num"></div>
+        <div class="pl-title">Internal MoE Inference Service</div>
+        <p class="pl-desc">Offline-capable HTTP/SSE inference service for locally mounted or private-S3 checkpoints. Resolves and verifies artifacts once against a versioned manifest (SHA-256, byte size, safe-path, symlink checks), loads one model, warms it, and reuses that resident instance for every request. Format-locked engines: safetensors via offline Transformers, GGUF via a pinned loopback-bound llama-server with no web UI. Bounded concurrency with queue backpressure, Prometheus metrics, non-root read-only container.</p>
+        <div class="pl-links">
+          <a href="https://github.com/Arjun10g/internal-moe-inference-service" target="_blank" rel="noopener" class="pl-link pl-link-gh">GitHub &#8599;</a>
+        </div>
+        <span class="tag tag-p" style="margin-top:.3rem;">Python &middot; GGUF &middot; Docker</span>
+      </div>
+
+      <div class="pl-card">
+        <div class="pl-num"></div>
+        <div class="pl-title">Ka Leo Hawai&#699;i Vowel Visualizer</div>
+        <p class="pl-desc">Interactive viewer for Hawaiian vowel formant data &mdash; 8 speakers, roughly 25,000 tokens, 22 vowels. Smoothing-spline F1/F2 trajectories and gaussian-KDE contours computed in FastAPI + Polars + SciPy, plotted in React + TypeScript + Plotly, with per-token audio playback and TTS readout. A multi-stage Docker image serves the API and the SPA from one origin.</p>
+        <div class="pl-links">
+          <a href="https://github.com/Arjun10g/klh-vowel-visualizer" target="_blank" rel="noopener" class="pl-link pl-link-gh">GitHub &#8599;</a>
+          <a href="https://arjun10g-klh-vowel-visualizer.hf.space/" target="_blank" rel="noopener" class="pl-link pl-link-live">Live App &#8599;</a>
+        </div>
+        <span class="tag tag-g" style="margin-top:.3rem;">TypeScript &middot; FastAPI &middot; Plotly</span>
+      </div>
+
+      <div class="pl-card">
+        <div class="pl-num"></div>
+        <div class="pl-title">Acoustify</div>
+        <p class="pl-desc">A dependency-free, installable music library for long-form sources that deploys as-is to GitHub Pages &mdash; no server, database, API key, or build framework. Long-source segmentation makes every saved timestamp range behave like its own track; the browser remembers likes, history, playlists, queue, and resume position, with JSON backup. Local masters play from IndexedDB without transcoding. Media-session controls, offline app shell, Catalog Studio, and a timestamp calibrator.</p>
+        <div class="pl-links">
+          <a href="https://github.com/Arjun10g/acoustify" target="_blank" rel="noopener" class="pl-link pl-link-gh">GitHub &#8599;</a>
+          <a href="https://arjun10g.github.io/acoustify/" target="_blank" rel="noopener" class="pl-link pl-link-live">Live App &#8599;</a>
+        </div>
+        <span class="tag tag-v" style="margin-top:.3rem;">JavaScript &middot; PWA &middot; IndexedDB</span>
       </div>
 
     </div>
@@ -511,6 +566,21 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="animations.js"></script>
   <script>
+    /* Number the project cards and set the heading count from the DOM, so
+       adding or removing a card never leaves a stale number behind. Cards
+       marked [data-pin] are featured and keep their own glyph. */
+    (function numberProjects() {
+      const cards = Array.from(document.querySelectorAll('#projGrid .pl-card'));
+      let n = 0;
+      cards.forEach(card => {
+        if (card.hasAttribute('data-pin')) return;
+        const slot = card.querySelector('.pl-num');
+        if (slot) slot.textContent = String(++n).padStart(2, '0');
+      });
+      const count = document.getElementById('projCount');
+      if (count) count.textContent = String(cards.length);
+    })();
+
     gsap.registerPlugin(ScrollTrigger);
 
     /* Hero */

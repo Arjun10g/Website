@@ -1,2 +1,5 @@
 .DS_Store
 .claude/
+
+# CV is kept locally but not published with the site
+cv_arjunvir.docx

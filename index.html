@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="description" content="Arjunvir Ghumman - PhD Candidate in Quantitative Methods & Machine Learning at York University."/>
   <title>Arjunvir Ghumman | ML Researcher</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23030712'/%3E%3Ctext x='16' y='22' font-family='monospace' font-size='16' font-weight='700' text-anchor='middle' fill='%2322d3ee'%3EAG%3C/text%3E%3C/svg%3E"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
@@ -25,6 +26,7 @@
       <li><a href="index.html" class="active">Home</a></li>
       <li><a href="about.html">About</a></li>
       <li><a href="research.html">Research</a></li>
+      <li><a href="https://arjun10g.github.io/blog/" target="_blank" rel="noopener">Blog ↗</a></li>
       <li><a href="connect.html">Connect</a></li>
     </ul>
     <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
@@ -75,7 +77,7 @@
 
           <div class="hero-actions" id="heroActions">
             <a href="research.html" class="btn btn-primary">View Research ↗</a>
-            <a href="cv_arjunvir.docx" download class="btn btn-ghost">Download CV</a>
+            <a href="connect.html" class="btn btn-ghost">Get in Touch</a>
           </div>
         </div>
 
@@ -85,19 +87,19 @@
             <!-- Corner brackets -->
             <div class="frame-corner-tr" aria-hidden="true"></div>
             <div class="frame-corner-bl" aria-hidden="true"></div>
-            <!-- Photos - object-position: center top shows face -->
-            <img class="hero-photo" src="i1.jpeg" alt="Arjunvir Ghumman"/>
-            <img class="hero-photo" src="i2.jpeg" alt="Arjunvir Ghumman"/>
-            <img class="hero-photo" src="i3.jpeg" alt="Arjunvir Ghumman"/>
-            <img class="hero-photo" src="i5.jpeg" alt="Arjunvir Ghumman"/>
+            <!-- Newest photos lead. object-position: center top frames the face;
+                 the one landscape shot overrides it via .hero-photo-wide. -->
+            <img class="hero-photo" src="me1.jpeg" fetchpriority="high" alt="Arjunvir Ghumman"/>
+            <img class="hero-photo" src="me2.jpeg" alt=""/>
+            <img class="hero-photo" src="me3.jpeg" alt=""/>
+            <img class="hero-photo hero-photo-wide" src="me4.jpeg" alt=""/>
+            <img class="hero-photo" src="i1.jpeg" alt=""/>
+            <img class="hero-photo" src="i2.jpeg" alt=""/>
+            <img class="hero-photo" src="i3.jpeg" alt=""/>
+            <img class="hero-photo" src="i5.jpeg" alt=""/>
           </div>
-          <!-- Dots below frame -->
-          <div class="hero-slide-dots" id="heroDots">
-            <div class="hero-dot active"></div>
-            <div class="hero-dot"></div>
-            <div class="hero-dot"></div>
-            <div class="hero-dot"></div>
-          </div>
+          <!-- Dots are generated from the photos below — do not hand-maintain. -->
+          <div class="hero-slide-dots" id="heroDots"></div>
         </div>
 
       </div><!-- /hero-inner -->
@@ -105,6 +107,52 @@
       <div class="hero-scroll" id="heroScroll">
         <div class="scroll-line"></div>
         <span>Scroll</span>
+      </div>
+    </section>
+
+
+    <!-- ── BLOG SPOTLIGHT ── -->
+    <section class="blog-spotlight" id="blogSpotlight">
+      <div class="bs-inner">
+
+        <div class="bs-copy">
+          <p class="eyebrow reveal-up">Writing</p>
+          <h2 class="bs-title reveal-up" data-delay="0.05">Visualizing<br/>Algorithms</h2>
+          <p class="bs-tagline reveal-up" data-delay="0.1">Machine learning, explained from the inside out.</p>
+          <p class="bs-desc reveal-up" data-delay="0.15">
+            Long-form essays that take apart the algorithms you use every day &mdash; the equations,
+            the intuition, and animated visuals you can actually feel. Every figure is built from
+            scratch for the piece it appears in.
+          </p>
+          <div class="bs-actions reveal-up" data-delay="0.2">
+            <a href="https://arjun10g.github.io/blog/" target="_blank" rel="noopener" class="btn btn-gold">Read the blog ↗</a>
+            <a href="https://github.com/Arjun10g/blog" target="_blank" rel="noopener" class="btn btn-ghost">Source ↗</a>
+          </div>
+        </div>
+
+        <a class="bs-post reveal-up" data-delay="0.12"
+           href="https://arjun10g.github.io/blog/post-xgboost.html" target="_blank" rel="noopener">
+          <img class="bs-figure" loading="lazy" decoding="async"
+               src="https://arjun10g.github.io/blog/visual_09_pipeline_flowchart.png"
+               alt="Flowchart of the complete XGBoost pipeline, from initialising the base score through to the shrunk additive update"/>
+          <div class="bs-post-body">
+            <div class="bs-post-meta">
+              <span class="bs-kind">Latest post</span>
+              <span>April 14, 2026</span>
+              <span>&middot;</span>
+              <span>22 min read</span>
+            </div>
+            <h3 class="bs-post-title">XGBoost From the Inside Out</h3>
+            <p class="bs-post-desc">
+              The entire mathematical pipeline behind XGBoost, from the objective function to the optimal
+              leaf weights &mdash; Taylor approximation, gradient&ndash;Hessian geometry, gain-based splitting,
+              shrinkage, and what every hyperparameter is actually doing. Thirteen sections, fifteen
+              purpose-built figures and animations.
+            </p>
+            <span class="bs-post-cta">Read the article <span aria-hidden="true">→</span></span>
+          </div>
+        </a>
+
       </div>
     </section>
 
@@ -116,14 +164,37 @@
           <h2 class="reveal-up" data-delay="0.05">Featured work</h2>
         </div>
         <p class="reveal-up" data-delay="0.1">
-          Three projects that demonstrate the full pipeline — from research idea to a working production system.
+          Beyond the writing: builds that carry an idea the whole way — from research question to a
+          system that runs, is measured, and ships.
         </p>
       </div>
 
       <div class="fw-scroller" id="fwScroller" role="region" aria-label="Featured projects">
 
-        <!-- ─── bankmind (centerpiece) ─── -->
-        <article class="fw-card fw-rag reveal-up" data-delay="0.13" style="border-color: rgba(34,211,238,0.45); box-shadow: 0 0 32px rgba(34,211,238,0.18);">
+        <!-- ─── WeightForge (private — no public source) ─── -->
+        <article class="fw-card fw-quant fw-private reveal-up accent-hero-p" data-delay="0.13">
+          <header class="fw-head">
+            <span class="fw-glyph">WF</span>
+            <span class="fw-status fw-status-private">Private</span>
+          </header>
+          <div class="fw-body">
+            <div class="fw-tags">
+              <span class="fw-tag tag-p">Quantization</span>
+              <span class="fw-tag">PyTorch</span>
+              <span class="fw-tag tag-g">MoE-aware</span>
+            </div>
+            <h3 class="fw-title">WeightForge</h3>
+            <p class="fw-desc">
+              A weight-only quantization library for dense and mixture-of-experts LLMs. 33 registered methods compared under one harness at honest effective bits-per-weight — scales, zero-points and codebooks all charged — with quality rankings backed by paired significance tests rather than point estimates. Measured 2.49× decode over FP16 at 7B and +15.4% over bitsandbytes 0.50.0 on an L40S, at 3.10× less weight memory for +0.21 perplexity. 2,277 tests.
+            </p>
+            <div class="fw-actions">
+              <span class="fw-cta fw-cta-static">Source not public</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- ─── bankmind ─── -->
+        <article class="fw-card fw-rag reveal-up accent-hero" data-delay="0.132">
           <a class="fw-link-overlay" href="https://huggingface.co/spaces/arjun10g/bankmind" target="_blank" rel="noopener" aria-label="Open BankMind live demo"></a>
           <header class="fw-head">
             <span class="fw-glyph">BM</span>
@@ -147,7 +218,7 @@
         </article>
 
         <!-- ─── na-tech-jobs ─── -->
-        <article class="fw-card fw-rag reveal-up" data-delay="0.132">
+        <article class="fw-card fw-rag reveal-up" data-delay="0.134">
           <a class="fw-link-overlay" href="https://arjun10g-na-tech-jobs.hf.space" target="_blank" rel="noopener" aria-label="Open NA Tech Jobs live demo"></a>
           <header class="fw-head">
             <span class="fw-glyph">NJ</span>
@@ -170,8 +241,32 @@
           </div>
         </article>
 
+        <!-- ─── rag-architecture-advisor ─── -->
+        <article class="fw-card fw-rag reveal-up" data-delay="0.136">
+          <a class="fw-link-overlay" href="https://arjun10g-rag-architecture-advisor.hf.space/" target="_blank" rel="noopener" aria-label="Open RAG Architecture Advisor live demo"></a>
+          <header class="fw-head">
+            <span class="fw-glyph">RA</span>
+            <span class="fw-status">Live</span>
+          </header>
+          <div class="fw-body">
+            <div class="fw-tags">
+              <span class="fw-tag">Agentic RAG</span>
+              <span class="fw-tag tag-p">LangGraph-style</span>
+              <span class="fw-tag tag-g">Qdrant · Terraform</span>
+            </div>
+            <h3 class="fw-title">RAG Architecture Advisor</h3>
+            <p class="fw-desc">
+              Maps a described situation to a defensible requirement vector, retrieves from a curated RAG-architecture corpus, and emits a pipeline recommendation with a build plan, deployment view, Terraform sketch, and a decision log. Bounded reflection over a state machine; lexical retrieval by default with LanceDB or Qdrant dense backends. Deep-thinking mode runs four parallel research roles before synthesis.
+            </p>
+            <div class="fw-actions">
+              <span class="fw-cta">Try it live →</span>
+              <a class="fw-meta-link" href="https://github.com/Arjun10g/rag-architecture-advisor" target="_blank" rel="noopener">github ↗</a>
+            </div>
+          </div>
+        </article>
+
         <!-- ─── zeroshotGPU ─── -->
-        <article class="fw-card fw-blog reveal-up" data-delay="0.135">
+        <article class="fw-card fw-blog reveal-up" data-delay="0.138">
           <a class="fw-link-overlay" href="https://huggingface.co/spaces/arjun10g/zeroshotGPU" target="_blank" rel="noopener" aria-label="Open zeroshotGPU live demo"></a>
           <header class="fw-head">
             <span class="fw-glyph">ZG</span>
@@ -194,32 +289,80 @@
           </div>
         </article>
 
-        <!-- ─── grocery-price-dashboard ─── -->
-        <article class="fw-card fw-dcs reveal-up" data-delay="0.138">
-          <a class="fw-link-overlay" href="https://github.com/Arjun10g/grocery-price-dashboard" target="_blank" rel="noopener" aria-label="Open grocery-price-dashboard on GitHub"></a>
+        <!-- ─── restricted-local-coder ─── -->
+        <article class="fw-card fw-quant reveal-up" data-delay="0.14">
+          <a class="fw-link-overlay" href="https://github.com/Arjun10g/restricted-local-coder" target="_blank" rel="noopener" aria-label="Open restricted-local-coder on GitHub"></a>
           <header class="fw-head">
-            <span class="fw-glyph">GP</span>
+            <span class="fw-glyph">RC</span>
+            <span class="fw-status fw-status-private">Self-hosted</span>
+          </header>
+          <div class="fw-body">
+            <div class="fw-tags">
+              <span class="fw-tag tag-p">llama.cpp</span>
+              <span class="fw-tag">VS Code</span>
+              <span class="fw-tag tag-g">Air-gapped</span>
+            </div>
+            <h3 class="fw-title">Restricted Local Coder</h3>
+            <p class="fw-desc">
+              A private coding assistant for locked-down workstations where Ollama, Docker, Python packages and Hugging Face are all unavailable. Ships a platform-specific VSIX embedding a pinned llama.cpp server, verifies an approved GGUF by SHA-256, and serves streamed chat, selection commands, and optional fill-in-the-middle on loopback only. Agent mode is argv-prefix permissioned with no shell — 0 malformed tool calls and 0 ambiguous edits across 190 validated calls. No source ever reaches a cloud API.
+            </p>
+            <div class="fw-actions">
+              <span class="fw-cta">View on GitHub →</span>
+              <a class="fw-meta-link" href="https://github.com/Arjun10g/restricted-local-coder" target="_blank" rel="noopener">source ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- ─── internal-moe-inference-service ─── -->
+        <article class="fw-card fw-quant reveal-up" data-delay="0.142">
+          <a class="fw-link-overlay" href="https://github.com/Arjun10g/internal-moe-inference-service" target="_blank" rel="noopener" aria-label="Open internal-moe-inference-service on GitHub"></a>
+          <header class="fw-head">
+            <span class="fw-glyph">MI</span>
+            <span class="fw-status fw-status-private">Self-hosted</span>
+          </header>
+          <div class="fw-body">
+            <div class="fw-tags">
+              <span class="fw-tag tag-p">Inference</span>
+              <span class="fw-tag">GGUF · safetensors</span>
+              <span class="fw-tag tag-g">Docker</span>
+            </div>
+            <h3 class="fw-title">MoE Inference Service</h3>
+            <p class="fw-desc">
+              Offline-capable HTTP/SSE inference service for locally mounted or private-S3 checkpoints. Resolves and verifies artifacts once against a versioned manifest (SHA-256, byte size, safe-path, symlink checks), loads one model, warms it, and reuses that resident instance for every request. Format-locked engines: safetensors via offline Transformers, GGUF via a pinned loopback-bound llama-server with no web UI. Bounded concurrency with queue backpressure, Prometheus metrics, non-root read-only container.
+            </p>
+            <div class="fw-actions">
+              <span class="fw-cta">View on GitHub →</span>
+              <a class="fw-meta-link" href="https://github.com/Arjun10g/internal-moe-inference-service" target="_blank" rel="noopener">source ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- ─── klh-vowel-visualizer ─── -->
+        <article class="fw-card fw-dcs reveal-up" data-delay="0.144">
+          <a class="fw-link-overlay" href="https://arjun10g-klh-vowel-visualizer.hf.space/" target="_blank" rel="noopener" aria-label="Open Ka Leo Hawaiʻi Vowel Visualizer live demo"></a>
+          <header class="fw-head">
+            <span class="fw-glyph">KV</span>
             <span class="fw-status fw-status-green">Live</span>
           </header>
           <div class="fw-body">
             <div class="fw-tags">
-              <span class="fw-tag tag-g">Next.js 16</span>
-              <span class="fw-tag tag-p">Supabase</span>
-              <span class="fw-tag">Recharts</span>
+              <span class="fw-tag tag-g">Phonetics</span>
+              <span class="fw-tag tag-p">FastAPI · Polars</span>
+              <span class="fw-tag">React · Plotly</span>
             </div>
-            <h3 class="fw-title">Grocery Price Dashboard</h3>
+            <h3 class="fw-title">Ka Leo Hawaiʻi Vowel Visualizer</h3>
             <p class="fw-desc">
-              Public dashboard visualising 165k+ Canadian grocery price observations across StatCan, Loblaws + Sobeys APIs, Schema.org markup, and Open Food Facts. Search, price-history charts, source confidence metrics, and 1,931 stores grouped by province. RLS-gated Supabase read access, biweekly Cloud Run refresh.
+              Interactive viewer for Hawaiian vowel formant data — 8 speakers, ~25,000 tokens, 22 vowels from the KLH corpus. Smoothing-spline F1/F2 trajectories and gaussian-KDE contours computed in FastAPI + Polars + SciPy, plotted in React + TypeScript + Plotly, with per-token audio playback and TTS readout. A multi-stage Docker image serves the API and the SPA from one origin.
             </p>
             <div class="fw-actions">
-              <span class="fw-cta">View on GitHub →</span>
-              <a class="fw-meta-link" href="https://github.com/Arjun10g/grocery-price-dashboard" target="_blank" rel="noopener">source ↗</a>
+              <span class="fw-cta">Try it live →</span>
+              <a class="fw-meta-link" href="https://github.com/Arjun10g/klh-vowel-visualizer" target="_blank" rel="noopener">github ↗</a>
             </div>
           </div>
         </article>
 
         <!-- ─── live-expression-reader ─── -->
-        <article class="fw-card fw-dcs reveal-up" data-delay="0.14">
+        <article class="fw-card fw-dcs reveal-up" data-delay="0.146">
           <a class="fw-link-overlay" href="https://arjun10g-live-expression-reader.static.hf.space" target="_blank" rel="noopener" aria-label="Open Live Expression Reader live demo"></a>
           <header class="fw-head">
             <span class="fw-glyph">LX</span>
@@ -242,32 +385,8 @@
           </div>
         </article>
 
-        <!-- ─── rag-psych ─── -->
-        <article class="fw-card fw-rag reveal-up" data-delay="0.15">
-          <a class="fw-link-overlay" href="https://arjun10g-rag-psych.hf.space/ui" target="_blank" rel="noopener" aria-label="Open rag-psych live demo"></a>
-          <header class="fw-head">
-            <span class="fw-glyph">RP</span>
-            <span class="fw-status">Live</span>
-          </header>
-          <div class="fw-body">
-            <div class="fw-tags">
-              <span class="fw-tag">Clinical RAG</span>
-              <span class="fw-tag tag-p">pgvector</span>
-              <span class="fw-tag tag-g">FastAPI</span>
-            </div>
-            <h3 class="fw-title">rag-psych</h3>
-            <p class="fw-desc">
-              Hybrid retrieval over MTSamples · PubMed · ICD-11 with RRF fusion, cross-encoder rerank, and a custom NegEx filter. Forced citations validated server-side — 100% validity on a 16-query eval.
-            </p>
-            <div class="fw-actions">
-              <span class="fw-cta">Try it live →</span>
-              <a class="fw-meta-link" href="https://github.com/Arjun10g/rag-psych" target="_blank" rel="noopener">github ↗</a>
-            </div>
-          </div>
-        </article>
-
         <!-- ─── data-cleaning-studio ─── -->
-        <article class="fw-card fw-dcs reveal-up" data-delay="0.19">
+        <article class="fw-card fw-dcs reveal-up" data-delay="0.148">
           <a class="fw-link-overlay" href="https://arjun10g.github.io/data-cleaning-studio/" target="_blank" rel="noopener" aria-label="Open Data Cleaning Studio"></a>
           <header class="fw-head">
             <span class="fw-glyph">DC</span>
@@ -290,67 +409,10 @@
           </div>
         </article>
 
-        <!-- ─── data-simulator ─── -->
-        <article class="fw-card fw-dcs reveal-up" data-delay="0.22">
-          <a class="fw-link-overlay" href="https://github.com/Arjun10g/data-simulator" target="_blank" rel="noopener" aria-label="Open data-simulator on GitHub"></a>
-          <header class="fw-head">
-            <span class="fw-glyph">DS</span>
-            <span class="fw-status fw-status-green">Live</span>
-          </header>
-          <div class="fw-body">
-            <div class="fw-tags">
-              <span class="fw-tag">Synthetic Data</span>
-              <span class="fw-tag tag-p">React · Vite</span>
-              <span class="fw-tag tag-g">Cholesky</span>
-            </div>
-            <h3 class="fw-title">Data Simulator</h3>
-            <p class="fw-desc">
-              Draw freehand curves on a canvas and generate realistic multivariate synthetic datasets. Cholesky-based correlated noise, broadcasting to 2 to 500 columns, heteroscedastic envelopes, and interaction effects. Exports to CSV, JSON, or Python.
-            </p>
-            <div class="fw-actions">
-              <span class="fw-cta">View on GitHub →</span>
-              <a class="fw-meta-link" href="https://github.com/Arjun10g/data-simulator" target="_blank" rel="noopener">source ↗</a>
-            </div>
-          </div>
-        </article>
-
-        <!-- ─── blog ─── -->
-        <article class="fw-card fw-blog reveal-up" data-delay="0.25">
-          <a class="fw-link-overlay" href="https://arjun10g.github.io/blog/" target="_blank" rel="noopener" aria-label="Open Visualizing Algorithms blog"></a>
-          <header class="fw-head">
-            <span class="fw-glyph">∇</span>
-            <span class="fw-status fw-status-gold">Published</span>
-          </header>
-          <div class="fw-body">
-            <div class="fw-tags">
-              <span class="fw-tag tag-y">Visualization</span>
-              <span class="fw-tag tag-p">Algorithms</span>
-              <span class="fw-tag">D3 · GSAP</span>
-            </div>
-            <h3 class="fw-title">Visualizing Algorithms</h3>
-            <p class="fw-desc">
-              A long-form blog on the geometry of statistical and ML methods — sorting, search, gradient descent, EM, latent spaces of deep models. Every post is interactive.
-            </p>
-            <div class="fw-actions">
-              <span class="fw-cta">Read the blog →</span>
-              <a class="fw-meta-link" href="https://github.com/Arjun10g/blog" target="_blank" rel="noopener">source ↗</a>
-            </div>
-          </div>
-        </article>
-
       </div>
 
-      <div class="fw-dots" id="fwDots" aria-hidden="true">
-        <button class="fw-dot active" data-idx="0" aria-label="View BankMind"></button>
-        <button class="fw-dot" data-idx="1" aria-label="View NA Tech Jobs"></button>
-        <button class="fw-dot" data-idx="2" aria-label="View zeroshotGPU"></button>
-        <button class="fw-dot" data-idx="3" aria-label="View Grocery Price Dashboard"></button>
-        <button class="fw-dot" data-idx="4" aria-label="View Live Expression Reader"></button>
-        <button class="fw-dot" data-idx="5" aria-label="View rag-psych"></button>
-        <button class="fw-dot" data-idx="6" aria-label="View Data Cleaning Studio"></button>
-        <button class="fw-dot" data-idx="7" aria-label="View Data Simulator"></button>
-        <button class="fw-dot" data-idx="8" aria-label="View Visualizing Algorithms"></button>
-      </div>
+      <!-- Dots are generated from the cards by featured.js — do not hand-maintain. -->
+      <div class="fw-dots" id="fwDots" role="group" aria-label="Featured project pagination"></div>
     </section>
 
     <!-- ── NAV CARDS ── -->
@@ -375,7 +437,7 @@
         <a href="connect.html" class="nav-card">
           <div class="nav-card-icon">◍</div>
           <div class="nav-card-title">Connect</div>
-          <div class="nav-card-desc">GitHub, email, academic profiles, and 19 open-source projects - all in one place.</div>
+          <div class="nav-card-desc">GitHub, email, academic profiles, and every open-source project in one place.</div>
           <div class="nav-card-arrow"><span>Explore</span> →</div>
         </a>
       </div>
@@ -395,8 +457,17 @@
     gsap.registerPlugin(TextPlugin, ScrollTrigger);
 
     /* ── Photo slideshow ── */
-    const photos  = document.querySelectorAll('.hero-photo');
-    const dots    = document.querySelectorAll('.hero-dot');
+    const photos  = Array.from(document.querySelectorAll('.hero-photo'));
+    // Build one dot per photo so adding or removing a shot never desyncs them.
+    const dotsWrap = document.getElementById('heroDots');
+    photos.forEach((_, i) => {
+      const d = document.createElement('button');
+      d.type = 'button';
+      d.className = 'hero-dot' + (i === 0 ? ' active' : '');
+      d.setAttribute('aria-label', `Show photo ${i + 1} of ${photos.length}`);
+      dotsWrap.appendChild(d);
+    });
+    const dots    = Array.from(dotsWrap.querySelectorAll('.hero-dot'));
     let   current = 0;
     const DISPLAY = 5000;   // ms per photo
     const XFADE   = 1200;   // ms crossfade
