@@ -120,39 +120,92 @@
           <h2 class="bs-title reveal-up" data-delay="0.05">Visualizing<br/>Algorithms</h2>
           <p class="bs-tagline reveal-up" data-delay="0.1">Machine learning, explained from the inside out.</p>
           <p class="bs-desc reveal-up" data-delay="0.15">
-            Long-form essays that take apart the algorithms you use every day &mdash; the equations,
-            the intuition, and animated visuals you can actually feel. Every figure is built from
-            scratch for the piece it appears in.
+            Long-form essays that take apart the algorithms and systems you use every day &mdash; the
+            equations, the intuition, and animated visuals you can actually feel. Four pieces so far,
+            from gradient boosting to the transformer block, the inference stack, and low-bit
+            quantization. Every figure is built from scratch for the piece it appears in.
           </p>
           <div class="bs-actions reveal-up" data-delay="0.2">
             <a href="https://arjun10g.github.io/blog/" target="_blank" rel="noopener" class="btn btn-gold">Read the blog ↗</a>
             <a href="https://github.com/Arjun10g/blog" target="_blank" rel="noopener" class="btn btn-ghost">Source ↗</a>
           </div>
+          <p class="bs-cadence reveal-up" data-delay="0.24">New writing on the 14th of the month</p>
         </div>
 
         <a class="bs-post reveal-up" data-delay="0.12"
-           href="https://arjun10g.github.io/blog/post-xgboost.html" target="_blank" rel="noopener">
+           href="https://arjun10g.github.io/blog/post-quantization.html" target="_blank" rel="noopener">
           <img class="bs-figure" loading="lazy" decoding="async"
-               src="https://arjun10g.github.io/blog/visual_09_pipeline_flowchart.png"
-               alt="Flowchart of the complete XGBoost pipeline, from initialising the base score through to the shrunk additive update"/>
+               src="https://arjun10g.github.io/blog/thumb-quantization.svg"
+               alt="Bit-field diagram shrinking from FP32 to FP4 beside a polar coordinate grid"/>
           <div class="bs-post-body">
             <div class="bs-post-meta">
               <span class="bs-kind">Latest post</span>
-              <span>April 14, 2026</span>
+              <span>August 14, 2026</span>
               <span>&middot;</span>
-              <span>22 min read</span>
+              <span>30 min read</span>
             </div>
-            <h3 class="bs-post-title">XGBoost From the Inside Out</h3>
+            <h3 class="bs-post-title">Quantization: Formats, Algorithms, Geometry</h3>
             <p class="bs-post-desc">
-              The entire mathematical pipeline behind XGBoost, from the objective function to the optimal
-              leaf weights &mdash; Taylor approximation, gradient&ndash;Hessian geometry, gain-based splitting,
-              shrinkage, and what every hyperparameter is actually doing. Thirteen sections, fifteen
-              purpose-built figures and animations.
+              From FP32 down to FP4 &mdash; how number formats are actually built, why scaling is the
+              whole game, what the classical algorithms do to the outlier problem, and why the newest
+              methods reach for polar coordinates and rotations before they ever round a weight.
             </p>
             <span class="bs-post-cta">Read the article <span aria-hidden="true">→</span></span>
           </div>
         </a>
 
+      </div>
+
+      <div class="bs-more reveal-up" data-delay="0.1">
+        <p class="bs-more-label">Earlier in the series</p>
+        <div class="bs-more-grid">
+
+          <a class="bs-mini" href="https://arjun10g.github.io/blog/post-inference.html" target="_blank" rel="noopener">
+            <img class="bs-mini-figure" loading="lazy" decoding="async"
+                 src="https://arjun10g.github.io/blog/thumb-inference.svg"
+                 alt="Prefill and decode phases shown against a per-token latency figure"/>
+            <div class="bs-mini-body">
+              <div class="bs-mini-meta"><span class="bs-mini-kind">Systems</span> &middot; July 14, 2026 &middot; 28 min</div>
+              <div class="bs-mini-title">The LLM Inference Stack</div>
+              <p class="bs-mini-desc">
+                Prefill and decode have opposite bottlenecks. Continuous batching, PagedAttention,
+                FlashAttention, prefill&ndash;decode disaggregation and speculative decoding are all
+                answers to that one split.
+              </p>
+            </div>
+          </a>
+
+          <a class="bs-mini" href="https://arjun10g.github.io/blog/post-transformer.html" target="_blank" rel="noopener">
+            <img class="bs-mini-figure" loading="lazy" decoding="async"
+                 src="https://arjun10g.github.io/blog/thumb-transformer.svg"
+                 alt="Attention and MLP stages carrying a 50 by 1024 activation tensor"/>
+            <div class="bs-mini-body">
+              <div class="bs-mini-meta"><span class="bs-mini-kind">Architecture</span> &middot; May 14, 2026 &middot; 26 min</div>
+              <div class="bs-mini-title">The Transformer, Tensor by Tensor</div>
+              <p class="bs-mini-desc">
+                One running example &mdash; 50 tokens at 1024 dimensions &mdash; carried through
+                embeddings, quadratic and linear attention, the MLP, and back again through
+                backpropagation.
+              </p>
+            </div>
+          </a>
+
+          <a class="bs-mini" href="https://arjun10g.github.io/blog/post-xgboost.html" target="_blank" rel="noopener">
+            <img class="bs-mini-figure bs-mini-figure-contain" loading="lazy" decoding="async"
+                 src="https://arjun10g.github.io/blog/visual_12_early_stopping.png"
+                 alt="Training and validation RMSE curves diverging, with the early-stopping round marked"/>
+            <div class="bs-mini-body">
+              <div class="bs-mini-meta"><span class="bs-mini-kind">Algorithms</span> &middot; April 14, 2026 &middot; 22 min</div>
+              <div class="bs-mini-title">XGBoost From the Inside Out</div>
+              <p class="bs-mini-desc">
+                From the objective function to optimal leaf weights &mdash; Taylor approximation,
+                gradient&ndash;Hessian geometry, gain-based splitting, shrinkage, and what every
+                hyperparameter is actually doing.
+              </p>
+            </div>
+          </a>
+
+        </div>
       </div>
     </section>
 
